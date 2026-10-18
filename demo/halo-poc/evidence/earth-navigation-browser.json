@@ -1,0 +1,346 @@
+{
+  "date": "2026-10-18",
+  "homeWidths": [
+    {
+      "documentWidth": 320,
+      "firstCardTop": 272,
+      "headerHeight": 108.8000030517578,
+      "nav": [
+        {
+          "h": 44,
+          "right": 85,
+          "text": "能力测评",
+          "w": 69,
+          "x": 16
+        },
+        {
+          "h": 44,
+          "right": 158,
+          "text": "评分榜单",
+          "w": 69,
+          "x": 89
+        },
+        {
+          "h": 44,
+          "right": 231,
+          "text": "价格对比",
+          "w": 69,
+          "x": 162
+        },
+        {
+          "h": 44,
+          "right": 304,
+          "text": "技巧教程",
+          "w": 69,
+          "x": 235
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 320
+    },
+    {
+      "documentWidth": 360,
+      "firstCardTop": 272,
+      "headerHeight": 108.8000030517578,
+      "nav": [
+        {
+          "h": 44,
+          "right": 95,
+          "text": "能力测评",
+          "w": 79,
+          "x": 16
+        },
+        {
+          "h": 44,
+          "right": 178,
+          "text": "评分榜单",
+          "w": 79,
+          "x": 99
+        },
+        {
+          "h": 44,
+          "right": 261,
+          "text": "价格对比",
+          "w": 79,
+          "x": 182
+        },
+        {
+          "h": 44,
+          "right": 344,
+          "text": "技巧教程",
+          "w": 79,
+          "x": 265
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 360
+    },
+    {
+      "documentWidth": 390,
+      "firstCardTop": 272,
+      "headerHeight": 108.8000030517578,
+      "nav": [
+        {
+          "h": 44,
+          "right": 103,
+          "text": "能力测评",
+          "w": 87,
+          "x": 16
+        },
+        {
+          "h": 44,
+          "right": 193,
+          "text": "评分榜单",
+          "w": 87,
+          "x": 107
+        },
+        {
+          "h": 44,
+          "right": 284,
+          "text": "价格对比",
+          "w": 87,
+          "x": 197
+        },
+        {
+          "h": 44,
+          "right": 374,
+          "text": "技巧教程",
+          "w": 87,
+          "x": 288
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 390
+    },
+    {
+      "documentWidth": 430,
+      "firstCardTop": 272,
+      "headerHeight": 108.8000030517578,
+      "nav": [
+        {
+          "h": 44,
+          "right": 113,
+          "text": "能力测评",
+          "w": 97,
+          "x": 16
+        },
+        {
+          "h": 44,
+          "right": 213,
+          "text": "评分榜单",
+          "w": 97,
+          "x": 117
+        },
+        {
+          "h": 44,
+          "right": 314,
+          "text": "价格对比",
+          "w": 97,
+          "x": 217
+        },
+        {
+          "h": 44,
+          "right": 414,
+          "text": "技巧教程",
+          "w": 97,
+          "x": 318
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 430
+    },
+    {
+      "documentWidth": 768,
+      "firstCardTop": 272,
+      "headerHeight": 108.8000030517578,
+      "nav": [
+        {
+          "h": 44,
+          "right": 197,
+          "text": "能力测评",
+          "w": 181,
+          "x": 16
+        },
+        {
+          "h": 44,
+          "right": 382,
+          "text": "评分榜单",
+          "w": 181,
+          "x": 201
+        },
+        {
+          "h": 44,
+          "right": 567,
+          "text": "价格对比",
+          "w": 181,
+          "x": 386
+        },
+        {
+          "h": 44,
+          "right": 752,
+          "text": "技巧教程",
+          "w": 181,
+          "x": 571
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 768
+    },
+    {
+      "documentWidth": 960,
+      "firstCardTop": 272,
+      "headerHeight": 108.8000030517578,
+      "nav": [
+        {
+          "h": 44,
+          "right": 245,
+          "text": "能力测评",
+          "w": 229,
+          "x": 16
+        },
+        {
+          "h": 44,
+          "right": 478,
+          "text": "评分榜单",
+          "w": 229,
+          "x": 249
+        },
+        {
+          "h": 44,
+          "right": 711,
+          "text": "价格对比",
+          "w": 229,
+          "x": 482
+        },
+        {
+          "h": 44,
+          "right": 944,
+          "text": "技巧教程",
+          "w": 229,
+          "x": 715
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 960
+    },
+    {
+      "documentWidth": 962,
+      "firstCardTop": 247,
+      "headerHeight": 72.80000305175781,
+      "nav": [
+        {
+          "h": 44,
+          "right": 413,
+          "text": "能力测评",
+          "w": 88,
+          "x": 325
+        },
+        {
+          "h": 44,
+          "right": 524,
+          "text": "评分与榜单",
+          "w": 103,
+          "x": 421
+        },
+        {
+          "h": 44,
+          "right": 620,
+          "text": "价格对比",
+          "w": 88,
+          "x": 532
+        },
+        {
+          "h": 44,
+          "right": 761,
+          "text": "使用技巧与教程",
+          "w": 133,
+          "x": 628
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 962
+    },
+    {
+      "documentWidth": 1024,
+      "firstCardTop": 247,
+      "headerHeight": 72.80000305175781,
+      "nav": [
+        {
+          "h": 44,
+          "right": 444,
+          "text": "能力测评",
+          "w": 88,
+          "x": 356
+        },
+        {
+          "h": 44,
+          "right": 555,
+          "text": "评分与榜单",
+          "w": 103,
+          "x": 452
+        },
+        {
+          "h": 44,
+          "right": 651,
+          "text": "价格对比",
+          "w": 88,
+          "x": 563
+        },
+        {
+          "h": 44,
+          "right": 792,
+          "text": "使用技巧与教程",
+          "w": 133,
+          "x": 659
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 1024
+    },
+    {
+      "documentWidth": 1440,
+      "firstCardTop": 247,
+      "headerHeight": 72.80000305175781,
+      "nav": [
+        {
+          "h": 44,
+          "right": 652,
+          "text": "能力测评",
+          "w": 88,
+          "x": 564
+        },
+        {
+          "h": 44,
+          "right": 763,
+          "text": "评分与榜单",
+          "w": 103,
+          "x": 660
+        },
+        {
+          "h": 44,
+          "right": 859,
+          "text": "价格对比",
+          "w": 88,
+          "x": 771
+        },
+        {
+          "h": 44,
+          "right": 1000,
+          "text": "使用技巧与教程",
+          "w": 133,
+          "x": 867
+        }
+      ],
+      "oldFilters": false,
+      "viewport": 1440
+    }
+  ],
+  "searchKeyword": "价格",
+  "navigationTarget": "/aihyb/pricing",
+  "oneVisiblePrimaryNavigation": true,
+  "searchResults": 2,
+  "darkMode": {
+    "headingColor": "rgb(241, 245, 249)",
+    "headerBackground": "rgb(31, 41, 55)"
+  }
+}

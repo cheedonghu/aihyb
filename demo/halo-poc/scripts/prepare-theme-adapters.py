@@ -1,6 +1,7 @@
 """Generate bounded, reproducible overlays from the exact downloaded theme versions."""
 import hashlib
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -8,28 +9,46 @@ themes = ROOT / 'themes'
 nav = '''<nav class="aihyb-module-nav" aria-label="四模块导航"><a href="/aihyb/review">能力测评</a><a href="/aihyb/leaderboard">评分与榜单</a><a href="/aihyb/pricing">价格对比</a><a href="/aihyb/tutorial">使用技巧与教程</a></nav>'''
 manifest = []
 manifest_path=themes/'adapters/manifest.json'
-previous={ (item['theme'],item['path']):item['adapted_sha256'] for item in json.loads(manifest_path.read_text()) } if manifest_path.exists() else {}
+previous={ (item['theme'],item['path']):item for item in json.loads(manifest_path.read_text()) } if manifest_path.exists() else {}
 def write(theme, relative, content, original=None):
     target = themes / 'adapters' / theme / relative
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding='utf-8', newline='\n')
+    digest = hashlib.sha256(content.encode()).hexdigest()
+    prior = previous.get((theme, relative), {})
+    previous_digest = prior.get('previous_adapted_sha256') if prior.get('adapted_sha256') == digest else prior.get('adapted_sha256')
     manifest.append({'theme': theme, 'path': relative,
         'original_sha256': hashlib.sha256(original.encode()).hexdigest() if original is not None else None,
-        'previous_adapted_sha256': previous.get((theme,relative)),
-        'adapted_sha256': hashlib.sha256(content.encode()).hexdigest()})
+        'previous_adapted_sha256': previous_digest,
+        'adapted_sha256': digest})
 
 earth = themes / 'theme-earth'
 source = (earth / 'templates/index.html').read_text(encoding='utf-8')
 header_end = source.index('</header>') + len('</header>')
 footer_start = source.index('<footer')
-layout = source[:header_end] + nav + '\n<main style="max-width:1080px;margin:auto;min-width:0"><th:block th:replace="${content}"/></main>\n' + source[footer_start:]
+layout = source[:header_end] + '\n<main style="max-width:1080px;margin:auto;min-width:0"><th:block th:replace="${content}"/></main>\n' + source[footer_start:]
 layout = layout.replace('<html th:lang="${#locale.toLanguageTag}">', '<html th:lang="${#locale.toLanguageTag}" th:fragment="html(head,content)">')
 layout = layout.replace('<title th:text="${site.title}"></title>', '<th:block th:replace="${head}"/>')
-layout=layout.replace('</head>', '<style>#aihyb-portal > .aihyb-module-nav{display:none}</style></head>')
-write('theme-earth', 'templates/layout.html', layout)
-for relative in ('templates/index.html', 'templates/post.html'):
-    original = (earth / relative).read_text(encoding='utf-8')
-    write('theme-earth', relative, original.replace('</header>', '</header>\n' + nav, 1), original)
+def earth_navigation(content):
+    content, count = re.subn(r'<header\s+id="header-menu"[\s\S]*?</header>',
+                            '<th:block th:replace="~{modules/aihyb-header :: header}" />', content)
+    assert count == 1, 'Expected exactly one original Earth header'
+    return content.replace('</head>', '<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-navigation.css?v=20261018">\n</head>', 1)
+
+write('theme-earth', 'templates/modules/aihyb-header.html', (themes/'shared/earth-header.html').read_text(encoding='utf-8'))
+write('theme-earth', 'templates/assets/aihyb-navigation.css', (themes/'shared/earth-navigation.css').read_text(encoding='utf-8'))
+write('theme-earth', 'templates/layout.html', earth_navigation(layout))
+for template in sorted((earth/'templates').rglob('*.html')):
+    original = template.read_text(encoding='utf-8')
+    if 'id="header-menu"' not in original:
+        continue
+    adapted = earth_navigation(original)
+    if template.name == 'index.html':
+        hero = '<th:block th:replace="~{modules/hero :: hero(isHome = true, cover = null, title = null)}" />'
+        assert adapted.count(hero) == 1
+        adapted = adapted.replace(hero, '<section class="aihyb-home-intro"><h1>帮你选对 AI，用好 AI。</h1><p>能力测评、评分榜单、价格对比与实用教程</p></section>')
+        adapted = adapted.replace('<th:block th:replace="~{modules/category-filter}" />', '<h2 class="text-lg font-medium dark:text-slate-100">最新内容</h2>')
+    write('theme-earth', template.relative_to(earth).as_posix(), adapted, original)
 
 anatole = themes / 'anatole-v2.1.0'
 original = (anatole / 'templates/module/layout.html').read_text(encoding='utf-8')

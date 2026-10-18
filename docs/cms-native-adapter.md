@@ -48,7 +48,19 @@
 
 采用 Earth 1.15.3 与 Anatole 2.1.0。Anatole 使用[官方2.1.0标签源码](https://github.com/halo-dev/halo-theme-anatole/tree/v2.1.0)及自带构建资源；源制品摘要记录在[来源记录](../demo/halo-poc/evidence/anatole-source.json)。两者采用 GPL-3.0。Anatole 在当前实例标记为开发模式，此结果不能直接作为生产缓存或负载能力证明。
 
-适配提供 `layout :: html(head, content)`、四模块导航、表格滚动和内容样式；原生文章继续使用主题自己的 post 模板。代码高亮实例为私有作用域，价格脚本限定稿件正文，不覆盖其他页面的 Prism。两主题配置和原文件均保留；部署检查原文件/已知适配哈希，备份变更文件并通过原生 API 重载与清除模板缓存。[适配清单：当前10文件，含后续两份搜索模板](../demo/halo-poc/evidence/theme-adapters.json)
+适配提供 `layout :: html(head, content)`、四模块导航、表格滚动和内容样式；原生文章继续使用主题自己的 post 模板。代码高亮实例为私有作用域，价格脚本限定稿件正文，不覆盖其他页面的 Prism。两主题配置和原文件均保留；部署检查原文件/已知适配哈希，备份变更文件并通过原生 API 重载与清除模板缓存。[最近一次部署清单](../demo/halo-poc/evidence/theme-adapters.json)
+
+### Earth 首页与导航调整（2026-10-18）
+
+用户确认继续使用 Earth，移除首页装饰性地球大封面、原来的“首页／文章／默认分类／关于”顶栏和首页重复分类栏。首页保留简短定位和最新内容；站名返回首页。各类 Earth 页面及插件布局共用 `modules/aihyb-header.html`，四模块成为唯一主导航，搜索保留并提供 `/search` 回退。
+
+电脑端横排站名、四模块和搜索；960px 及以下将四模块放到顶栏下方一行，直接可见，不藏进菜单。手机标签简写为“能力测评／评分榜单／价格对比／技巧教程”，链接及可访问名称保留原模块含义，导航点击高度至少44px。原有业务列表、正文、价格比较、草稿与审核流程不作变更。
+
+生成入口仍为 `scripts/prepare-theme-adapters.py`，保留下载的原版主题作为基线。部署使用 `deploy-theme-adapters.py --theme theme-earth`，支持 `--check` 全量哈希预检，备份后写入；写入或重载失败会恢复原文件。`verify-earth-navigation.py freeze/check` 比较部署前后业务指纹，并检查公开路由、单一主导航和 canonical。浏览器另外检查手机／平板／电脑尺寸和实际搜索交互。
+
+本轮已部署到 https://aihyb.com/。17个公开路由通过，业务指纹不变；浏览器检查320、360、390、430、768、960、断点上方约962、1024、1440px，均未出现整页横向溢出，四模块点击高度44px。390px 首页首张卡片顶部约272px，搜索“价格”返回2条公开结果，暗色模式标题与页头颜色正常。独立代码复核的问题已修正，最终无阻塞发现。记录：[路由与业务核对](../demo/halo-poc/evidence/earth-navigation.json)、[浏览器尺寸与交互](../demo/halo-poc/evidence/earth-navigation-browser.json)、[电脑截图](../demo/halo-poc/evidence/screenshots/earth-home-desktop-20261018.png)、[手机截图](../demo/halo-poc/evidence/screenshots/earth-home-mobile-20261018.png)。以上为浏览器尺寸模拟，尚未进行手机真机测试。
+
+**备选主题：Hao，尚未安装或切换。** 用户偏好其资讯门户式导航与卡片组织，但希望去掉个人介绍、滚动公告、大轮播和过多动效。后续如采用，应先在预览环境精简，再适配四模块和移动端业务表格。当前查到的版本为1.7.3、要求 Halo >=2.22.1、源码采用 GPLv3：[应用页](https://www.halo.run/store/apps/app-MgZJX)、[源码](https://github.com/chengzhongxue/halo-theme-hao)。
 
 切换顺序 Earth → Anatole → Earth。为四基准模块分别保留“公开 A＋未审核 B”，并新增一个代码、提示词、图片和宽表格的虚构教程。冻结后共有7个稿件条目、6个公开条目、134份不可变修订、58份稿件原生快照；各次切换的 ID、完整包、Post业务状态、正文快照和哈希完全相同。Halo阅读计数本来会变化，未把它误判为内容版本变化。权限验证阶段之后对渲染诊断稿的审核/发布是明确测试写入，不属于主题切换阶段。
 

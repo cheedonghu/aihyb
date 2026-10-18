@@ -1,0 +1,58 @@
+/* Earth-only presentation; business data and other themes are independent. */
+.aihyb-earth-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: #fff;
+  color: #172036;
+  border-bottom: 1px solid #e2e8f0;
+}
+.aihyb-header-inner {
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr 44px;
+  align-items: center;
+  gap: 20px;
+  max-width: 1280px;
+  min-height: 72px;
+  margin: auto;
+  padding: 10px 24px;
+}
+.aihyb-brand { display: flex; align-items: center; min-width: 0; min-height: 44px; font-size: 18px; font-weight: 650; }
+.aihyb-brand span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aihyb-brand img { max-width: 240px; max-height: 40px; object-fit: contain; }
+.aihyb-primary-nav { display: flex; justify-content: center; gap: 8px; min-width: 0; }
+.aihyb-primary-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 550;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.aihyb-primary-nav a:hover, .aihyb-primary-nav a[aria-current="page"] { background: #edf2ff; color: #2454c6; }
+.aihyb-mobile-label { display: none; }
+.aihyb-search-button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; }
+.aihyb-search-button:hover { background: #edf2ff; color: #2454c6; }
+.aihyb-earth-header a:focus-visible { outline: 3px solid #2454c6; outline-offset: 2px; }
+.aihyb-home-intro { max-width: 1280px; margin: 0 auto; padding: 28px 24px 0; color: #172036; }
+.aihyb-home-intro h1 { margin: 0; font-size: 28px; line-height: 1.4; font-weight: 650; }
+.aihyb-home-intro p { margin: 8px 0 0; color: #617089; font-size: 15px; }
+#aihyb-portal > .aihyb-module-nav { display: none; }
+.dark .aihyb-earth-header { background: #1f2937; color: #f1f5f9; border-color: #334155; }
+.dark .aihyb-primary-nav a:hover, .dark .aihyb-primary-nav a[aria-current="page"], .dark .aihyb-search-button:hover { background: #334155; color: #bfdbfe; }
+.dark .aihyb-home-intro p { color: #cbd5e1; }
+.dark .aihyb-home-intro { color: #f1f5f9; }
+@media (max-width: 960px) {
+  .aihyb-header-inner { grid-template-columns: minmax(0, 1fr) 44px; gap: 4px 12px; padding: 8px 16px; }
+  .aihyb-primary-nav { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .aihyb-primary-nav a { padding: 8px 4px; font-size: 14px; }
+  .aihyb-desktop-label { display: none; }
+  .aihyb-mobile-label { display: inline; }
+  .aihyb-brand img { max-width: 100%; }
+  .aihyb-home-intro { padding: 24px 16px 0; }
+  .aihyb-home-intro h1 { font-size: 23px; }
+}
