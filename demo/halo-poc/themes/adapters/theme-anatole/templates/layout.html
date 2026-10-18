@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh" th:fragment="html(head,content)">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <th:block th:replace="${head}"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="renderer" content="webkit" />
+    <link rel="alternate" type="application/rss+xml" title="atom 1.0" href="/rss.xml" />
+    <th:block th:replace="~{module/styles}" />
+    <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" />
+    <script th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"></script>
+
+    <link
+      th:if="${theme.config.basic.katex} and ${_templateId == 'post' or _templateId == 'singlePage'}"
+      th:src="@{/assets/libs/katex/katex.min.css}"
+      rel="stylesheet"
+    />
+  <style>#aihyb-portal > .aihyb-module-nav{display:none}.main .content{min-width:0}.main .aihyb-module-nav{margin:12px 10px}@media(max-width:960px){.sidebar{height:140px!important}.sidebar .logo-title{padding-top:78px!important}.sidebar .logo-title .title a{font-size:22px}.main .content{margin-top:140px!important}}</style></head>
+  <body>
+    <th:block th:replace="~{module/sidebar}" />
+    <div class="main">
+      <th:block th:replace="~{module/page-top}" />
+      <div class="content"><nav class="aihyb-module-nav" aria-label="四模块导航"><a href="/aihyb/review">能力测评</a><a href="/aihyb/leaderboard">评分与榜单</a><a href="/aihyb/pricing">价格对比</a><a href="/aihyb/tutorial">使用技巧与教程</a></nav>
+        <th:block th:replace="${content}" />
+      </div>
+    </div>
+  </body>
+</html>

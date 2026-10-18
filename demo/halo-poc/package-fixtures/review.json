@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "content_id": "poc-review",
+  "submission_id": "poc-review-a",
+  "kind": "review",
+  "content": {
+    "title": "演示测评：办公助手 A 制作 PPT",
+    "summary": "虚构 PoC 样例，不是真实产品建议。",
+    "body_markdown": "## 测试内容\n\n以下为虚构测评摘要。\n\n|项目|发现|\n|---|---|\n|结构|需人工检查|\n\n## 结论\n\n保留人工核验。[查看原始材料](https://example.com/poc)\n",
+    "tags": [
+      "PoC",
+      "虚构数据"
+    ]
+  },
+  "data": {
+    "task": "presentation",
+    "tool_id": "office-a",
+    "tool_name": "办公助手 A（虚构）",
+    "tool_version": "poc-v1",
+    "content_origin": "external_summary",
+    "conclusions": [
+      {
+        "text": "需要人工检查结构。",
+        "source_id": "source-poc",
+        "evidence": "虚构测试材料：结构需人工检查。"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "source-poc",
+      "url": "https://example.com/poc",
+      "author": "PoC fixture",
+      "original_published_at": null,
+      "retrieved_at": "2026-10-13T15:30:00Z",
+      "material_type": "dataset",
+      "usage_note": "完全虚构的自建测试材料。"
+    }
+  ],
+  "assets": [],
+  "provenance": {
+    "skill_name": "poc-fixture",
+    "skill_version": "1.0",
+    "generated_at": "2026-10-13T15:30:00Z",
+    "input_sha256": null
+  }
+}

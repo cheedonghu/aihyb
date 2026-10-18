@@ -1,0 +1,112 @@
+{
+  "original_sha256": "1c7da1a954e4d6af12e95be10eec35c518d436acb578933b66e53c911395193b",
+  "fixed_sha256": "82b6ff64475dc30e6cb222a148ab968dca1702c68c697be67f34338188e159e7",
+  "upstream_version": "1.7.1",
+  "all_entry_bytes_identical": true,
+  "entries": [
+    {
+      "path": "META-INF/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "META-INF/MANIFEST.MF",
+      "sha256": "270bc2d25ebfa168c908a8d80781d1e193094d52e80bad5446accf6f9e2949eb",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/halo/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/halo/search/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/halo/search/widget/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/halo/search/widget/SearchWidgetPlugin.class",
+      "sha256": "ea6390dd08f0dd8324b1b5933051f862cc9179eb2db343f19f32208deae980e7",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/halo/search/widget/SearchView.class",
+      "sha256": "f8db82657ec427df5cdd2fe992a88214258bf1ad7161f948aee32c407ca4fc5e",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "run/halo/search/widget/SearchWidgetHeadProcessor.class",
+      "sha256": "fc653b3b5b5a49509d8f4d503600218ce7576d9e866c944fed69bb417c3a609e",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "extensions/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "extensions/reverseProxy.yaml",
+      "sha256": "bdf1a58f6f84a1fbea6d6f274d92de99d86fa345e46694cca2e8a0e6c9c331fc",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "static/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "static/search-widget.iife.js",
+      "sha256": "d35a89010945a284d81c7ec1d6929e553787181884c14d7fbe27a3732871fc88",
+      "original_method": 8,
+      "fixed_method": 0
+    },
+    {
+      "path": "static/style.css",
+      "sha256": "60a6ad227a60e931758727fcb404ed411efd2a4a44a1c9bb8e8c04fb33d242fa",
+      "original_method": 8,
+      "fixed_method": 0
+    },
+    {
+      "path": "plugin.yaml",
+      "sha256": "3b2d2cacac6973fe0da0803308aedb3344c957111b0517f77cdbc8a9fd650e48",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "logo.svg",
+      "sha256": "07b795afd9f822d4d1a20b717c812ce4c69af3c1384e2662b033ba2f1cb2e5a6",
+      "original_method": 8,
+      "fixed_method": 8
+    },
+    {
+      "path": "META-INF/plugin-components.idx",
+      "sha256": "804eefb1dc3ab457ade7bb6d20b94bee732e51ef2edb5a0c697244ee6f5aa444",
+      "original_method": 8,
+      "fixed_method": 8
+    }
+  ],
+  "scope": "Only ZIP storage method for two static resources; no upstream Java/JS/CSS/manifest changes.",
+  "root_cause_limit": "Historical InflaterInputStream failure confirmed; precise intermittent trigger not reproduced after cold re-enable. This mitigation removes decompression on those routes."
+}

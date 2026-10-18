@@ -1,0 +1,11 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'plugin-feed'
+
+include 'api'
+include 'app'
+include 'ui'

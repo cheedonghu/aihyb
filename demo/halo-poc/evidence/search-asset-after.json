@@ -1,0 +1,650 @@
+{
+  "timestamp_utc": "2026-10-14T16:22:31.040592+00:00",
+  "jar_sha256": "82b6ff64475dc30e6cb222a148ab968dca1702c68c697be67f34338188e159e7",
+  "expected": {
+    "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js": "d35a89010945a284d81c7ec1d6929e553787181884c14d7fbe27a3732871fc88",
+    "/plugins/PluginSearchWidget/assets/static/style.css": "60a6ad227a60e931758727fcb404ed411efd2a4a44a1c9bb8e8c04fb33d242fa"
+  },
+  "records": [
+    {
+      "round": 0,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.005752234952524304
+    },
+    {
+      "round": 0,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.004217838984914124
+    },
+    {
+      "round": 1,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.004502594005316496
+    },
+    {
+      "round": 1,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0017902060062624514
+    },
+    {
+      "round": 2,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0020308579551056027
+    },
+    {
+      "round": 2,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.003697940963320434
+    },
+    {
+      "round": 3,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001643710013013333
+    },
+    {
+      "round": 3,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008944019791670144
+    },
+    {
+      "round": 4,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.005555634037591517
+    },
+    {
+      "round": 4,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009420819696970284
+    },
+    {
+      "round": 5,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0010124940308742225
+    },
+    {
+      "round": 5,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009050109656527638
+    },
+    {
+      "round": 6,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.002559151966124773
+    },
+    {
+      "round": 6,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.002210584993008524
+    },
+    {
+      "round": 7,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.004618191975168884
+    },
+    {
+      "round": 7,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0010586699936538935
+    },
+    {
+      "round": 8,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009955529822036624
+    },
+    {
+      "round": 8,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0013333160313777626
+    },
+    {
+      "round": 9,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.003651645965874195
+    },
+    {
+      "round": 9,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008475729846395552
+    },
+    {
+      "round": 10,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009077349677681923
+    },
+    {
+      "round": 10,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.000793972983956337
+    },
+    {
+      "round": 11,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009992879931814969
+    },
+    {
+      "round": 11,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.000795956002548337
+    },
+    {
+      "round": 12,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009930360247381032
+    },
+    {
+      "round": 12,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0007474549929611385
+    },
+    {
+      "round": 13,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0013721099821850657
+    },
+    {
+      "round": 13,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0007564019761048257
+    },
+    {
+      "round": 14,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009313799673691392
+    },
+    {
+      "round": 14,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0007490490097552538
+    },
+    {
+      "round": 15,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0008628109935671091
+    },
+    {
+      "round": 15,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.000836531980894506
+    },
+    {
+      "round": 16,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.00271555595099926
+    },
+    {
+      "round": 16,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008189199725165963
+    },
+    {
+      "round": 17,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0011807800037786365
+    },
+    {
+      "round": 17,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008834410109557211
+    },
+    {
+      "round": 18,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0015214899904094636
+    },
+    {
+      "round": 18,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0014187469496391714
+    },
+    {
+      "round": 19,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0012262859963811934
+    },
+    {
+      "round": 19,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008748130057938397
+    },
+    {
+      "round": 20,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001277080038562417
+    },
+    {
+      "round": 20,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.007814630982466042
+    },
+    {
+      "round": 21,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.004942110972478986
+    },
+    {
+      "round": 21,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0010227439925074577
+    },
+    {
+      "round": 22,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001184827007818967
+    },
+    {
+      "round": 22,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008417619974352419
+    },
+    {
+      "round": 23,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0012090430245734751
+    },
+    {
+      "round": 23,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008424129919148982
+    },
+    {
+      "round": 24,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0010541629744693637
+    },
+    {
+      "round": 24,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009726579883135855
+    },
+    {
+      "round": 25,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009757240186445415
+    },
+    {
+      "round": 25,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008307010284624994
+    },
+    {
+      "round": 26,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0012760389945469797
+    },
+    {
+      "round": 26,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009665059624239802
+    },
+    {
+      "round": 27,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0010988960275426507
+    },
+    {
+      "round": 27,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009097509901039302
+    },
+    {
+      "round": 28,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0010769250220619142
+    },
+    {
+      "round": 28,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009215730242431164
+    },
+    {
+      "round": 29,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009162820060737431
+    },
+    {
+      "round": 29,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0007951660081744194
+    },
+    {
+      "round": 30,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0009674589964561164
+    },
+    {
+      "round": 30,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008500089752487838
+    },
+    {
+      "round": 31,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.003465364978183061
+    },
+    {
+      "round": 31,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009449759963899851
+    },
+    {
+      "round": 32,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0010452360147610307
+    },
+    {
+      "round": 32,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008608790230937302
+    },
+    {
+      "round": 33,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.023199493996798992
+    },
+    {
+      "round": 33,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0015392429777421057
+    },
+    {
+      "round": 34,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001329119026195258
+    },
+    {
+      "round": 34,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.004831742960959673
+    },
+    {
+      "round": 35,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.0013561900123022497
+    },
+    {
+      "round": 35,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0009892099769786
+    },
+    {
+      "round": 36,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001034314977005124
+    },
+    {
+      "round": 36,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0010965310502797365
+    },
+    {
+      "round": 37,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001733527984470129
+    },
+    {
+      "round": 37,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008036509971134365
+    },
+    {
+      "round": 38,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.004735684022307396
+    },
+    {
+      "round": 38,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0008110139751806855
+    },
+    {
+      "round": 39,
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 104510,
+      "seconds": 0.001132659032009542
+    },
+    {
+      "round": 39,
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "status": 200,
+      "hash_matches": true,
+      "bytes": 1091,
+      "seconds": 0.0006913900142535567
+    }
+  ]
+}

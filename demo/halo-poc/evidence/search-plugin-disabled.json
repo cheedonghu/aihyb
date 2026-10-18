@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-14T13:58:11.013529+00:00",
+  "name": "PluginSearchWidget",
+  "before_enabled": true,
+  "after_enabled": false,
+  "reason": "Repeatable intermittent ZipException in stylesheet serving; unrelated optional PoC search widget. Settings/artifact retained.",
+  "rollback": {
+    "enable": true,
+    "async": false
+  }
+}

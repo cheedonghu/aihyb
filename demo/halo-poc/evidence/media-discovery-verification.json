@@ -1,0 +1,18 @@
+{
+  "run": "20261017025618",
+  "checks": {
+    "default": {
+      "private_queries_with_overrides": 12,
+      "feed_routes": 8,
+      "page_dto_sitemap_private_excluded": true
+    },
+    "content": {
+      "private_queries_with_overrides": 12,
+      "feed_routes": 8,
+      "page_dto_sitemap_private_excluded": true
+    }
+  },
+  "complete": true,
+  "feed_config_restored": true,
+  "four_base_modules_unchanged": true
+}

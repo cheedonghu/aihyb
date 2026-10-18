@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-14",
+  "environment": "localhost SSH tunnel to isolated Halo PoC",
+  "checks": {
+    "console_loaded": true,
+    "pricing_title_and_amount_saved_to_new_draft": true,
+    "public_title_and_amount_unchanged_before_publish": true,
+    "private_preview_showed_new_title_and_amount": true,
+    "approval_kept_public_old_version": true,
+    "publish_switched_title_and_amount_together": true,
+    "monthly_and_annual_comparison_rejected": true,
+    "annual_filter_hid_monthly_row": true,
+    "admin_kind_filter_showed_review_only": true,
+    "review_markdown_conclusion_and_source_fields_visible": true,
+    "samples_restored_through_new_reviewed_revisions": true,
+    "task_selector_label_and_saved_value_verified": true,
+    "task_selector_change_kept_public_task_unchanged": true
+  },
+  "screenshots": [
+    "ui-published-pricing.png",
+    "ui-console-review.png"
+  ],
+  "limits": "Developer browser verification; not two-operator usability acceptance; tutorial/leaderboard full UI workflows not separately exercised."
+}

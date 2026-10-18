@@ -1,0 +1,81 @@
+{
+  "admin_result": {
+    "managed_posts": 8
+  },
+  "changes": [
+    {
+      "content_id": "poc-discovery-unpublished-20261014160102",
+      "before": [
+        "tutorials"
+      ],
+      "after": [
+        "poc-tutorials"
+      ]
+    },
+    {
+      "content_id": "poc-theme-render",
+      "before": [
+        "tutorials"
+      ],
+      "after": [
+        "poc-tutorials"
+      ]
+    },
+    {
+      "content_id": "poc-restricted-20261013221438",
+      "before": [
+        "prices"
+      ],
+      "after": [
+        "poc-prices"
+      ]
+    },
+    {
+      "content_id": "poc-restricted-20261013162529",
+      "before": [
+        "prices"
+      ],
+      "after": [
+        "poc-prices"
+      ]
+    },
+    {
+      "content_id": "poc-pricing",
+      "before": [
+        "prices"
+      ],
+      "after": [
+        "poc-prices"
+      ]
+    },
+    {
+      "content_id": "poc-leaderboard",
+      "before": [
+        "leaderboards"
+      ],
+      "after": [
+        "poc-leaderboards"
+      ]
+    },
+    {
+      "content_id": "poc-tutorial",
+      "before": [
+        "tutorials"
+      ],
+      "after": [
+        "poc-tutorials"
+      ]
+    },
+    {
+      "content_id": "poc-review",
+      "before": [
+        "reviews"
+      ],
+      "after": [
+        "poc-reviews"
+      ]
+    }
+  ],
+  "all_other_business_state_unchanged": true,
+  "complete": true
+}

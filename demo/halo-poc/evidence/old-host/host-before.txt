@@ -1,0 +1,35 @@
+Tue Oct 13 01:48:57 PM UTC 2026
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+default via 10.0.0.1 dev ens5 proto dhcp src 10.0.0.17 metric 1002 
+10.0.0.0/22 dev ens5 proto dhcp scope link src 10.0.0.17 metric 1002 
+10.7.0.0/24 dev wg0 proto kernel scope link src 10.7.0.1 
+State  Recv-Q Send-Q Local Address:Port Peer Address:PortProcess                         
+LISTEN 0      128          0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=635,fd=6))  
+LISTEN 0      4096        10.7.0.1:8080      0.0.0.0:*    users:(("gost",pid=15718,fd=3))
+LISTEN 0      128             [::]:22           [::]:*    users:(("sshd",pid=635,fd=7))  
+               total        used        free      shared  buff/cache   available
+Mem:            3922         346        3021           0         768        3576
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        69G  947M   64G   2% /
+MainPID=15718
+Id=gost.service
+ActiveState=active
+
+MainPID=635
+Id=ssh.service
+ActiveState=active
+
+MainPID=631
+Id=stat_client.service
+ActiveState=active
+net.ipv4.ip_forward = 0

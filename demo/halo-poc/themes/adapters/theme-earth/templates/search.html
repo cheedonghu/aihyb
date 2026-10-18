@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}">
+<th:block th:fragment="head">
+  <title th:text="'搜索结果 · ' + ${site.title}">搜索结果</title>
+  <meta name="robots" content="noindex,follow">
+  <style>
+    #aihyb-search{max-width:1080px;margin:auto;padding:24px;min-width:0;overflow-wrap:anywhere}
+    #aihyb-search h1{font-size:1.8rem;margin:20px 0}#aihyb-search h2{font-size:1.2rem}
+    #aihyb-search form{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+    #aihyb-search input{border:1px solid #cbd5e1;border-radius:6px;padding:10px;max-width:100%;min-width:0}
+    #aihyb-search button{border:1px solid #cbd5e1;border-radius:6px;padding:10px 20px}
+    #aihyb-search article{border:1px solid #dce3ee;border-radius:10px;padding:20px;margin:18px 0}
+    #aihyb-search a{color:#2454c6}#aihyb-search p{margin:12px 0}
+  </style>
+</th:block>
+<section id="aihyb-search" th:fragment="content">
+  <h1>搜索已发布内容</h1>
+  <form action="/search" method="get">
+    <input name="keyword" aria-label="搜索关键词" placeholder="输入工具、任务或文章关键词" th:value="${param.keyword != null ? param.keyword[0] : ''}">
+    <button type="submit">搜索</button>
+  </form>
+  <p th:text="'共 ' + ${searchResult.total} + ' 条结果'"></p>
+  <article th:each="hit : ${searchResult.hits}" class="search-hit">
+    <h2><a th:href="${hit.permalink}" th:text="${#strings.replace(#strings.replace(hit.title, '&lt;B&gt;', ''), '&lt;/B&gt;', '')}"></a></h2>
+    <p th:if="${hit.description != null}" th:text="${#strings.replace(#strings.replace(hit.description, '&lt;B&gt;', ''), '&lt;/B&gt;', '')}"></p>
+  </article>
+  <p th:if="${searchResult.total == 0}">未找到符合条件的已发布内容。</p>
+</section>
+</html>

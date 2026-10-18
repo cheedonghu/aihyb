@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-17T04:26:48.256Z",
+  "home_url": "https://aihyb.com/",
+  "compare_message": "请选择币种和单位相同的方案",
+  "horizontal_overflow": false,
+  "pricing_path": "/archives/aihyb-poc-pricing",
+  "selected_plans": [
+    true,
+    false
+  ],
+  "complete": true
+}

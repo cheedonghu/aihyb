@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-10-17T03:10:27.196Z",
+  "native_article_to_supplemental_panel": true,
+  "cancel_archive_stays_unpublished": true,
+  "actual_console_upload_verified_in": "media-browser-upload.json",
+  "pending_media_disables_structured_form": true,
+  "saving_media_reenables_structured_form": true,
+  "private_history_image_loaded": {
+    "width": 160
+  },
+  "restore_history_created_new_draft_with_old_title_and_data": true,
+  "rearchived_test_fixture": true,
+  "public_images_loaded": true,
+  "public_mp4": {
+    "duration_seconds": 2,
+    "playback_time_observed": 0.259333,
+    "error": null
+  },
+  "external_bilibili_player_rendered": true,
+  "complete": true
+}

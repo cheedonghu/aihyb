@@ -1,0 +1,20 @@
+# Refer https://docs.halo.run/developer-guide/plugin/basics/manifest
+
+apiVersion: plugin.halo.run/v1alpha1
+kind: Plugin
+metadata:
+  # The name defines how the plugin is invoked, A unique name
+  name: plugin-aihyb
+spec:
+  enabled: true
+  requires: ">=2.26.0"
+  pluginDependencies:
+    PluginFeed: ">=1.5.0"
+  author:
+    name: AIHYB
+  logo: logo.png
+  displayName: "AI好用榜稿件审核"
+  description: "统一稿件包接收、完整草稿预览、人工审核与发布快照（PoC）"
+  license:
+    - name: "GPL-3.0"
+      url: "https://www.gnu.org/licenses/gpl-3.0.html"

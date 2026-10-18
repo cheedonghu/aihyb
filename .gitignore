@@ -1,0 +1,22 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+
+# Dependencies, build output, and caches
+node_modules/
+.gradle/
+build/
+dist/
+__pycache__/
+*.py[cod]
+*.log
+
+# Local editor and operating system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

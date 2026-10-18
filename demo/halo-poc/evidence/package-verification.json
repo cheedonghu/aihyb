@@ -1,0 +1,92 @@
+{
+  "run": "20261013221438",
+  "timestamp_utc": "2026-10-13T22:14:38.513095+00:00",
+  "modules": {
+    "review": {
+      "draft_title_body_data_isolated": true,
+      "replayed": true,
+      "published_task_index_isolated": true,
+      "preview_sanitized": true,
+      "htmlBytes": 3835,
+      "serverLocalMs": 8.9,
+      "publish_without_review_http": 409,
+      "stale_approval_http": 409,
+      "stale_publish_http": 409,
+      "approved_complete_version_switched": true,
+      "raw_revision_write_http": 403,
+      "raw_revision_delete_http": 403,
+      "old_replay_does_not_roll_back": true,
+      "restore_complete_payload": true
+    },
+    "tutorial": {
+      "draft_title_body_data_isolated": true,
+      "replayed": true,
+      "published_task_index_isolated": true,
+      "preview_sanitized": true,
+      "htmlBytes": 3667,
+      "serverLocalMs": 3.68,
+      "publish_without_review_http": 409,
+      "stale_approval_http": 409,
+      "stale_publish_http": 409,
+      "approved_complete_version_switched": true,
+      "raw_revision_write_http": 403,
+      "raw_revision_delete_http": 403,
+      "old_replay_does_not_roll_back": true,
+      "restore_complete_payload": true
+    },
+    "leaderboard": {
+      "draft_title_body_data_isolated": true,
+      "replayed": true,
+      "published_task_index_isolated": true,
+      "preview_sanitized": true,
+      "htmlBytes": 3887,
+      "serverLocalMs": 3.0,
+      "publish_without_review_http": 409,
+      "stale_approval_http": 409,
+      "stale_publish_http": 409,
+      "approved_complete_version_switched": true,
+      "raw_revision_write_http": 403,
+      "raw_revision_delete_http": 403,
+      "old_replay_does_not_roll_back": true,
+      "restore_complete_payload": true
+    },
+    "pricing": {
+      "draft_title_body_data_isolated": true,
+      "replayed": true,
+      "published_task_index_isolated": true,
+      "preview_sanitized": true,
+      "htmlBytes": 4922,
+      "serverLocalMs": 2.88,
+      "publish_without_review_http": 409,
+      "stale_approval_http": 409,
+      "stale_publish_http": 409,
+      "approved_complete_version_switched": true,
+      "raw_revision_write_http": 403,
+      "raw_revision_delete_http": 403,
+      "old_replay_does_not_roll_back": true,
+      "restore_complete_payload": true
+    }
+  },
+  "checks": {
+    "concurrent_update_http": [
+      200,
+      409
+    ],
+    "forged_publish_field_http": 422,
+    "trailing_json_http": 422,
+    "overflow_rank_http": 422,
+    "importer_can_submit_draft": true,
+    "importer_cannot_review_http": 403,
+    "importer_cannot_publish_http": 403,
+    "editor_cannot_review_http": 403,
+    "editor_cannot_publish_http": 403,
+    "reviewer_cannot_publish_http": 403,
+    "anonymous_draft_preview_http": 401,
+    "anonymous_raw_resource_http": 401,
+    "anonymous_submit_http": 401,
+    "anonymous_publish_http": 401,
+    "anonymous_unpublished_http": 404,
+    "publisher_can_publish_approved_revision": true
+  },
+  "complete": true
+}

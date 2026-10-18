@@ -1,0 +1,47 @@
+{
+  "run": "20261017025540",
+  "entry": "poc-media-20261017",
+  "uploads": [
+    {
+      "asset_id": "picture",
+      "bytes": 315,
+      "sha256_matches": true,
+      "visibility": "public"
+    },
+    {
+      "asset_id": "download",
+      "bytes": 57,
+      "sha256_matches": true,
+      "visibility": "public"
+    },
+    {
+      "asset_id": "video",
+      "bytes": 2274,
+      "sha256_matches": true,
+      "visibility": "public"
+    },
+    {
+      "asset_id": "internal",
+      "bytes": 33,
+      "sha256_matches": true,
+      "visibility": "private"
+    }
+  ],
+  "checks": {
+    "draft_all_media_private": true,
+    "published_image_attachment_video_range_and_private_exclusion": true,
+    "new_draft_approval_old_revision_and_withdrawal_isolation": true
+  },
+  "complete": true,
+  "four_base_modules_unchanged": true,
+  "final_public_revision": "r-02b449f5a43d43635337e4e5386d15e15dd70fe9ec7091cce2eede412ebeb70f",
+  "final_status": {
+    "version": "0a111efc8ba29858a1e677fa959ececa4798054b1af89321a77430121a69c182",
+    "published": true,
+    "archived": false,
+    "draft_revision": "r-02b449f5a43d43635337e4e5386d15e15dd70fe9ec7091cce2eede412ebeb70f",
+    "published_revision": "r-02b449f5a43d43635337e4e5386d15e15dd70fe9ec7091cce2eede412ebeb70f",
+    "reviewed_revision": "r-02b449f5a43d43635337e4e5386d15e15dd70fe9ec7091cce2eede412ebeb70f",
+    "operation_epoch": "546f172b-5f9c-404c-86ac-0997441d05e8"
+  }
+}

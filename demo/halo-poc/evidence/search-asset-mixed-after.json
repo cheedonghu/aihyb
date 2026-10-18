@@ -1,0 +1,1268 @@
+{
+  "timestamp_utc": "2026-10-14T16:22:32.861517+00:00",
+  "workers": 2,
+  "requests": 180,
+  "failures": 0,
+  "results": [
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.05122995900455862
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.055241830996237695
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0018586739897727966
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0029931360040791333
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0036385009880177677
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001574049994815141
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.059055920981336385
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.04194869002094492
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002831924008205533
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0034398770076222718
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0025236340006813407
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.002997345000039786
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07542946300236508
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06611983996117488
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.00302674004342407
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001324571028817445
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0016252559726126492
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001956116990186274
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.02502663800260052
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.015166512050200254
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.003906543017365038
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0021271980367600918
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0013598150108009577
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0015562549815513194
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.08003766601905227
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0940054040402174
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.014978196995798498
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.002209563972428441
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.003076332970522344
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0016499229823239148
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0743102389969863
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06679654202889651
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.004186850972473621
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.004142717982176691
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.005991343001369387
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.004916261008474976
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.08675121696433052
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.021370053989812732
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0017963469726964831
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.00264421000611037
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0059107120032422245
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.04868076695129275
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.027636424987576902
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.023206717043649405
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0022468839888460934
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0021467659971676767
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.003429026051890105
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0011916299699805677
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07609644799958915
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07011905999388546
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0025363379972986877
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0018003139994107187
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0016775340191088617
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.003184126049745828
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.029776065959595144
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.021119692944921553
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0036672630230896175
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.004223810974508524
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0012337489752098918
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.003277381998486817
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.08052099397173151
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06917728896951303
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0016898169997148216
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.004337933962233365
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0041522259707562625
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0032044650288298726
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.029391394986305386
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.029074028017930686
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.04954877798445523
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0495977210230194
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0021829750039614737
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0019175840425305068
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.037901432951912284
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.03188920102547854
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002887577982619405
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0031653110054321587
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.001472857955377549
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001422605011612177
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07945008197566494
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07684899098239839
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002784023992717266
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0014129349729046226
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0013055339804850519
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0018940310110338032
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.02089897805126384
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.02322464098688215
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0027908170013688505
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.002106350031681359
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0022176699712872505
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0014553969958797097
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06915496703004465
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0595220280229114
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002248135977424681
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0015722870011813939
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0013210129691287875
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0009926659986376762
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.028899951023049653
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.025303578993771225
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0027551589882932603
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001982745947316289
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.001989329990465194
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0024436049861833453
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07388047996209934
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06706779298838228
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0023299400345422328
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0016256360104307532
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0023491360479965806
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.00492797396145761
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07866170897614211
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.020710595010314137
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0018024289747700095
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.05006118200253695
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002804473042488098
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0027602899936027825
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.02628217899473384
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.021586040034890175
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0024210509727708995
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.002066444023512304
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.001991284021642059
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0014653450343757868
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.02169943298213184
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.016941539011895657
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0035619359696283937
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0015121030155569315
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0034052709816023707
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001277491042856127
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06986083398805931
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.05225715000415221
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002838135987985879
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0021274309838190675
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0016518750344403088
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0011701309704221785
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0352427139878273
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.033041985996533185
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.046018543012905866
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.04047985002398491
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0027471939683891833
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0031008400255814195
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.022768013004679233
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.020204612985253334
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002237327047623694
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.003117751970421523
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0012029710342176259
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0011009500012733042
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07615356502356008
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.019933523959480226
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.05108713003573939
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0026879619690589607
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.003019625961314887
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0023733009584248066
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.027709111978765577
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.01782216498395428
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.002997073985170573
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.002514066989533603
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0035980039974674582
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.001389582990668714
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.07292939198669046
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.06513725401600823
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0038868769770488143
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0039885989972390234
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0018481750157661736
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0030848290189169347
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.033503184968139976
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0202223559608683
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.005369875987526029
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.003186811984051019
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0038362210034392774
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0016661820118315518
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.08049961499636993
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0643916730186902
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.006271208985708654
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.00380976201267913
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.004829017037991434
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.002323788998182863
+    },
+    {
+      "path": "/archives/aihyb-poc-review",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0325728949974291
+    },
+    {
+      "path": "/aihyb/pricing",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.020404239010531455
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.003856540017295629
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/style.css?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0045277830213308334
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": null,
+      "status": 200,
+      "matches": true,
+      "seconds": 0.0023022289969958365
+    },
+    {
+      "path": "/plugins/PluginSearchWidget/assets/static/search-widget.iife.js?version=1.7.1",
+      "range": "bytes=0-127",
+      "status": 206,
+      "matches": true,
+      "seconds": 0.0013976690242998302
+    }
+  ]
+}

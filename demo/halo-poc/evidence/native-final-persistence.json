@@ -1,0 +1,14 @@
+{
+  "timestamp_utc": "2026-10-14T14:19:47.088372+00:00",
+  "four_modules_draft_B_public_A": true,
+  "pricing_draft": "59.91",
+  "pricing_public": "49.00",
+  "all_business_state_unchanged": true,
+  "counts": {
+    "entries": 7,
+    "public": 6,
+    "revisions": 134,
+    "snapshots": 58
+  },
+  "complete": true
+}

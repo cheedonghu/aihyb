@@ -1,0 +1,4 @@
+services:
+  halo:
+    environment:
+      JVM_OPTS: "-Xms128m -Xmx768m -XX:ActiveProcessorCount=1 -Dhttp.proxyHost=172.29.240.1 -Dhttp.proxyPort=18091 -Dhttps.proxyHost=172.29.240.1 -Dhttps.proxyPort=18091"

@@ -1,0 +1,1349 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Halo",
+    "version": "2.26.1"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:18090",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "basicAuth": [],
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/apis/api.aihyb.run/v1alpha1/contents": {
+      "get": {
+        "operationId": "listPublishedContents",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "kind",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "task",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentPage"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBPublic"
+        ]
+      }
+    },
+    "/apis/api.aihyb.run/v1alpha1/contents/{id}": {
+      "get": {
+        "operationId": "getPublishedContent",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishedContent"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBPublic"
+        ]
+      }
+    },
+    "/apis/api.aihyb.run/v1alpha1/media/{id}/file/{revision}/{assetId}": {
+      "get": {
+        "operationId": "getPublishedAsset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "revision",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "assetId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "AIHYBMedia"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/content-packages": {
+      "post": {
+        "description": "JSON 对象稿件包，只创建草稿；结构见版本化 JSON Schema。",
+        "operationId": "submitPackage",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBAdmin"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries": {
+      "get": {
+        "operationId": "listEntries",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryPage"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBAdmin"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}": {
+      "get": {
+        "operationId": "getEntry",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDetail"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBAdmin"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/assets": {
+      "post": {
+        "operationId": "uploadEntryAsset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filename",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/pdf": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "application/zip": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/gif": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/jpeg": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "image/webp": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/markdown": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "video/mp4": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "video/webm": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          },
+          "description": "Raw file bytes. Set Content-Type to the actual file MIME type; never JSON or multipart.",
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Upload"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBMedia"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/history": {
+      "get": {
+        "operationId": "listHistory",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryPage"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBOperations"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/history/{revision}/preview": {
+      "get": {
+        "operationId": "previewHistory",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "revision",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBOperations"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/media/{revision}/{assetId}": {
+      "get": {
+        "operationId": "previewEntryAsset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "revision",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "assetId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "AIHYBMedia"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/operations": {
+      "get": {
+        "operationId": "getOperations",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBOperations"
+        ]
+      },
+      "post": {
+        "operationId": "operateEntry",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBOperations"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/preview": {
+      "get": {
+        "operationId": "previewEntry",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "revision",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBAdmin"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/publish": {
+      "post": {
+        "operationId": "publishEntry",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDetail"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBAdmin"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/restore": {
+      "post": {
+        "operationId": "restoreHistory",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDetail"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBOperations"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/entries/{id}/review": {
+      "post": {
+        "operationId": "reviewEntry",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntryDetail"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBAdmin"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/media-configuration": {
+      "get": {
+        "operationId": "mediaConfiguration",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaConfiguration"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBMedia"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/native-migrate": {
+      "post": {
+        "operationId": "migrateNativePackages",
+        "responses": {
+          "default": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "default response"
+          }
+        },
+        "tags": [
+          "AIHYBNative"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/native-posts/{name}/content": {
+      "get": {
+        "operationId": "getNativeContent",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "AIHYBNative"
+        ]
+      },
+      "put": {
+        "operationId": "saveNativeContent",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {},
+        "tags": [
+          "AIHYBNative"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/native-posts/{name}/editor": {
+      "get": {
+        "operationId": "getNativeEditor",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "AIHYBNative"
+        ]
+      },
+      "put": {
+        "operationId": "saveNativeMetadata",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {},
+        "tags": [
+          "AIHYBNative"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/native-posts/{name}/publish": {
+      "put": {
+        "operationId": "publishNativePackage",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "AIHYBNative"
+        ]
+      }
+    },
+    "/apis/console.api.aihyb.run/v1alpha1/native-snapshots/{name}": {
+      "get": {
+        "operationId": "getNativeSnapshot",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "AIHYBNative"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "add"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          },
+          "value": {
+            "description": "Value can be any JSON value"
+          }
+        },
+        "required": [
+          "op",
+          "path",
+          "value"
+        ]
+      },
+      "Command": {
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentPage": {
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublishedContent"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CopyOperation": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "copy"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          }
+        },
+        "required": [
+          "from",
+          "op",
+          "path"
+        ]
+      },
+      "EntryDetail": {
+        "properties": {
+          "draft_json": {
+            "type": "string"
+          },
+          "entry": {
+            "$ref": "#/components/schemas/EntrySummary"
+          }
+        }
+      },
+      "EntryPage": {
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntrySummary"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "EntrySummary": {
+        "properties": {
+          "content_id": {
+            "type": "string"
+          },
+          "draft_revision": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "public_url": {
+            "type": "string"
+          },
+          "published_revision": {
+            "type": "string"
+          },
+          "reviewed_revision": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "History": {
+        "properties": {
+          "actor": {
+            "type": "string"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "draft": {
+            "type": "boolean"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "HistoryPage": {
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/History"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "JsonPatch": {
+        "type": "array",
+        "description": "JSON schema for JSONPatch operations",
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/AddOperation"
+            },
+            {
+              "$ref": "#/components/schemas/ReplaceOperation"
+            },
+            {
+              "$ref": "#/components/schemas/TestOperation"
+            },
+            {
+              "$ref": "#/components/schemas/RemoveOperation"
+            },
+            {
+              "$ref": "#/components/schemas/MoveOperation"
+            },
+            {
+              "$ref": "#/components/schemas/CopyOperation"
+            }
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "MediaConfiguration": {
+        "properties": {
+          "configured": {
+            "type": "boolean"
+          },
+          "max_bytes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "policy": {
+            "type": "string"
+          }
+        }
+      },
+      "MoveOperation": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "move"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          }
+        },
+        "required": [
+          "from",
+          "op",
+          "path"
+        ]
+      },
+      "PublishCommand": {
+        "properties": {
+          "operation_epoch": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          }
+        }
+      },
+      "PublishedContent": {
+        "properties": {
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "content_id": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "kind": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "Receipt": {
+        "properties": {
+          "content_id": {
+            "type": "string"
+          },
+          "preview_url": {
+            "type": "string"
+          },
+          "published_revision": {
+            "type": "string"
+          },
+          "replayed": {
+            "type": "boolean"
+          },
+          "revision": {
+            "type": "string"
+          }
+        }
+      },
+      "RemoveOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "remove"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          }
+        },
+        "required": [
+          "op",
+          "path"
+        ]
+      },
+      "ReplaceOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "replace"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          },
+          "value": {
+            "description": "Value can be any JSON value"
+          }
+        },
+        "required": [
+          "op",
+          "path",
+          "value"
+        ]
+      },
+      "ReviewCommand": {
+        "properties": {
+          "decision": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "operation_epoch": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          }
+        }
+      },
+      "Status": {
+        "properties": {
+          "archived": {
+            "type": "boolean"
+          },
+          "draft_revision": {
+            "type": "string"
+          },
+          "operation_epoch": {
+            "type": "string"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "published_revision": {
+            "type": "string"
+          },
+          "reviewed_revision": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "TestOperation": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "test"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "description": "A JSON Pointer path pointing to the location to move/copy from.",
+            "example": "/a/b/c",
+            "pattern": "^(/[^/~]*(~[01][^/~]*)*)*$"
+          },
+          "value": {
+            "description": "Value can be any JSON value"
+          }
+        },
+        "required": [
+          "op",
+          "path",
+          "value"
+        ]
+      },
+      "Upload": {
+        "properties": {
+          "bytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "object_key": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "scheme": "basic",
+        "type": "http"
+      },
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  }
+}

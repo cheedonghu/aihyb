@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "content_id": "poc-tutorial",
+  "submission_id": "poc-tutorial-a",
+  "kind": "tutorial",
+  "content": {
+    "title": "演示教程：整理表格数据",
+    "summary": "虚构 PoC 样例，不是真实产品建议。",
+    "body_markdown": "## 前置条件\n\n准备虚构 CSV。\n\n## 步骤\n\n1. 上传样例。\n2. 复制提示词。\n\n```text\n请列出空值，不要修改原数据。\n```\n\n## 常见问题\n\n核对列名后重试。\n",
+    "tags": [
+      "PoC",
+      "虚构数据"
+    ]
+  },
+  "data": {
+    "task": "spreadsheet",
+    "tool_id": "office-a",
+    "tool_name": "办公助手 A（虚构）",
+    "tool_version": "poc-v1",
+    "prerequisites": [
+      "一份虚构 CSV 样例"
+    ],
+    "verification_status": "pending",
+    "last_verified_at": null
+  },
+  "sources": [
+    {
+      "source_id": "source-poc",
+      "url": "https://example.com/poc",
+      "author": "PoC fixture",
+      "original_published_at": null,
+      "retrieved_at": "2026-10-13T15:30:00Z",
+      "material_type": "dataset",
+      "usage_note": "完全虚构的自建测试材料。"
+    }
+  ],
+  "assets": [],
+  "provenance": {
+    "skill_name": "poc-fixture",
+    "skill_version": "1.0",
+    "generated_at": "2026-10-13T15:30:00Z",
+    "input_sha256": null
+  }
+}

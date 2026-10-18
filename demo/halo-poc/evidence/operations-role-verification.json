@@ -1,0 +1,29 @@
+{
+  "importer": {
+    "upload_permission_reaches_archive_guard": true,
+    "operations_denied": true,
+    "history_denied": true,
+    "preview_denied": true,
+    "history/not-a-revision/preview_denied": true,
+    "media/not-a-revision/not-an-asset_denied": true,
+    "operations_write_denied": true,
+    "publish_denied": true
+  },
+  "editor": {
+    "read_status_history_preview": true,
+    "restore_permission_reaches_archive_guard": true,
+    "operations_write_denied": true,
+    "publish_denied": true
+  },
+  "reviewer": {
+    "read_status_history_preview": true,
+    "restore_permission_reaches_archive_guard": true,
+    "operations_write_denied": true,
+    "publish_denied": true
+  },
+  "publisher": {
+    "read_status_history_preview": true,
+    "restore_permission_reaches_archive_guard": true,
+    "unarchive_no_publish_and_rearchive": true
+  }
+}

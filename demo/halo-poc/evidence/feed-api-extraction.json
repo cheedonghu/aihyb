@@ -1,0 +1,13 @@
+{
+  "source": "https://github.com/halo-dev/plugin-feed/tree/v1.5.0/api",
+  "source_jar_sha256": "d7e97df76e502c0f1bd0605d4f3a6dc8b047ed20e1de50fbbed992e95fd33a87",
+  "api_jar_sha256": "e2b625ccf11df4e2d9854943f8c59e6ddfeef8b2fff26d3f14dfde6073c48451",
+  "classes": [
+    "run/halo/feed/CacheClearRule$Type.class",
+    "run/halo/feed/CacheClearRule.class",
+    "run/halo/feed/RssCacheClearRequested.class"
+  ],
+  "all_class_bytes_identical": true,
+  "license": "GPL-3.0",
+  "use": "compileOnly/test only; runtime classes supplied by declared PluginFeed dependency"
+}

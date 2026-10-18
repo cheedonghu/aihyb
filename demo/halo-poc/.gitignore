@@ -1,0 +1,6 @@
+.env
+secrets/
+data/
+backups/
+evidence/private/
+*.log

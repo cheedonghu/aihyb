@@ -1,0 +1,22 @@
+Tue Oct 13 13:56:33 UTC 2026
+default via 5.231.253.1 dev eth0 proto static 
+5.231.253.0/24 dev eth0 proto kernel scope link src 5.231.253.4 
+172.29.239.0/24 dev docker0 proto kernel scope link src 172.29.239.1 linkdown 
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                                    
+LISTEN 0      4096      127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=5192,fd=23))
+LISTEN 0      4096         0.0.0.0:5355       0.0.0.0:*    users:(("systemd-resolve",pid=5192,fd=12))
+LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=5192,fd=21))
+LISTEN 0      128          0.0.0.0:22333      0.0.0.0:*    users:(("sshd",pid=8948,fd=6))            
+LISTEN 0      4096            [::]:5355          [::]:*    users:(("systemd-resolve",pid=5192,fd=14))
+LISTEN 0      128             [::]:22333         [::]:*    users:(("sshd",pid=8948,fd=7))            
+MainPID=8948
+Id=ssh.service
+ActiveState=active
+
+MainPID=149608
+Id=stat_client.service
+ActiveState=active
+net.ipv4.ip_forward = 0
+               total        used        free      shared  buff/cache   available
+Mem:            5931         685        3909           0        1590        5246
+Swap:           2047           0        2047

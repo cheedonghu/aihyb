@@ -1,0 +1,38 @@
+{
+  "timestamp_utc": "2026-10-14T16:34:09.234571+00:00",
+  "backup": "/opt/aihyb-halo-poc/backups/20261014T162611Z",
+  "plugins": {
+    "plugin-aihyb": {
+      "enabled": true,
+      "phase": "STARTED",
+      "version": "1.0.0-SNAPSHOT"
+    },
+    "PluginSearchWidget": {
+      "enabled": true,
+      "phase": "STARTED",
+      "version": "1.7.1"
+    },
+    "PluginFeed": {
+      "enabled": true,
+      "phase": "STARTED",
+      "version": "1.5.0"
+    },
+    "PluginSitemap": {
+      "enabled": true,
+      "phase": "STARTED",
+      "version": "1.3.0"
+    }
+  },
+  "aihyb_sha256": "c506b26ade847c55e7e9acdf6187b5f2093e21a6e75015186f8eac1ffb71de13",
+  "manifest_utf8_and_unbundled_feed_api": true,
+  "backup_checksums_pg_archive_and_required_files_valid": true,
+  "both_theme_search_templates_in_backup": true,
+  "bounded_log_sample": {
+    "since": "20m",
+    "tail_limit": 2000,
+    "zip_exception_count": 0,
+    "feed_notification_failure_count": 0
+  },
+  "restart_readiness_seconds": 13,
+  "complete": true
+}

@@ -1,0 +1,6 @@
+{
+  "backup": "/opt/aihyb-halo-poc/backups/search-resourcefix-20261014T155242Z",
+  "original_sha256": "1c7da1a954e4d6af12e95be10eec35c518d436acb578933b66e53c911395193b",
+  "fixed_sha256": "82b6ff64475dc30e6cb222a148ab968dca1702c68c697be67f34338188e159e7",
+  "all_entry_bytes_identical": true
+}

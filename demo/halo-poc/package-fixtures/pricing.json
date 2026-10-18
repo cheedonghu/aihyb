@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "content_id": "poc-pricing",
+  "submission_id": "poc-pricing-a",
+  "kind": "pricing",
+  "content": {
+    "title": "演示价格：办公助手 A 会员",
+    "summary": "虚构 PoC 样例，不是真实产品建议。",
+    "body_markdown": "## 套餐说明\n\n金额、额度与限制来自下面的结构化记录，均为虚构。\n",
+    "tags": [
+      "PoC",
+      "虚构数据"
+    ]
+  },
+  "data": {
+    "task": "office",
+    "tool_id": "office-a",
+    "tool_name": "办公助手 A（虚构）",
+    "plans": [
+      {
+        "plan_id": "office-a-month",
+        "name": "月付基础版（虚构）",
+        "offer_kind": "subscription",
+        "amount": "49.00",
+        "currency": "CNY",
+        "price_unit": "month",
+        "billing_cycle": "monthly",
+        "region": "CN",
+        "channel": "official-web",
+        "eligibility": "虚构新用户条件",
+        "free_quota": {
+          "amount": "10",
+          "unit": "tasks",
+          "reset_period": "month",
+          "condition": "虚构额度"
+        },
+        "limits": [
+          "虚构限制：需人工核验"
+        ],
+        "source_id": "source-poc",
+        "verified_at": "2026-10-13T15:30:00Z"
+      },
+      {
+        "plan_id": "office-a-year",
+        "name": "年付基础版（虚构）",
+        "offer_kind": "subscription",
+        "amount": "468.00",
+        "currency": "CNY",
+        "price_unit": "year",
+        "billing_cycle": "annual",
+        "region": "CN",
+        "channel": "official-web",
+        "eligibility": "按年实际扣款，金额不是月价",
+        "free_quota": {
+          "amount": null,
+          "unit": "tasks",
+          "reset_period": "month",
+          "condition": "未知"
+        },
+        "limits": [
+          "虚构限制：不能把未知额度当零"
+        ],
+        "source_id": "source-poc",
+        "verified_at": "2026-10-13T15:30:00Z"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "source-poc",
+      "url": "https://example.com/poc",
+      "author": "PoC fixture",
+      "original_published_at": null,
+      "retrieved_at": "2026-10-13T15:30:00Z",
+      "material_type": "dataset",
+      "usage_note": "完全虚构的自建测试材料。"
+    }
+  ],
+  "assets": [],
+  "provenance": {
+    "skill_name": "poc-fixture",
+    "skill_version": "1.0",
+    "generated_at": "2026-10-13T15:30:00Z",
+    "input_sha256": null
+  }
+}

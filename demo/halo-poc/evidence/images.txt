@@ -1,0 +1,2 @@
+Halo: halohub/halo@sha256:bfe89bf70c44ea94a7dd33f8ec98e8e59088adfb7a9fb7b6f013f82391c33bee
+PostgreSQL: postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826

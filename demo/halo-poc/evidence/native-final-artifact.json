@@ -1,0 +1,9 @@
+{
+  "plugin_sha256": "3eb0a550b4737ccbf58db7896465936451d112e6e20083126513c5510d65df2d",
+  "halo": "2.26.1",
+  "earth": "1.15.3",
+  "anatole": "2.1.0",
+  "java_tests": 11,
+  "final_backup": "/opt/aihyb-halo-poc/backups/20261014T141926Z",
+  "review": "No Critical or Important remaining in independent native-adapter review"
+}

@@ -1,0 +1,66 @@
+name: aihyb-halo-poc
+services:
+  halo:
+    image: ${HALO_IMAGE:-halohub/halo:2.26.1}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:18090:8090"
+    volumes:
+      - ./data/halo:/root/.halo2
+    environment:
+      JVM_OPTS: "-Xms128m -Xmx768m -XX:ActiveProcessorCount=1"
+      SPRING_R2DBC_URL: r2dbc:pool:postgresql://db/halo
+      SPRING_R2DBC_USERNAME: halo
+      SPRING_R2DBC_PASSWORD: ${POSTGRES_PASSWORD:?Generate the private remote .env first}
+      SPRING_SQL_INIT_PLATFORM: postgresql
+      HALO_EXTERNAL_URL: http://127.0.0.1:18090
+    mem_limit: 1536m
+    cpus: 0.90
+    pids_limit: 256
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8090/actuator/health/readiness"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 120s
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks: [poc]
+  db:
+    image: ${POSTGRES_IMAGE:-postgres:17-bookworm}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: halo
+      POSTGRES_USER: halo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate the private remote .env first}
+    command: ["postgres", "-c", "shared_buffers=64MB", "-c", "max_connections=30"]
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    mem_limit: 512m
+    cpus: 0.35
+    pids_limit: 128
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U halo -d halo"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks: [poc]
+networks:
+  poc:
+    # Normal bridge is needed for Docker's loopback port proxy.
+    # Host forwarding stays disabled; the database has no published port.
+    internal: false
+    ipam:
+      config:
+        - subnet: 172.29.240.0/24

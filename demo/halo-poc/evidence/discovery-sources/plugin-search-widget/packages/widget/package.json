@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "eslint 'src/**/*.ts'",
+    "prettier": "prettier \"**/*.{cjs,html,js,json,md,ts}\" --ignore-path ./.gitignore --write"
+  },
+  "dependencies": {
+    "@halo-dev/search-widget": "workspace:*"
+  }
+}
