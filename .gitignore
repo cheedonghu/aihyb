@@ -20,3 +20,7 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local business plans
+/ai测评网内部执行版商业计划书.md
+/【商业计划书】AI好用榜-AIHYB.COM.docx
