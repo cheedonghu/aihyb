@@ -58,7 +58,9 @@
 
 生成入口仍为 `scripts/prepare-theme-adapters.py`，保留下载的原版主题作为基线。部署使用 `deploy-theme-adapters.py --theme theme-earth`，支持 `--check` 全量哈希预检，备份后写入；写入或重载失败会恢复原文件。`verify-earth-navigation.py freeze/check` 比较部署前后业务指纹，并检查公开路由、单一主导航和 canonical。浏览器另外检查手机／平板／电脑尺寸和实际搜索交互。
 
-本轮已部署到 https://aihyb.com/。17个公开路由通过，业务指纹不变；浏览器检查320、360、390、430、768、960、断点上方约962、1024、1440px，均未出现整页横向溢出，四模块点击高度44px。390px 首页首张卡片顶部约272px，搜索“价格”返回2条公开结果，暗色模式标题与页头颜色正常。独立代码复核的问题已修正，最终无阻塞发现。记录：[路由与业务核对](../demo/halo-poc/evidence/earth-navigation.json)、[浏览器尺寸与交互](../demo/halo-poc/evidence/earth-navigation-browser.json)、[电脑截图](../demo/halo-poc/evidence/screenshots/earth-home-desktop-20261018.png)、[手机截图](../demo/halo-poc/evidence/screenshots/earth-home-mobile-20261018.png)。以上为浏览器尺寸模拟，尚未进行手机真机测试。
+本轮已部署到 https://aihyb.com/（域名已于 2026-10-18 暂停解析，当前入口为 [http://5.231.253.4/](http://5.231.253.4/)，见[HTTP + IP 部署记录](./cms-http-ip-deployment.md)）。17个公开路由通过，业务指纹不变；浏览器检查320、360、390、430、768、960、断点上方约962、1024、1440px，均未出现整页横向溢出，四模块点击高度44px。390px 首页首张卡片顶部约272px，搜索“价格”返回2条公开结果，暗色模式标题与页头颜色正常。独立代码复核的问题已修正，最终无阻塞发现。记录：[路由与业务核对](../demo/halo-poc/evidence/earth-navigation.json)、[浏览器尺寸与交互](../demo/halo-poc/evidence/earth-navigation-browser.json)、[电脑截图](../demo/halo-poc/evidence/screenshots/earth-home-desktop-20261018.png)、[手机截图](../demo/halo-poc/evidence/screenshots/earth-home-mobile-20261018.png)。以上为浏览器尺寸模拟，尚未进行手机真机测试。
+
+2026-10-18 切换入口时发现：点页头搜索按钮（裸 `/search`，不带 keyword）返回 500，日志为 `EL1025E: The collection has '0' elements, index '0' is invalid`。`param.keyword` 缺失时是空列表而非 null，模板里 `param.keyword[0]` 直接越界。已在 `themes/shared/search.html` 先判 `#lists.isEmpty`，经同一套哈希保护流程部署到两主题，裸 `/search` 与带关键词搜索均恢复 200；该修复在域名阶段就已存在缺陷，只是此前验证只用带关键词的搜索，未覆盖页头按钮路径。
 
 **备选主题：Hao，尚未安装或切换。** 用户偏好其资讯门户式导航与卡片组织，但希望去掉个人介绍、滚动公告、大轮播和过多动效。后续如采用，应先在预览环境精简，再适配四模块和移动端业务表格。当前查到的版本为1.7.3、要求 Halo >=2.22.1、源码采用 GPLv3：[应用页](https://www.halo.run/store/apps/app-MgZJX)、[源码](https://github.com/chengzhongxue/halo-theme-hao)。
 

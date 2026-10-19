@@ -1,7 +1,8 @@
 services:
   halo:
     environment:
-      HALO_EXTERNAL_URL: https://aihyb.com
+      # Public entry is now plain HTTP on the IP; the domain is not resolved any more.
+      HALO_EXTERNAL_URL: http://5.231.253.4
   caddy:
     image: ${CADDY_IMAGE:?Pin the official Caddy image before starting the public entry}
     restart: unless-stopped

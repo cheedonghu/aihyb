@@ -1,5 +1,5 @@
 {
-  "backup": "/opt/aihyb-halo-poc/backups/theme-adapters-20261018T081438Z",
+  "backup": "/opt/aihyb-halo-poc/backups/theme-adapters-20261018T154129Z",
   "files": [
     {
       "theme": "theme-earth",
@@ -142,14 +142,57 @@
       "adapted_sha256": "62296e8193a30c81115bec1efdc9788f0fa1334e3317742a901a03b635bc41c0"
     },
     {
+      "theme": "theme-anatole",
+      "path": "templates/module/layout.html",
+      "original_sha256": "cd08ed77ba24357905e56cf149e967f49c25184cd830276f987e1282f936b819",
+      "previous_adapted_sha256": "d0322622485dc9010664a6353a0cd82ac4dbedcef168284e29d4a5a980a78324",
+      "adapted_sha256": "d0322622485dc9010664a6353a0cd82ac4dbedcef168284e29d4a5a980a78324"
+    },
+    {
+      "theme": "theme-anatole",
+      "path": "templates/layout.html",
+      "original_sha256": null,
+      "previous_adapted_sha256": "ae957d910dc1b6a248da530d86badfa1a040810891b8a8a616c4a73cdfee145b",
+      "adapted_sha256": "ae957d910dc1b6a248da530d86badfa1a040810891b8a8a616c4a73cdfee145b"
+    },
+    {
+      "theme": "theme-anatole",
+      "path": "templates/module/page-top.html",
+      "original_sha256": "789cf6fd19b0632beb06fa6a662ac0a56e2bf0a8b7a7394ab80e95af2a872d3b",
+      "previous_adapted_sha256": "7d885e189599a65c1d661e687a3c68cb6387034ab16f94051b23fa33d547925f",
+      "adapted_sha256": "7d885e189599a65c1d661e687a3c68cb6387034ab16f94051b23fa33d547925f"
+    },
+    {
+      "theme": "theme-anatole",
+      "path": "templates/module/sidebar.html",
+      "original_sha256": "fb305eb209d61a31eb0763893253c8f5b18cfa6628828306eb8f5ecb080f796e",
+      "previous_adapted_sha256": "6671ae8fffad66283b4ca206f022edf6ab8af9a1d7b1da3b5014ae565ea7c73a",
+      "adapted_sha256": "6671ae8fffad66283b4ca206f022edf6ab8af9a1d7b1da3b5014ae565ea7c73a"
+    },
+    {
+      "theme": "theme-anatole",
+      "path": "templates/module/page-heading.html",
+      "original_sha256": "06c1a26a78017e0b452870f62d41ba53b9e3adebc195903bdc7a57d2c6f8a044",
+      "previous_adapted_sha256": "a0de55de1d5b8e453ff5fe5074241a0602f3ad2ddf097fa6422c98a2c57a1a5f",
+      "adapted_sha256": "a0de55de1d5b8e453ff5fe5074241a0602f3ad2ddf097fa6422c98a2c57a1a5f"
+    },
+    {
       "theme": "theme-earth",
       "path": "templates/search.html",
       "original_sha256": null,
       "previous_adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9",
-      "adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9"
+      "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
+    },
+    {
+      "theme": "theme-anatole",
+      "path": "templates/search.html",
+      "original_sha256": "16d6cc4e05d99c495a6154ec88e1ce4c7978043e30da9c62c2c736f4e04be46a",
+      "previous_adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9",
+      "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
     }
   ],
   "selected_themes": [
-    "theme-earth"
+    "theme-earth",
+    "theme-anatole"
   ]
 }

@@ -16,7 +16,9 @@
 <section id="aihyb-search" th:fragment="content">
   <h1>搜索已发布内容</h1>
   <form action="/search" method="get">
-    <input name="keyword" aria-label="搜索关键词" placeholder="输入工具、任务或文章关键词" th:value="${param.keyword != null ? param.keyword[0] : ''}">
+    <!-- param.keyword is an empty list (not null) when the header search button is used without a
+         keyword; indexing it directly threw EL1025E and returned 500 on a bare /search. -->
+    <input name="keyword" aria-label="搜索关键词" placeholder="输入工具、任务或文章关键词" th:value="${param.keyword != null and not #lists.isEmpty(param.keyword) ? param.keyword[0] : ''}">
     <button type="submit">搜索</button>
   </form>
   <p th:text="'共 ' + ${searchResult.total} + ' 条结果'"></p>

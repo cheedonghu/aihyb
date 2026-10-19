@@ -1,6 +1,8 @@
-# aihyb.com 临时预览部署
+# aihyb.com 临时预览部署（历史）
 
-日期：2026-10-17。当前发布的是既有 Halo PoC、Earth 主题和虚构演示内容，用于查看四模块及媒体效果；不是生产性能验收。
+> **已停用。** 2026-10-18 起 `aihyb.com` 因备案原因暂停解析，公网入口改为纯 HTTP + IP：[http://5.231.253.4/](http://5.231.253.4/)。当前部署、后台入口与验证见[HTTP + IP 部署记录](./cms-http-ip-deployment.md)。本文保留域名阶段的原始记录，仅作追溯；文中链接与地址均已失效。
+
+日期：2026-10-17。当时发布的是既有 Halo PoC、Earth 主题和虚构演示内容，用于查看四模块及媒体效果；不是生产性能验收。
 
 网站：[https://aihyb.com/](https://aihyb.com/)；四模块：[https://aihyb.com/aihyb](https://aihyb.com/aihyb)；后台：[https://aihyb.com/console/](https://aihyb.com/console/)。域名直接访问，不再需要本机 SSH 隧道。后台账号沿用现有账号，密码不写入本报告。
 

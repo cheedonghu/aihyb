@@ -13,7 +13,8 @@ MODULES = ['/aihyb/' + name for name in ('review', 'leaderboard', 'pricing', 'tu
 
 def fingerprint():
     # Reuse the existing read-only, counter-independent business state projection.
-    state = runpy.run_path(str(ROOT / 'deploy-public-domain.py'))['state']()
+    # deploy-ip-http.py carries the same projection now that the domain entry is retired.
+    state = runpy.run_path(str(ROOT / 'deploy-ip-http.py'))['state']()
     digest = hashlib.sha256(json.dumps(state, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
     return {'sha256': digest, 'counts': {key: len(value) for key, value in state.items()}}
 

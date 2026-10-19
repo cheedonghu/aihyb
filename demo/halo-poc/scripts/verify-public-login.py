@@ -1,7 +1,11 @@
-"""Use the existing private account to verify normal HTTPS login; no content writes or credential output."""
+"""Use the existing private account to verify normal HTTPS login; no content writes or credential output.
+
+SUPERSEDED 2026-10-18: console/login are now tunnel-only on plain HTTP. Use verify-ip-http-login.py.
+"""
 import json
 from datetime import datetime,timezone
 from poc_client import Client,ROOT,BASE
+raise SystemExit('Superseded: the domain entry is gone. Run verify-ip-http-login.py instead.')
 assert BASE=='https://aihyb.com'
 c=Client();current=c.request('/apis/api.console.halo.run/v1alpha1/users/-')
 assert current.get('user',current)['metadata']['name']=='aihyb-admin'

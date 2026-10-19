@@ -179,13 +179,13 @@
     "path": "templates/search.html",
     "original_sha256": null,
     "previous_adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9",
-    "adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9"
+    "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
   },
   {
     "theme": "theme-anatole",
     "path": "templates/search.html",
     "original_sha256": "16d6cc4e05d99c495a6154ec88e1ce4c7978043e30da9c62c2c736f4e04be46a",
     "previous_adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9",
-    "adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9"
+    "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
   }
 ]

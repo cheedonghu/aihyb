@@ -2,12 +2,13 @@
 
 当前服务器：`5.231.253.4`，SSH 用户 `root`，端口 `22333`。
 
-2026-10-17 已增加域名预览入口：[网站](https://aihyb.com/)、[四模块](https://aihyb.com/aihyb)、[后台](https://aihyb.com/console/)。沿用原Docker数据映射；新增独立Caddy容器负责HTTPS，完整持久化/备份说明见[域名部署记录](../../docs/cms-domain-deployment.md)。日常使用域名，下面的本机地址保留作隧道调试。
+2026-10-18 起 `aihyb.com` 因备案原因暂停解析，公网入口改为**纯 HTTP + IP**，不再使用域名、不再监听 443：[网站](http://5.231.253.4/)、[四模块](http://5.231.253.4/aihyb)。沿用原Docker数据映射；独立 Caddy 容器仍负责入口，但 `auto_https off`、只监听 80。完整部署、持久化/备份与限制说明见[HTTP + IP 部署记录](../../docs/cms-http-ip-deployment.md)；[原域名记录](../../docs/cms-domain-deployment.md)仅作历史追溯。
 
-Halo自身仍只绑定服务器本机地址，公网通过Caddy代理；当前电脑也可使用已有 SSH 隧道：
+纯 HTTP 下后台口令会明文过公网，因此公网入口只开放前台：`/console`、`/login`、`/uc` 等账号类路径在公网返回 403。后台仍需 SSH 隧道，Halo 自身只绑定服务器本机地址：
 
-- 网站：http://127.0.0.1:18090/
-- 后台：http://127.0.0.1:18090/console
+- 公网前台：http://5.231.253.4/
+- 隧道网站：http://127.0.0.1:18090/
+- 隧道后台：http://127.0.0.1:18090/console
 - 原生文章与稿件审核入口：http://127.0.0.1:18090/console/posts
 - 新四模块原型：http://127.0.0.1:18090/aihyb
 - 本地账号文件：`secrets/access.txt`（私密，不提交代码库）
@@ -41,7 +42,7 @@ ssh -i "C:\Users\east\OneDrive\files\SyncFile\mima\key\east-nopw" -p 22333 -N -L
 - `scripts/probe-search.py --after`、`probe-search-mixed.py --after`：小规模资源/页面/Range检查，不作为压力测试。
 - `scripts/repair-native-categories.py`：修复已知旧分类引用并核对其余业务状态不变。
 - `scripts/record-discovery-artifacts.py`：本轮已知备份、运行插件状态、制品哈希及有界日志摘要核验，不输出私密内容。
-- `scripts/prepare-theme-adapters.py`、`deploy-theme-adapters.py`：生成及部署有原文件哈希保护和备份的两主题适配。
+- `scripts/prepare-theme-adapters.py`、`deploy-theme-adapters.py`：生成及部署有原文件哈希保护和备份的两主题适配。2026-10-18 经此流程只改了 `templates/search.html`：裸 `/search`（页头搜索按钮不带关键词）原本因 `param.keyword` 为空列表而 500，现已修复。
 - `scripts/verify-themes.py seed`：生成渲染样例和四模块 B 草稿，然后冻结基线；后续 earth-initial/anatole/earth-restored 检查只切换主题并对照内容状态。
 - `scripts/verify-native-roles.py`：已有测试身份的原生入口权限检查，常规保存仅执行 no-op。
 - `scripts/verify-packages.py`：四模块完整草稿/批准/发布/恢复、幂等、并发、严格格式和四类测试身份的权限验证，会写入标明虚构的 PoC 数据。
@@ -49,6 +50,10 @@ ssh -i "C:\Users\east\OneDrive\files\SyncFile\mima\key\east-nopw" -p 22333 -N -L
 - `scripts/verify-backup-restore.py`：将最新备份恢复到固定命名的新独立测试库；已有同名库则拒绝覆盖，不覆盖在线数据库，不代表完整实例恢复。
 - `scripts/record-runtime.py`：只读核对既有服务PID、端口绑定、forwarding与空闲资源，不读取凭据或进程参数。
 - `scripts/backup.sh`：短暂停止本项目Halo，备份数据库、工作目录、配置及私密账号文件，恢复本项目运行；尚未完成空环境恢复演练。
+- `scripts/deploy-ip-http.py prepare|origin|validate|deploy|compare`：从域名 HTTPS 切到 HTTP + IP 的受控步骤。`prepare` 冻结业务基线并备份切换前的入口文件与系统设置，有覆盖保护，不要当更新命令重跑；`compare` 核对切换前后业务数据一致。
+- `scripts/verify-ip-http.py`：只读检查公网入口（四模块、canonical、Feed/站点地图 origin、后台 403、内部路径 404、匿名自检接口、媒体 Range、443 未监听）。
+- `scripts/verify-ip-http-login.py`：只在不同 `AIHYB_POC_URL` 下验证隧道后台登录，仅执行只读草稿核对。
+- `scripts/record-ip-http-artifacts.py`：记录入口的非私密运行事实（固定镜像、host 网络、`auto_https off`、监听端口、forwarding）。
 
 当前网络保留IP forwarding=0；`compose.media.yaml` 为本项目 Halo 设置专用桥接 CONNECT 出站，只允许两个已知 COS 主机443端口。首次部署使用 `install-s3-egress.py` 的受限服务，后续重建 Halo 需带 `-f compose.yaml -f compose.media.yaml`。不得把该出站当成通用采集网络。媒体脚本 `configure-s3-media.py` 仅用于首次配置，会拒绝覆盖未知现有策略；不要重复执行来更换凭据。
 

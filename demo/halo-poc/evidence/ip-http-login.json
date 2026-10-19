@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-18T15:56:38.881052+00:00",
+  "tunnel_origin": "http://127.0.0.1:18090",
+  "normal_login": true,
+  "session_cookie_httponly": true,
+  "session_cookie_secure": false,
+  "secure_cookie_expected_on_plain_http_loopback": false,
+  "authenticated_draft_read_only": true,
+  "note": "Secure flag is absent because the tunnel entry is http://127.0.0.1:18090; traffic stays inside the SSH channel and never crosses the plain-HTTP public entry.",
+  "complete": true
+}

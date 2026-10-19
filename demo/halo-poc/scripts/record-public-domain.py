@@ -1,4 +1,11 @@
-"""Record only non-secret domain deployment and private backup integrity facts."""
+"""Record only non-secret domain deployment and private backup integrity facts.
+
+SUPERSEDED 2026-10-18: asserts the retired https://aihyb.com origin. Use record-ip-http-artifacts.py.
+"""
+import sys
+if __name__ == '__main__':
+    raise SystemExit('Superseded: the https://aihyb.com entry is retired. '
+                     'Run record-ip-http-artifacts.py instead.')
 import hashlib,json,subprocess,tarfile
 from datetime import datetime,timezone
 from pathlib import Path

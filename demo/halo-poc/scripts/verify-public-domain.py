@@ -1,8 +1,14 @@
-"""Real public TLS, four modules, media, discovery and anonymous access checks; no content writes."""
+"""Real public TLS, four modules, media, discovery and anonymous access checks; no content writes.
+
+SUPERSEDED 2026-10-18: the aihyb.com domain stopped resolving (ICP filing), so this can no longer
+run. Use verify-ip-http.py for the plain-HTTP IP entry. Kept for the domain-stage record.
+"""
 import hashlib,json,socket,ssl,time,urllib.error,urllib.parse,urllib.request,xml.etree.ElementTree as ET
 from datetime import datetime,timezone
 from html.parser import HTMLParser
 from poc_client import ROOT
+
+raise SystemExit('Superseded: aihyb.com no longer resolves. Run verify-ip-http.py instead.')
 
 DOMAIN='aihyb.com';BASE='https://'+DOMAIN
 report={'timestamp_utc':datetime.now(timezone.utc).isoformat(),'origin':BASE,'pages':{},'complete':False}

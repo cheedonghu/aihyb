@@ -84,4 +84,6 @@ def compare():
     (ROOT/'evidence/public-domain-persistence.json').write_text(json.dumps(report,indent=2))
     print('All package drafts / approvals / publications / immutable revisions / snapshots preserved',flush=True)
 if __name__=='__main__':
-    {'prepare':prepare,'deploy':deploy,'origin-setting':origin_setting,'compare':compare}[sys.argv[1]]()
+    # SUPERSEDED 2026-10-18: aihyb.com stopped resolving (ICP filing); the entry is now plain HTTP
+    # on the IP. Re-running this would point Halo back at a dead domain. Use deploy-ip-http.py.
+    raise SystemExit('Superseded: aihyb.com is retired. Use deploy-ip-http.py for the IP entry.')
