@@ -1,0 +1,38 @@
+{
+  "id": "demo-skill-tips",
+  "title": "三个 skill 使用技巧",
+  "voice": "zh-CN-YunxiNeural",
+  "rate": "+10%",
+  "background": "waves",
+  "credit": "AI好用榜 · 技巧分享",
+  "sources": [
+    {"title": "本站实践记录", "note": "示例稿件，演示流水线格式"}
+  ],
+  "segments": [
+    {
+      "label": "开场",
+      "text": "用了半年 AI 编程助手，我发现真正拉开差距的不是模型，而是 skill。今天分享三个最实用的技巧。",
+      "visual": {"type": "title", "tag": "Skill 技巧", "heading": "三个让 AI 少走弯路的 skill 用法", "sub": "AI好用榜 · 实践分享"}
+    },
+    {
+      "label": "技巧一",
+      "text": "第一，把反复交代的规矩写进 skill。比如提交信息用英文、文档用中文，写一次，以后每个任务都会自动遵守。",
+      "visual": {"type": "code", "heading": "技巧一：规矩只写一次", "code": "---\nname: commit-rules\ndescription: 提交代码前使用\n---\n- 提交信息用英文祈使句\n- 文档与报告使用中文\n- 推送前检查凭据"}
+    },
+    {
+      "label": "技巧二",
+      "text": "第二，description 要写清楚什么时候用。AI 是靠这一句话判断要不要加载 skill 的，写得含糊，它就永远想不起来。",
+      "visual": {"type": "points", "heading": "技巧二：写好触发条件", "items": ["说清适用场景，而不是功能简介", "包含用户可能说出的关键词", "一个 skill 只解决一类问题"]}
+    },
+    {
+      "label": "技巧三",
+      "text": "第三，让 skill 产出可以验证的结果。比如这套视频流水线，AI 只负责写稿，渲染和校验都交给脚本，出错能直接定位。",
+      "visual": {"type": "video", "src": "site-scroll.mp4", "loop": true}
+    },
+    {
+      "label": "结尾",
+      "text": "更多 AI 工具的测评和价格对比，可以到 AI 好用榜查看。我们下期见。",
+      "visual": {"type": "image", "src": "site-home.png"}
+    }
+  ]
+}

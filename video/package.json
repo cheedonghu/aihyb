@@ -1,0 +1,22 @@
+{
+  "name": "aihyb-video",
+  "version": "0.1.0",
+  "description": "Episode JSON to narrated video pipeline (edge-tts + Remotion)",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@remotion/cli": "4.0.534",
+    "@remotion/media": "4.0.534",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "typecheck": "tsc"
+  }
+}

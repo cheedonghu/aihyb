@@ -26,6 +26,7 @@
 - `demo/halo-poc/` —— Halo PoC 的 Compose 配置、脚本、主题适配、证据。
 - `demo/halo-poc/evidence/` —— **要提交的**。JSON 证据、截图是验证结论的凭据，不是临时产物。
 - `demo/halo-poc/scripts/` —— 服务器脚本。本地 `scripts/` 与远端 `/opt/aihyb-halo-poc/` 扁平目录对应。
+- `video/` —— 视频流水线（edge-tts + Remotion）：`episode.json` 转成带配音、字幕的视频。用法见 `video/README.md`，`build/`、`out/`、`.venv/` 不提交。
 - `CONTEXT.md` —— 内容生产的领域术语表。改术语先看这里。
 - `plan.md` —— 业务计划，不是技术规格。
 

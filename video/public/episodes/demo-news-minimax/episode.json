@@ -1,0 +1,36 @@
+{
+  "id": "demo-news-minimax",
+  "title": "MiniMax 发布 M3.1 Flash",
+  "voice": "zh-CN-YunxiNeural",
+  "rate": "+10%",
+  "background": "dark",
+  "credit": "资讯来源：证券时报e公司",
+  "sources": [
+    {
+      "title": "MiniMax M3.1 Flash上线 Pro版本将于不久后推出（证券时报e公司，2026-10-19）",
+      "url": "https://news.qq.com/rain/a/20261019A0CWC400"
+    }
+  ],
+  "segments": [
+    {
+      "label": "开场",
+      "text": "十月十九日晚，MiniMax 发布了新一代 Flash 模型，M3.1 Flash。",
+      "visual": {"type": "title", "tag": "AI 快讯 · 10月19日", "heading": "MiniMax 发布 M3.1 Flash", "sub": "Pro 版本将于不久后推出"}
+    },
+    {
+      "label": "匿名测试",
+      "text": "此前以匿名身份处理了超过二百万亿 Token 的 Space Bunny 模型，正是它的早期版本。",
+      "visual": {"type": "quote", "text": "此前以匿名身份处理了超过 200T Token 的 Space Bunny 模型，正是 MiniMax M3.1 Flash 的早期版本。", "author": "证券时报e公司"}
+    },
+    {
+      "label": "提升点",
+      "text": "官方称，它在智能体任务、编程、Computer Use 和网络安全能力上实现了代际提升。线上推理速度提升近三倍，使用成本降低百分之七十。",
+      "visual": {"type": "points", "heading": "官方公布的变化", "items": ["Agentic 任务、编程、Computer Use、网络安全能力代际提升", "线上推理速度提升近 3 倍", "使用成本降低 70%"]}
+    },
+    {
+      "label": "结尾",
+      "text": "以上均为官方说法，实际表现还有待实测。追求更高智能上限的 Pro 版本也将在不久后推出，我们会持续跟进。",
+      "visual": {"type": "title", "heading": "官方数据，待实测验证", "sub": "AI好用榜 · 持续跟进"}
+    }
+  ]
+}

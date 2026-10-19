@@ -1,0 +1,5 @@
+node_modules/
+.venv/
+out/
+# Generated per episode by scripts/build.py; reproducible from episode.json
+public/episodes/*/build/
