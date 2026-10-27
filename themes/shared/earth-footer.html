@@ -2,7 +2,6 @@
   <link rel="stylesheet" href="/aihyb/assets/site.css?v=20261023">
   <div class="aihyb-footer-inner">
     <th:block th:if="${pluginFinder.available('plugin-aihyb')}" th:utext="${aihybPortalFinder.footerContent()}" />
-    <div th:unless="${pluginFinder.available('plugin-aihyb')}" class="aihyb-footer-brand"><a href="/">AI好用榜</a></div>
     <div class="aihyb-footer-bottom">
       <span>© 2026 AI好用榜 AIHYB.COM</span>
       <a th:if="${theme.config.beian != null and not #strings.isEmpty(theme.config.beian.icp_text)}" id="aihyb-icp-filing" th:href="${theme.config.beian.icp_link}" th:text="${theme.config.beian.icp_text}" target="_blank" rel="noopener noreferrer">ICP备案号</a>

@@ -11,11 +11,11 @@ public final class SiteFooter {
     }
     /** Navigation and QR content; the host theme can supply its own legal row. */
     public static String content(SiteSettings.Settings settings) {
-        var html=new StringBuilder("<div class='aihyb-footer-main'><div class='aihyb-footer-brand'><a href='/'><img src='/aihyb/assets/logo-primary.png' alt='AI好用榜' width='164'></a><p>让每一次选择，都有依据。</p></div><nav class='aihyb-footer-nav' aria-label='页脚导航'><ul>");
+        var html=new StringBuilder("<nav class='aihyb-footer-nav' aria-label='页脚导航'><ul>");
         for(var kind:List.of("review","leaderboard","pricing","tutorial","news")) {
             html.append("<li><a href='/aihyb/").append(kind).append("'>").append(PortalRenderer.LABELS.get(kind)).append("</a></li>");
         }
-        html.append("<li><a href='/archives'>内容归档</a></li></ul></nav></div>");
+        html.append("<li><a href='/archives'>内容归档</a></li></ul></nav>");
         var active=settings.qrs().stream().filter(SiteSettings::active).toList();
         if(!active.isEmpty()) {
             html.append("<div class='aihyb-footer-qrs' aria-label='关注与联系'>");
