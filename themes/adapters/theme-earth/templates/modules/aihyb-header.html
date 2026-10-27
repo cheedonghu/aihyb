@@ -1,0 +1,20 @@
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="header" id="header-menu" class="aihyb-earth-header">
+  <div class="aihyb-header-inner">
+    <a href="/" class="aihyb-brand" aria-label="AI好用榜首页">
+      <img th:if="${pluginFinder.available('plugin-aihyb')}" src="/aihyb/assets/logo-primary.png" alt="AI好用榜" width="1672" height="941">
+      <span th:unless="${pluginFinder.available('plugin-aihyb')}" th:text="${site.title}">AI好用榜</span>
+    </a>
+    <span class="aihyb-brand-tagline">选对 AI · 用好 AI</span>
+    <nav class="aihyb-primary-nav" aria-label="主导航">
+      <a href="/">首页</a>
+      <a href="/aihyb/review" data-category="reviews">能力测评</a>
+      <a href="/aihyb/leaderboard" data-category="leaderboards" aria-label="评分与榜单"><span class="aihyb-desktop-label">评分与榜单</span><span class="aihyb-mobile-label" aria-hidden="true">评分榜单</span></a>
+      <a href="/aihyb/pricing" data-category="prices">价格对比</a>
+      <a href="/aihyb/tutorial" data-category="tutorials" aria-label="使用技巧与教程"><span class="aihyb-desktop-label">使用技巧与教程</span><span class="aihyb-mobile-label" aria-hidden="true">技巧教程</span></a>
+    </nav>
+    <a href="/search" class="aihyb-search-button" aria-label="搜索" onclick="if(window.SearchWidget){SearchWidget.open();return false;}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+    </a>
+  </div>
+  <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.aihyb-primary-nav a').forEach(function(link){var path=window.location.pathname;var href=link.getAttribute('href');if(path===href||(href==='/'&&path==='/aihyb')||path==='/categories/'+link.dataset.category)link.setAttribute('aria-current','page')})});</script>
+</header>

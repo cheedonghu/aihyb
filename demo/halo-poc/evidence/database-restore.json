@@ -1,9 +1,0 @@
-{
-  "timestamp_utc": "2026-10-14T07:43:25.153942+00:00",
-  "backup": "/opt/aihyb-halo-poc/backups/20261014T074305Z",
-  "restored_database": "poc_restore_check_20261014",
-  "plugin_resource_count_and_digest": "86|a3fdc79fc0aef97d9ebb6b07a63eb791",
-  "matches_live_plugin_resources": true,
-  "scope": "PostgreSQL dump restored to fresh test database; full Halo filesystem restore not exercised",
-  "complete": true
-}

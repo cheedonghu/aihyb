@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI测评_AI榜单_AI教程_AI使用技巧-AI好用榜</title>
+<meta name="description" content="选对AI，用好AI，就来AI好用榜！AI测评、AI评分与榜单、AI价格对比、AI教程、AI使用技巧、AI资源库，尽在AI好用榜！">
+<link rel="canonical" th:href="${site.url} + '/'">
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-navigation.css?v=20261022-polish5">
+<link rel="stylesheet" href="/aihyb/assets/portal.css?v=20261023-news1">
+<link rel="stylesheet" href="/aihyb/assets/pricing.css?v=20261021">
+<link rel="icon" type="image/png" href="/aihyb/assets/favicon.png">
+<link rel="apple-touch-icon" href="/aihyb/assets/logo-icon.png"><meta name="theme-color" content="#2855e8">
+<script src="/aihyb/assets/portal.js?v=20261021" defer></script>
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-editorial.css?v=20261022-polish5">
+</head><body class="portal-native-layout"><th:block th:replace="~{modules/aihyb-header :: header}" /><main>
+<th:block th:if="${pluginFinder.available('plugin-aihyb')}"><section id="aihyb-portal" th:utext="${aihybPortalFinder.home()}"></section></th:block>
+<section class="container" th:unless="${pluginFinder.available('plugin-aihyb')}"><h1>帮你选对 AI，用好 AI。</h1><p>能力测评、评分榜单、价格对比与实用教程</p><article th:each="post : ${posts.items}"><h2><a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a></h2></article></section>
+</main><th:block th:replace="~{modules/aihyb-footer :: footer}" /></body></html>

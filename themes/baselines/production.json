@@ -1,0 +1,12 @@
+{
+  "environment": "production",
+  "files": [
+    {
+      "theme": "theme-earth",
+      "path": "templates/modules/aihyb-footer.html",
+      "original_sha256": null,
+      "previous_adapted_sha256": "eac4ebfff188b6d97d5aed4f5b6bd5ea767f21e755cca02d3abbf1933032551a",
+      "adapted_sha256": "39e3937f59e15f6b43ebf1df881a840fcf79998f2187dc9440553c13d8bee0e7"
+    }
+  ]
+}

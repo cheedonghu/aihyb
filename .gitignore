@@ -1,8 +1,12 @@
 # Local credentials and environment overrides
 .env
 .env.*
+*.env
 !.env.example
 secrets/
+backups/
+data/
+runtime/
 *.pem
 *.key
 
@@ -14,6 +18,11 @@ dist/
 __pycache__/
 *.py[cod]
 *.log
+reports/
+test-results/
+.venv/
+.local-tts/
+out/
 
 # Local editor and operating system files
 .idea/
@@ -24,3 +33,12 @@ Thumbs.db
 # Local business plans
 /ai测评网内部执行版商业计划书.md
 /【商业计划书】AI好用榜-AIHYB.COM.docx
+
+# Editorial materials and historical operation artifacts live outside this repository.
+/video/
+/demo/
+/materials/
+/archive/
+/evidence/
+/plan.md
+/logo源文件.zip

@@ -1,0 +1,23 @@
+/* Shared Earth chrome; keep the four public modules and private console separate. */
+.aihyb-earth-header{position:sticky;top:0;z-index:30;background:#fff;color:#192132;border-bottom:1px solid #e5e8ef}
+.aihyb-header-inner{display:flex;align-items:center;gap:26px;max-width:1296px;min-height:68px;margin:auto;padding:9px 28px}
+.aihyb-brand{display:flex;align-items:center;flex-shrink:0;min-width:0;min-height:44px;font-size:21px;font-weight:650}
+.aihyb-brand img{width:148px;height:44px;max-width:100%;object-fit:cover;object-position:center}
+.aihyb-brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.aihyb-primary-nav{display:flex;justify-content:center;gap:8px;min-width:0;margin:auto}
+.aihyb-primary-nav a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;border-radius:7px;font-size:14px;font-weight:500;white-space:nowrap;text-decoration:none;color:#626d80}
+.aihyb-primary-nav a:hover,.aihyb-primary-nav a[aria-current="page"]{background:#edf2ff;color:#2855e8}
+.aihyb-mobile-label{display:none}
+.aihyb-search-button{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:8px;flex-shrink:0}
+.aihyb-search-button:hover{background:#edf2ff;color:#2855e8}
+.aihyb-earth-header a:focus-visible{outline:3px solid #2855e8;outline-offset:2px}
+#aihyb-portal>.aihyb-module-nav{display:none}
+.dark .aihyb-earth-header{background:#fff;color:#192132}
+.dark .aihyb-primary-nav a:hover,.dark .aihyb-primary-nav a[aria-current="page"]{background:#edf2ff;color:#2855e8}
+@media(max-width:1050px){.aihyb-brand img{width:142px;height:43px}.aihyb-primary-nav a{font-size:13px;padding:8px 10px}.aihyb-header-inner{gap:15px}}
+@media(max-width:900px){.aihyb-header-inner{flex-wrap:wrap;gap:0 12px;padding:8px 17px;min-height:70px}.aihyb-brand{margin-right:auto}.aihyb-brand img{width:128px;height:39px}.aihyb-primary-nav{order:3;flex-basis:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}.aihyb-primary-nav a{font-size:12px;padding:8px 3px}.aihyb-desktop-label{display:none}.aihyb-mobile-label{display:inline}}
+@media(max-width:360px){.aihyb-brand img{width:120px;height:36px}.aihyb-primary-nav a{font-size:11px}}
+
+.portal-native-layout{margin:0;background:#f8f9fb;color:#192132;font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;min-width:0}.portal-native-layout>main{min-width:0}
+.portal-site-footer{margin-top:40px;background:#fff;border-top:1px solid #e5e8ef}.portal-footer-inner{max-width:1296px;margin:auto;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:11px;color:#8995aa}.portal-footer-inner img{width:150px;height:46px;object-fit:cover}.portal-footer-inner p{font-size:10px;margin:4px 0 0;padding-left:7px}.portal-footer-inner nav{display:flex;gap:18px;flex-wrap:wrap;max-width:70%}
+@media(max-width:650px){.portal-footer-inner{padding:21px 17px;font-size:9px;align-items:start}.portal-footer-inner img{width:115px;height:36px}.portal-footer-inner p{font-size:8px}.portal-footer-inner nav{max-width:58%;gap:9px 14px}}

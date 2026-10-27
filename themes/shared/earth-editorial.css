@@ -1,0 +1,195 @@
+/* Shared editorial layer for the portal and native Earth articles. */
+.aihyb-brand-tagline{font-size:11px;letter-spacing:1px;color:#8b92a4;padding-left:18px;border-left:1px solid #e3e7f1;white-space:nowrap}
+.aihyb-earth-header{box-shadow:0 3px 18px #20346a04}
+.aihyb-primary-nav a{position:relative;border-radius:0}
+.aihyb-primary-nav a[aria-current="page"]{background:transparent;font-weight:650}
+.aihyb-primary-nav a[aria-current="page"]:after{content:"";position:absolute;bottom:1px;left:16px;right:16px;height:3px;border-radius:5px;background:linear-gradient(90deg,#00bce9,#3458f4,#a14bff)}
+
+#aihyb-portal .hero-surface{position:relative;background:radial-gradient(ellipse at 86% 18%,#e4e9ff 0,transparent 46%),radial-gradient(ellipse at 3% 55%,#e9faff 0,transparent 48%),#fff;border-bottom:1px solid #e1e7f4}
+#aihyb-portal .hero{padding-top:46px;padding-bottom:38px;gap:54px;grid-template-columns:1.1fr 1fr}
+#aihyb-portal .eyebrow{font-size:11px;letter-spacing:2px}
+#aihyb-portal .hero h1{font-size:clamp(34px,3.8vw,52px);line-height:1.28;letter-spacing:-1.8px}
+#aihyb-portal .hero h1 em{background:linear-gradient(105deg,#146de9,#4543e3 72%,#8737df);background-clip:text;-webkit-background-clip:text;color:transparent}
+#aihyb-portal .hero h1 em:after{display:none}
+#aihyb-portal .hero-subtitle{font-size:14px;color:#63718b;line-height:1.9}
+#aihyb-portal .searchbox{border-color:#d6dff0;background:#fff;box-shadow:0 6px 24px #3567b70a;border-radius:12px}
+#aihyb-portal .popular{font-size:11px;gap:12px}
+#aihyb-portal .popular a{padding:2px 0;border-bottom:1px solid #c4cfe6;color:#526689}
+#aihyb-portal .featured-story{border:1px solid #d8e2fb;border-radius:18px;box-shadow:0 16px 36px #2e4e8d12;transform:rotate(1deg);transition:transform .2s,box-shadow .2s}
+#aihyb-portal .featured-story:hover{transform:translateY(-3px);box-shadow:0 20px 40px #2e4e8d20}
+#aihyb-portal .featured-art{height:228px;background:radial-gradient(circle at 70% 5%,#3969ec88,transparent 54%),linear-gradient(135deg,#10285d,#243c86 57%,#393589);color:#fff}
+#aihyb-portal .featured-art:after{inset:-80px -70px 36px 180px;border-color:#bccfff30;transform:rotate(-20deg);border-radius:40%;pointer-events:none}
+#aihyb-portal .issue-label{letter-spacing:1.5px;top:19px;left:22px;color:#c1d6ff}
+#aihyb-portal .issue-label span{color:#a6bce8}
+#aihyb-portal .portal-hero-paper{top:56px;left:13%;width:55%;max-width:245px;padding:20px;background:#f5f8ff;border:1px solid #fff;box-shadow:0 13px 26px #07153750;transform:rotate(-8deg)}
+#aihyb-portal .portal-hero-paper>span{color:#607caa;font-size:9px}
+#aihyb-portal .portal-hero-paper strong{color:#17386f;font-size:26px;line-height:1.35;margin:10px 0}
+#aihyb-portal .portal-hero-paper i{background:#d6dfef}
+.portal-art-index{position:absolute;right:23px;top:56px;z-index:2;display:flex;flex-direction:column;gap:12px;align-items:flex-end;font-size:10px;letter-spacing:1px;color:#c0d1f3}
+.portal-art-index b{font-size:44px;line-height:1;color:#fff;letter-spacing:-2px}
+.portal-art-index span{border-bottom:1px solid #ffffff24;padding-bottom:7px}
+#aihyb-portal .art-note{color:#acbfe4;bottom:9px;font-size:9px}
+#aihyb-portal .story-caption{padding:18px 22px}
+#aihyb-portal .story-caption h3{font-size:17px;color:#1b315b}
+#aihyb-portal .module-strip{border-top:1px solid #c9d7ef;background:#ffffff70;padding:23px 0}
+#aihyb-portal .module-icon{background:#e5f2ff;color:#2562c8;border:1px solid #cee3fa;font-size:21px}
+#aihyb-portal .module-item:nth-child(2) .module-icon{background:#ece9ff;color:#6e51d5;border-color:#dcd4fb}
+#aihyb-portal .module-item:nth-child(3) .module-icon{background:#e4f6ee;color:#248264;border-color:#cae9dc}
+#aihyb-portal .module-item:nth-child(4) .module-icon{background:#fff1df;color:#b87823;border-color:#f0ddc2}
+#aihyb-portal .module-item strong{font-size:14px}
+#aihyb-portal .scene-row{background:#fff;border:1px solid #e0e6f1;padding:18px 20px;border-radius:12px;gap:20px;margin:0 0 6px}
+#aihyb-portal .scene-options{justify-content:flex-start;gap:8px}
+#aihyb-portal .scene-options a{background:#f4f6fb;border:1px solid #edf0f7;color:#5c6c89;padding:5px 10px;border-radius:6px;font-size:11px}
+#aihyb-portal .scene-options a:hover{background:#eaf0ff;border-color:#b9caf4;color:#2855e8}
+#aihyb-portal .section{padding-top:36px}
+#aihyb-portal .section-index{border:0;background:#2855e8;color:#fff;padding:3px 7px;border-radius:5px;letter-spacing:0;font-size:11px}
+#aihyb-portal .section-heading h2{font-size:23px;letter-spacing:-.6px}
+#aihyb-portal .section-heading p{font-size:12px;line-height:1.7}
+#aihyb-portal .panel{border-color:#dce4f1;box-shadow:0 3px 14px #193b7104}
+#aihyb-portal .panel-head{background:linear-gradient(110deg,#f2f6ff,#fff);padding:20px}
+#aihyb-portal .panel-title{font-size:15px}
+#aihyb-portal .portal-ranking thead th{background:#f7f9fe;color:#718099;font-size:11px}
+#aihyb-portal .portal-ranking .rank-number{font-style:normal;font-weight:750;font-size:19px;color:#43587a}
+#aihyb-portal .portal-ranking tr:first-child .rank-number{color:#2855e8}
+#aihyb-portal .portal-ranking .score-value{font-size:22px;color:#2855e8}
+#aihyb-portal .portal-ranking tbody tr:hover td,#aihyb-portal .portal-ranking tbody tr:hover th{background:#f7faff}
+#aihyb-portal .editor-picks{background:linear-gradient(145deg,#edf0ff,#f1f7ff);border:1px solid #dce3f8;border-radius:14px;position:relative;overflow:hidden}
+#aihyb-portal .editor-picks:after{content:"✦";position:absolute;font-size:130px;line-height:1;color:#6478cd0d;top:10px;right:8px;pointer-events:none}
+#aihyb-portal .editor-kicker{color:#5367b0;letter-spacing:2px}
+#aihyb-portal .editor-picks h3{color:#243867}
+#aihyb-portal .review-card{border:1px solid #dde5f0;box-shadow:0 3px 14px #193b7104;transition:transform .2s,box-shadow .2s}
+#aihyb-portal .review-card:hover{transform:translateY(-4px);box-shadow:0 12px 26px #1d427214}
+#aihyb-portal .portal-text-cover{background:radial-gradient(circle at 90% 10%,#9acbff77,transparent 55%),linear-gradient(130deg,#e6f3ff,#edf0ff);min-height:175px}
+#aihyb-portal .portal-text-cover>strong{color:#3e61a5;font-size:27px}
+#aihyb-portal .review-card:nth-child(2n) .portal-text-cover{background:linear-gradient(130deg,#eee9ff,#e8efff)}
+#aihyb-portal .review-body h3{font-size:17px;line-height:1.6}
+#aihyb-portal .review-body p{font-size:12px;line-height:1.8}
+#aihyb-portal .tutorial-detail-card{border:1px solid #dfe6ef;border-radius:12px;background:#fff;transition:border-color .2s,transform .2s}
+#aihyb-portal .tutorial-detail-card:hover{border-color:#9bb6ed;transform:translateY(-2px)}
+#aihyb-portal .tutorial-detail-card>span{display:grid;place-items:center;width:42px;height:42px;border-radius:11px;color:#4c6cc2;background:#edf2ff;font-size:22px;flex-shrink:0}
+#aihyb-portal .tutorial-detail-card h3{font-size:16px;line-height:1.6}
+#aihyb-portal .tutorial-detail-card p{font-size:12px;line-height:1.8}
+#aihyb-portal .page-head{margin-top:25px;padding:30px;border:1px solid #e0e6f4;border-radius:16px;background:radial-gradient(ellipse at right top,#e5eaff,transparent 65%),#fff}
+#aihyb-portal .page-head h1{font-size:34px;line-height:1.4}
+#aihyb-portal .closing-note{border-top:1px solid #d9e2f3;margin-top:30px;color:#718099}
+.portal-site-footer .portal-footer-inner img{width:126px;height:38px}
+
+/* Native articles keep Halo's interaction and table-of-contents behavior. */
+.aihyb-article-page{background:radial-gradient(ellipse at 8% 0,#edf3ff,transparent 45%),#f5f7fb;color:#202d45;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
+.aihyb-article-page *{box-sizing:border-box}
+.aihyb-article-layout{max-width:1256px;margin:26px auto 0;gap:24px;grid-template-columns:minmax(0,1fr) 272px;padding:0 24px}
+.aihyb-article-layout>aside{width:auto;min-width:0}
+.aihyb-article-card{border:1px solid #e0e7f2;box-shadow:0 5px 24px #213f7105;border-radius:16px;padding:32px 36px;background:#fff}
+.aihyb-article-intro{padding-bottom:22px;border-bottom:1px solid #e6ebf5;margin-bottom:19px}
+.aihyb-article-breadcrumb{display:flex;gap:9px;flex-wrap:wrap;font-size:12px;color:#8a96ac;margin-bottom:24px}
+.aihyb-article-breadcrumb a:hover{color:#2855e8}
+.aihyb-article-labels{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:13px}
+.aihyb-article-labels>a{font-size:11px;font-weight:600;color:#3059bf;background:#edf2ff;border:1px solid #dce6ff;border-radius:5px;padding:4px 9px;text-decoration:none}
+.aihyb-article-labels>span{font-size:10px;letter-spacing:1.4px;color:#929db2}
+.aihyb-article-page .aihyb-article-title{color:#1d2c48;font-size:32px;font-weight:750;line-height:1.5;letter-spacing:-.7px;margin:0;overflow-wrap:anywhere}
+.aihyb-article-summary{font-size:14px;color:#708099;line-height:1.85;margin:14px 0 0}
+.aihyb-article-byline{padding-bottom:18px}
+.aihyb-article-byline a{color:#677995;font-weight:500;font-size:12px}
+.aihyb-article-byline [class*="text-xs"]{color:#8c97ab;font-size:11px}
+.aihyb-article-page #content{font-size:15px;line-height:1.95;color:#3e4d65;overflow-wrap:anywhere}
+.aihyb-article-page #content h2{color:#233554;font-size:21px;line-height:1.6;font-weight:700;margin:32px 0 16px;padding-left:13px;border-left:3px solid #4166eb;scroll-margin-top:110px}
+.aihyb-article-page #content .aihyb-native>h2:first-child{margin-top:10px}
+.aihyb-article-page #content h3{color:#31486e;font-size:17px;margin-top:25px}
+.aihyb-article-page #content p{line-height:1.95}
+.aihyb-article-page #content a{color:#2855e8;text-decoration:none;border-bottom:1px solid #bcccf7}
+.aihyb-article-page #content a:hover{border-bottom-color:#2855e8}
+.aihyb-article-page #content .scroll{border:1px solid #dce4f2;border-radius:10px;max-width:100%;overflow:auto;contain:inline-size;margin:18px 0 26px}
+.aihyb-article-page #content .scroll table{margin:0;border-collapse:separate;border-spacing:0;font-size:13px;width:100%}
+.aihyb-article-page #content .scroll table:not(.pricing-table){min-width:0}
+.aihyb-article-page #content .scroll table:not(.pricing-table):has(tr>:nth-child(4)){min-width:660px}
+.aihyb-article-page #content .scroll th{background:#edf3ff;color:#39547e;font-weight:600;border:0;border-bottom:1px solid #dce4f2;padding:12px 16px;text-align:left}
+.aihyb-article-page #content .scroll td{border:0;border-bottom:1px solid #edf0f6;padding:13px 16px;color:#435673;line-height:1.8}
+.aihyb-article-page #content .scroll tr:last-child td{border-bottom:0}
+.aihyb-article-page #content .scroll tbody tr{background:#fff}
+.aihyb-article-page #content .scroll tbody tr:nth-child(even){background:#fafcff}
+.aihyb-article-page #content .scroll tr:hover td{background:#f4f7ff}
+.aihyb-article-page #content .aihyb-native>ul{padding:18px 22px 18px 36px;background:#f4f7ff;border:1px solid #e2e9f9;border-radius:10px;margin:16px 0 24px}
+.aihyb-article-page #content .aihyb-native>ul li{padding:3px 0}
+.aihyb-article-page #content small{color:#7e8ba3;font-size:12px;line-height:1.8}
+.aihyb-article-page #content .aihyb-native>small{background:#f8f9fc;border:1px solid #e9edf4;padding:10px 13px;border-radius:7px;font-size:10px;margin-top:22px}
+.aihyb-article-page #content pre{border:1px solid #dde6f3;background:#f5f8fe;border-radius:10px;font-size:13px}
+.aihyb-article-page #content figure{border:1px solid #e1e8f5;border-radius:12px;padding:12px;background:#fafcff}
+.aihyb-article-page #content figcaption{color:#8090ab;font-size:12px;text-align:center;margin-top:10px}
+.aihyb-article-page #content blockquote{border-left:3px solid #7795ee;background:#f4f7ff;padding:14px 18px;border-radius:0 8px 8px 0}
+.aihyb-article-guide{border:1px solid #dce5fa;border-radius:13px;background:linear-gradient(135deg,#eef3ff,#f5f9ff);padding:22px;margin-bottom:20px}
+.aihyb-article-guide small{display:block;color:#647fb2;font-size:10px;letter-spacing:2px;margin-bottom:9px}
+.aihyb-article-guide strong{display:block;font-size:20px;line-height:1.6;color:#29456e}
+.aihyb-article-guide p{font-size:12px;line-height:1.85;color:#788ba8;margin:9px 0 15px}
+.aihyb-article-guide a{display:inline-flex;gap:8px;align-items:center;color:#305fce;font-size:12px;text-decoration:none}
+.aihyb-article-page .toc-container{border:1px solid #e0e7f2;box-shadow:none;padding:18px;border-radius:13px;top:88px;color:#3e5479;background:#fff}
+.aihyb-article-page .toc-container .toc{font-size:12px;line-height:1.8;margin-top:12px}
+.aihyb-article-page .toc-container .toc a{border-radius:5px;padding:5px 8px}
+.aihyb-article-page .toc-container .toc .is-active-link{background:#edf3ff;color:#2855e8}
+.aihyb-article-layout>aside>[class*="rounded-xl"]{border:1px solid #e0e7f2;border-radius:13px;box-shadow:none;min-width:0}
+.aihyb-article-page footer{border-top:1px solid #e0e7f2;background:#fff}
+/* The portal uses a light brand palette; keep native dark utilities coherent with it. */
+.dark .aihyb-article-page{background:#f5f7fb;color:#202d45;color-scheme:light}
+.dark .aihyb-article-page .aihyb-article-card,.dark .aihyb-article-page .toc-container,.dark .aihyb-article-page footer{background:#fff;border-color:#e0e7f2}
+.dark .aihyb-article-page .aihyb-article-layout>aside>[class*="dark:bg-"]{background:#fff;border-color:#e0e7f2}
+.dark .aihyb-article-page [class*="dark:text-"]{color:#64758f}
+.dark .aihyb-article-page [class*="dark:bg-slate-"]{background-color:#fff}
+.dark .aihyb-article-page [class*="dark:hover:bg-slate-"]:hover{background-color:#edf3ff}
+.dark .aihyb-article-page [class*="dark:border-slate-"]{border-color:#dce4f2}
+.aihyb-article-page #content{background:transparent}
+
+@media(min-width:1450px){#aihyb-portal .hero{gap:75px}}
+@media(max-width:1150px){.aihyb-brand-tagline{display:none}.aihyb-article-layout{grid-template-columns:minmax(0,1fr) 240px}.aihyb-article-card{padding:26px}}
+@media(max-width:900px){#aihyb-portal .hero{gap:25px}#aihyb-portal .hero h1{font-size:36px}#aihyb-portal .portal-hero-paper{left:9%;width:61%}.portal-art-index{right:14px;font-size:9px}.portal-art-index b{font-size:36px}.aihyb-article-layout{grid-template-columns:minmax(0,1fr)}.aihyb-article-guide{display:none}.aihyb-article-page .aihyb-article-title{font-size:29px}.aihyb-article-page .toc-container{position:static}.aihyb-article-layout>aside{gap:16px}}
+@media(max-width:650px){
+  #aihyb-portal .hero{grid-template-columns:minmax(0,1fr);padding-top:29px;padding-bottom:25px;gap:28px}
+  #aihyb-portal .hero h1{font-size:36px;letter-spacing:-1.3px;margin-top:15px}
+  #aihyb-portal .hero-subtitle{font-size:13px}
+  #aihyb-portal .featured-story{display:grid;grid-template-columns:42% minmax(0,1fr);transform:none;border-radius:13px}
+  #aihyb-portal .featured-art{height:158px;min-height:158px}
+  #aihyb-portal .issue-label{font-size:8px;left:12px;top:12px;letter-spacing:0}
+  #aihyb-portal .issue-label span{display:none}
+  #aihyb-portal .portal-hero-paper{left:13%;top:41px;width:80%;padding:12px;max-width:none}
+  #aihyb-portal .portal-hero-paper>span{font-size:6px;letter-spacing:0}
+  #aihyb-portal .portal-hero-paper strong{font-size:clamp(11px,3.4vw,15px);white-space:nowrap;margin:8px 0}
+  #aihyb-portal .portal-hero-paper i{height:2px;margin:5px 0}
+  #aihyb-portal .art-note{font-size:7px;right:8px;bottom:5px}
+  .portal-art-index{display:none}
+  #aihyb-portal .story-caption{padding:16px;position:relative;display:block}
+  #aihyb-portal .story-caption h3{font-size:14px;line-height:1.7}
+  #aihyb-portal .story-caption p{font-size:10px;line-height:1.8}
+  #aihyb-portal .story-caption .round-arrow{margin-top:10px;width:25px;height:25px;font-size:13px}
+  #aihyb-portal .module-strip{padding:20px 0;row-gap:20px}
+  #aihyb-portal .module-item strong{font-size:12px}
+  #aihyb-portal .module-item p{font-size:9px}
+  #aihyb-portal .scene-row{padding:15px;display:block}
+  #aihyb-portal .scene-label{display:block;margin-bottom:12px}
+  #aihyb-portal .scene-options{gap:7px}
+  #aihyb-portal .scene-options a{font-size:11px;padding:6px 9px}
+  #aihyb-portal .section{padding-top:28px}
+  #aihyb-portal .section-heading{align-items:flex-start;gap:10px}
+  #aihyb-portal .section-heading h2{font-size:19px;line-height:1.6}
+  #aihyb-portal .section-heading .label-line{gap:8px;align-items:flex-start}
+  #aihyb-portal .section-index{margin-top:4px;flex-shrink:0;font-size:9px}
+  #aihyb-portal .section-heading p{font-size:11px}
+  #aihyb-portal .section-heading>a{font-size:10px;white-space:normal;flex-shrink:0;max-width:86px;margin-top:6px}
+  #aihyb-portal .panel-head{padding:15px}
+  #aihyb-portal .panel-title{font-size:13px}
+  #aihyb-portal .review-body h3,#aihyb-portal .tutorial-detail-card h3{font-size:15px}
+  #aihyb-portal .review-body p,#aihyb-portal .tutorial-detail-card p{font-size:12px}
+  #aihyb-portal .page-head{padding:22px 18px;margin-top:20px}
+  #aihyb-portal .page-head h1{font-size:27px}
+  #aihyb-portal .page-head p{font-size:12px;line-height:1.8}
+  #aihyb-portal .closing-note{font-size:10px;gap:12px}
+  .aihyb-article-layout{margin-top:18px;padding:0 13px;gap:18px}
+  .aihyb-article-card{padding:22px 20px;border-radius:13px}
+  .aihyb-article-breadcrumb{font-size:11px;gap:7px;margin-bottom:20px}
+  .aihyb-article-page .aihyb-article-title{font-size:25px;line-height:1.55;letter-spacing:-.4px}
+  .aihyb-article-summary{font-size:13px;margin-top:12px}
+  .aihyb-article-labels>span{font-size:9px;letter-spacing:1px}
+  .aihyb-article-page #content{font-size:14px}
+  .aihyb-article-page #content h2{font-size:19px;margin-top:28px}
+  .aihyb-article-page #content .scroll th,.aihyb-article-page #content .scroll td{padding:11px 13px}
+  .aihyb-article-page #content .aihyb-native>ul{padding:14px 16px 14px 28px}
+}
+@media(max-width:360px){#aihyb-portal .hero h1{font-size:31px}#aihyb-portal .featured-story{grid-template-columns:39% minmax(0,1fr)}#aihyb-portal .portal-hero-paper strong{font-size:clamp(11px,3.4vw,15px)}.aihyb-article-card{padding:20px 16px}.aihyb-article-page .aihyb-article-title{font-size:23px}}
+@media(prefers-reduced-motion:reduce){#aihyb-portal .featured-story,#aihyb-portal .review-card,#aihyb-portal .tutorial-detail-card{transition:none;transform:none}}

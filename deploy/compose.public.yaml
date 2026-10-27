@@ -1,0 +1,27 @@
+services:
+  halo:
+    environment:
+      HALO_EXTERNAL_URL: ${HALO_EXTERNAL_URL:?Set the intended public origin}
+  caddy:
+    image: ${CADDY_IMAGE:?Pin the official Caddy image before starting the public entry}
+    restart: unless-stopped
+    # Keep host ip_forward=0; only this dedicated entry uses host networking.
+    network_mode: host
+    volumes:
+      - ${AIHYB_CADDYFILE:?Select the environment-specific Caddyfile}:/etc/caddy/Caddyfile:ro
+      - ./data/caddy/data:/data
+      - ./data/caddy/config:/config
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 192m
+    cpus: 0.25
+    pids_limit: 64
+    logging:
+      driver: local
+      options:
+        max-size: "5m"
+        max-file: "3"

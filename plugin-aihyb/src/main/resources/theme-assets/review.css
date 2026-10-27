@@ -1,0 +1,141 @@
+/* Published report body; no generated scores or measurements. */
+.aihyb-review-report{--report-blue:#3159db;--report-ink:#243654;--report-muted:#7c8ba3;min-width:0;max-width:100%;font:14px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;overflow-wrap:anywhere}
+.aihyb-review-report *{box-sizing:border-box}
+:is(#content,main) .aihyb-review-report .report-verdict{position:relative;background:radial-gradient(ellipse at right top,#5467ca66,transparent 65%),linear-gradient(125deg,#183065,#243f85);color:#fff;border:1px solid #29478d;border-radius:14px;padding:25px 27px;margin:4px 0 20px;overflow:hidden}
+.report-verdict-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+:is(#content,main) .aihyb-review-report .report-verdict .report-kicker{font-size:11px;font-weight:500;line-height:1.8;letter-spacing:2px;color:#bbcff8;display:flex;align-items:center;gap:8px;margin:0;border:0;padding:0}
+.report-kicker:before{content:"";width:6px;height:6px;border-radius:50%;background:#73d9f0;box-shadow:0 0 0 4px #89ddef15}
+.report-status{font-size:10px;color:#d4def9;border:1px solid #ffffff30;border-radius:5px;padding:3px 8px;line-height:1.7}
+:is(#content,main) .aihyb-review-report .report-verdict .report-verdict-statement{font-size:25px;font-weight:700;line-height:1.55;letter-spacing:-.4px;color:#fff;margin:19px 0 10px;border:0;padding:0}
+:is(#content,main) .aihyb-review-report .report-verdict>p{color:#bdcceb;font-size:12px;line-height:1.9;margin:0}
+.report-verdict-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #ffffff20;padding-top:15px;margin-top:20px;font-size:10px;color:#a8bde5}
+:is(#content,main) .aihyb-review-report .report-verdict-bottom a{color:#fff;border:0;text-decoration:none;font-size:11px;white-space:nowrap}
+:is(#content,main) .aihyb-review-report .report-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0 0 22px;border:1px solid #e2e8f3;border-radius:11px;background:#fafcff;overflow:hidden}
+.report-facts>div{padding:16px 17px;min-width:0;border-left:1px solid #e2e8f3}
+.report-facts>div:first-child{border-left:0}
+:is(#content,main) .aihyb-review-report .report-facts dt{font-size:10px;letter-spacing:.5px;color:#8c9ab1;font-weight:400;font-style:normal;margin:0 0 7px;padding:0}
+:is(#content,main) .aihyb-review-report .report-facts dd{font-size:12px;color:#425c85;font-weight:600;margin:0;padding:0;line-height:1.7}
+:is(#content,main) .aihyb-review-report .report-jumps{display:flex;flex-wrap:wrap;gap:8px;padding:0 0 25px;margin:0 0 4px;border-bottom:1px solid #e7ecf5}
+:is(#content,main) .aihyb-review-report .report-jumps a{font-size:11px;border:1px solid #e2e8f4;background:#fff;color:#647b9e;border-radius:6px;padding:6px 11px;text-decoration:none}
+:is(#content,main) .aihyb-review-report .report-jumps a:hover{background:#edf3ff;color:#3159db;border-color:#b9c9ef}
+.report-section{padding:29px 0 0;min-width:0}
+.report-section-heading{display:flex;align-items:flex-start;gap:13px;margin-bottom:22px}
+.report-section-heading>span{display:grid;place-items:center;width:31px;height:31px;border-radius:8px;flex-shrink:0;color:#4565c4;background:#edf2ff;font-size:11px;font-weight:700;margin-top:1px}
+:is(#content,main) .aihyb-review-report .report-section-heading h2{margin:0;padding:0;border:0;color:#263b60;font-size:22px;font-weight:700;line-height:1.5;scroll-margin-top:115px}
+:is(#content,main) .aihyb-review-report .report-section-heading p{margin:6px 0 0;color:#8795ac;font-size:11px;line-height:1.8}
+:is(#content,main) .aihyb-review-report .report-prose{color:#52647e;font-size:14px;line-height:1.95}
+:is(#content,main) .aihyb-review-report .report-prose h3{font-size:17px;color:#30476b;margin:25px 0 13px;padding-bottom:9px;border-bottom:1px solid #e9edf5;line-height:1.7}
+:is(#content,main) .aihyb-review-report .report-prose h3:first-child{margin-top:0}
+:is(#content,main) .aihyb-review-report .report-prose p{margin:12px 0;font-size:14px;line-height:1.95}
+:is(#content,main) .aihyb-review-report .report-prose ul,:is(#content,main) .aihyb-review-report .report-prose ol{margin:14px 0;padding-left:24px}
+.report-prose li{padding:3px 0}
+.report-prose li::marker{color:#5576c6;font-weight:600}
+:is(#content,main) .aihyb-review-report .report-prose blockquote{border:1px solid #d9e6fa;border-left:3px solid #7199e5;background:#f2f7ff;border-radius:0 10px 10px 0;padding:14px 19px;margin:18px 0;color:#526e99}
+:is(#content,main) .aihyb-review-report .report-prose blockquote p{margin:0;font-size:13px}
+/* Earth resets pre padding with !important; retain readable report code blocks. */
+:is(#content,main) .aihyb-review-report .report-prose pre{background:#f4f7fc;border:1px solid #dde5f2;border-radius:11px;padding:20px!important;margin:18px 0;line-height:1.85;font-size:12px;max-width:100%;overflow:auto}
+:is(#content,main) .aihyb-review-report .report-prose .aihyb-copy{display:block;margin:13px 0 0;border:1px solid #cbd8ef;background:#fff;color:#4264a9;padding:6px 11px;border-radius:6px;font:11px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;cursor:pointer}
+:is(#content,main) .aihyb-review-report .report-prose .aihyb-copy:hover{background:#eaf1ff;border-color:#a5bce9}
+.report-evidence-grid{display:grid;gap:14px}
+.report-evidence-card{background:#fff;border:1px solid #dde6f4;border-radius:12px;padding:20px 21px}
+.report-evidence-title{display:flex;gap:12px;align-items:flex-start}
+.report-evidence-title>span{width:25px;height:25px;display:grid;place-items:center;font-size:10px;font-weight:700;border-radius:50%;background:#edf2ff;color:#5273c9;flex-shrink:0;margin-top:2px}
+:is(#content,main) .aihyb-review-report .report-evidence-title h3{font-size:16px;font-weight:600;line-height:1.7;color:#334b73;margin:0;padding:0}
+.report-evidence-material{padding:13px 15px;margin:15px 0 12px 37px;border-radius:8px;background:#f5f8fd}
+.report-evidence-material>span{color:#8294b1;font-size:10px;letter-spacing:1px}
+:is(#content,main) .aihyb-review-report .report-evidence-material p{font-size:12px;line-height:1.85;color:#627796;margin:5px 0 0}
+:is(#content,main) .aihyb-review-report .report-source-ref{display:inline-flex;align-items:center;gap:10px;margin-left:37px;font-size:10px;color:#5e7ebc;text-decoration:none;border:0}
+.report-source-card{display:flex;align-items:flex-start;gap:14px;padding:20px 21px;border:1px solid #e2e8f3;border-radius:11px;background:#fafcff;margin:12px 0;scroll-margin-top:115px}
+.report-source-card>div{flex:1;min-width:0}
+.report-source-icon{width:32px;height:35px;display:grid;place-items:center;border:1px solid #d7e1f6;background:#eef3fe;color:#7992c2;border-radius:7px;font-size:18px;flex-shrink:0}
+.report-source-title{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.report-source-title strong{font-size:13px;color:#3f577e}
+.report-source-title>span{font-size:9px;padding:1px 6px;border-radius:4px;color:#8293af;background:#edf1f8}
+:is(#content,main) .aihyb-review-report .report-source-card p{color:#8c9bb1;font-size:10px;line-height:1.8;margin:5px 0}
+:is(#content,main) .aihyb-review-report .report-source-card a{font-size:11px;color:#446bc2;text-decoration:none;border:0}
+.report-version{border-top:1px solid #e7edf6;padding-top:16px;margin-top:28px;color:#96a2b5;font-size:10px}
+.report-version summary{cursor:pointer;display:list-item}
+:is(#content,main) .aihyb-review-report .report-version p{font:10px/1.8 ui-monospace,monospace;overflow-wrap:anywhere;margin:10px 0;padding:10px;background:#f7f9fc;border-radius:6px;color:#8a98ae}
+.aihyb-review-report :focus-visible{outline:3px solid #8eabf2;outline-offset:4px}
+/* The other modules retain the same report chrome, with their own structured detail. */
+.report-method-note{display:flex;align-items:center;gap:9px 18px;flex-wrap:wrap;padding:15px 18px;margin:0 0 15px;background:#f3f7ff;border:1px solid #dfe7f7;border-radius:9px;color:#8394b2;font-size:10px}
+.report-method-note strong{color:#506eaa;font-size:11px;font-weight:600}
+.report-ranking-scroll{max-width:100%;min-width:0;overflow:auto;border:1px solid #dfe6f2;border-radius:11px;contain:inline-size;overscroll-behavior-x:contain}
+:is(#content,main) .aihyb-content-report .report-ranking-table{display:table;width:100%;min-width:620px;border-collapse:collapse;margin:0;font-size:12px}
+:is(#content,main) .aihyb-content-report .report-ranking-table th,:is(#content,main) .aihyb-content-report .report-ranking-table td{border:0;border-bottom:1px solid #e8edf5;text-align:left;vertical-align:middle;padding:19px 17px;background:#fff;color:#637895;font-weight:400}
+:is(#content,main) .aihyb-content-report .report-ranking-table thead th{background:#f7f9fd;color:#8a99af;font-size:10px;padding:13px 17px}
+:is(#content,main) .aihyb-content-report .report-ranking-table tbody tr:last-child>td,:is(#content,main) .aihyb-content-report .report-ranking-table tbody tr:last-child>th{border-bottom:0}
+:is(#content,main) .aihyb-content-report .report-ranking-table th strong{font-size:13px;font-weight:600;color:#3b537a}
+:is(#content,main) .aihyb-content-report .report-ranking-table small{display:block;margin-top:4px;font-size:10px;color:#96a3b6}
+:is(#content,main) .aihyb-content-report .report-ranking-table a{font-size:10px;border:0;color:#6382bd;text-decoration:none}
+.report-rank-number{display:grid;place-items:center;width:29px;height:29px;background:#f0f4fc;border:1px solid #e3eafa;border-radius:7px;color:#6381bf;font-size:13px;font-weight:700}
+:is(#content,main) .aihyb-content-report .report-raw-score{font-size:23px;font-weight:650;color:#315ed0}
+.report-rank-card{scroll-margin-top:115px}
+.report-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+.report-plan-card{min-width:0;border:1px solid #dce5f3;border-radius:12px;background:#fff;overflow:hidden;padding:22px}
+.report-plan-top>span{display:block;font-size:9px;letter-spacing:1px;color:#8b9bb3;margin-bottom:10px}
+.report-plan-top>.report-plan-state{display:inline-block;letter-spacing:0;font-size:9px;border:1px solid #e4eaf5;border-radius:4px;background:#f6f8fd;padding:2px 6px;margin-bottom:10px}
+:is(#content,main) .aihyb-content-report .report-plan-top h3{font-size:17px;font-weight:650;color:#334e7a;line-height:1.7;margin:0 0 15px}
+.report-plan-price{font-size:24px;font-weight:700;line-height:1.65;color:#315dce;letter-spacing:-.3px}
+:is(#content,main) .aihyb-content-report .report-plan-cycle{font-size:10px;color:#8c9bb2;margin:5px 0 19px;line-height:1.8}
+.report-plan-quota{display:grid;grid-template-columns:62px minmax(0,1fr);gap:13px 10px;background:#f6f9fe;border:1px solid #e8eef9;border-radius:8px;padding:14px}
+.report-plan-quota>span{font-size:10px;color:#93a1b7;padding-top:2px}
+.report-plan-quota strong{font-size:12px;font-weight:600;color:#5974a1}
+:is(#content,main) .aihyb-content-report .report-plan-quota small{display:block;font-size:10px;color:#8c9fba;line-height:1.75;margin-top:3px}
+:is(#content,main) .aihyb-content-report .report-plan-reset{font-size:10px;color:#8b9cb6;line-height:1.85;margin:12px 0 17px}
+.report-plan-details{border-top:1px solid #e9eef6;padding-top:15px}
+.report-plan-details>strong{font-size:10px;color:#6880a5;display:block;margin:12px 0 7px}
+.report-plan-details>strong:first-child{margin-top:0}
+:is(#content,main) .aihyb-content-report .report-plan-details p{font-size:11px;line-height:1.85;color:#8b9ab1;margin:6px 0}
+:is(#content,main) .aihyb-content-report .report-plan-details ul{font-size:11px;line-height:1.85;color:#6a7f9e;list-style:disc;margin:7px 0;padding-left:18px}
+.report-plan-footer{display:flex;align-items:start;flex-wrap:wrap;gap:6px 12px;border-top:1px solid #e9eef6;padding-top:13px;margin-top:17px}
+:is(#content,main) .aihyb-content-report .report-plan-footer .report-source-ref{margin:0;font-size:10px}
+:is(#content,main) .aihyb-content-report .report-plan-footer small{font-size:9px;color:#97a4b8}
+.report-comparison-label{margin-top:25px;padding-left:11px;border-left:2px solid #7696e1;color:#6b82a6;font-size:12px}
+:is(#content,main) .aihyb-content-report .pricing-scroll table tr{background:#fff}
+:is(#content,main) .aihyb-content-report .task-usage-section{margin-top:0}
+:is(#content,main) .aihyb-content-report .catalog-footnote{font-size:10px;line-height:1.9;color:#8b98ad}
+:is(#content,main) .aihyb-content-report .report-preparation{display:grid;gap:10px;list-style:none;margin:0 0 16px;padding:0;background:none;border:0}
+:is(#content,main) .aihyb-content-report .report-preparation li{position:relative;border:1px solid #e2e9f5;border-radius:9px;background:#fafcff;padding:13px 17px 13px 38px;color:#697f9f;font-size:12px;line-height:1.85;margin:0}
+.report-preparation li:before{content:"";position:absolute;left:17px;top:20px;width:9px;height:9px;border:1px solid #aabddd;border-radius:3px;background:#fff}
+.report-verification-note{border:1px solid #dce6f7;border-left:3px solid #7d9ce2;border-radius:0 9px 9px 0;background:#f4f8ff;padding:15px 18px}
+.report-verification-note strong{font-size:11px;font-weight:600;color:#617ead}
+:is(#content,main) .aihyb-content-report .report-verification-note p{color:#8b9ab4;font-size:11px;line-height:1.85;margin:6px 0 0}
+:is(#content,main) .aihyb-content-report .report-prose .report-step-list{padding-left:25px;margin:18px 0}
+:is(#content,main) .aihyb-content-report .report-step-list>li{border:1px solid #dfe7f6;border-radius:10px;background:#fafcff;padding:17px 19px;margin:11px 0;color:#536f96;font-size:13px;line-height:1.85}
+.report-step-list>li::marker{color:#597ccc;font-size:14px;font-weight:700}
+:is(#content,main) .aihyb-content-report .report-prose .report-tutorial-tip{border:1px solid #e4eaf5;border-radius:9px;padding:14px 18px;background:#f5f8fe;color:#778dab;font-size:12px}
+:is(#content,main) .aihyb-content-report .report-prose .report-tip-title{color:#5474a7}
+@media(max-width:1100px){.report-facts>div{padding:14px 12px}:is(#content,main) .aihyb-review-report .report-facts dd{font-size:11px}}
+@media(max-width:650px){
+  .report-method-note{padding:13px 14px;gap:8px 12px;font-size:9px}
+  .report-plan-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  .report-plan-card{padding:20px 18px}
+  .report-plan-price{font-size:25px}
+  :is(#content,main) .aihyb-content-report .report-plan-top h3{font-size:16px}
+  :is(#content,main) .aihyb-content-report .report-step-list>li{padding:15px;font-size:12px}
+  :is(#content,main) .aihyb-content-report .report-ranking-table{min-width:560px}
+  :is(#content,main) .aihyb-review-report .report-verdict{padding:21px 18px;border-radius:12px}
+  :is(#content,main) .aihyb-review-report .report-verdict .report-verdict-statement{font-size:22px;margin-top:17px}
+  :is(#content,main) .aihyb-review-report .report-verdict .report-kicker{font-size:10px;letter-spacing:1.5px}
+  .report-status{font-size:9px}
+  .report-verdict-bottom{align-items:flex-start;flex-direction:column;gap:6px}
+  :is(#content,main) .aihyb-review-report .report-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .report-facts>div{padding:14px}
+  .report-facts>div:nth-child(odd){border-left:0}
+  .report-facts>div:nth-child(n+3){border-top:1px solid #e2e8f3}
+  :is(#content,main) .aihyb-review-report .report-facts dd{font-size:11px}
+  :is(#content,main) .aihyb-review-report .report-jumps{gap:6px;padding-bottom:21px}
+  :is(#content,main) .aihyb-review-report .report-jumps a{font-size:10px;padding:6px 8px}
+  .report-section{padding-top:26px}
+  .report-section-heading{gap:10px;margin-bottom:18px}
+  .report-section-heading>span{width:27px;height:27px;font-size:10px}
+  :is(#content,main) .aihyb-review-report .report-section-heading h2{font-size:20px}
+  :is(#content,main) .aihyb-review-report .report-prose h3{font-size:16px}
+  :is(#content,main) .aihyb-review-report .report-prose p{font-size:13px}
+  .report-evidence-card{padding:17px 15px}
+  .report-evidence-material{margin-left:0}
+  :is(#content,main) .aihyb-review-report .report-evidence-title h3{font-size:14px}
+  :is(#content,main) .aihyb-review-report .report-source-ref{margin-left:0}
+  .report-source-card{padding:17px 15px;gap:11px}
+}

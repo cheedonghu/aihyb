@@ -1,0 +1,205 @@
+[
+  {
+    "theme": "theme-earth",
+    "path": "templates/modules/aihyb-header.html",
+    "original_sha256": null,
+    "previous_adapted_sha256": "182b2d31cd1f10d5816252e73f5a47f84586404072a1a94f5ff3d87ddf678084",
+    "adapted_sha256": "548fcdec3e21f7ac26cdab3949062de9c2960850466ce4484bde14d71f2f0e3d"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/assets/aihyb-navigation.css",
+    "original_sha256": null,
+    "previous_adapted_sha256": "cf73c6197cfd90f287e3722ffa6a7d194f76b35d0fc01e418a10ddcd8cd56bcc",
+    "adapted_sha256": "44492e03e188c35f94fda2315ddc6692cad82e52b99de195316bfe550ed6f949"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/layout.html",
+    "original_sha256": null,
+    "previous_adapted_sha256": "31c97ba0a5c1c4648b318860c2c8b727589e886df2167fbdde4c10e662e16007",
+    "adapted_sha256": "0a2e70b982649efaa04684406b24ee0e0c92c67a7b3275fc86c11669b41734c2"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/archives.html",
+    "original_sha256": "77e143aae4b92e35c4f6afcc899d7c5bb01ca5bae2c499b2ed5f349c5488a0f9",
+    "previous_adapted_sha256": "372e5aec493c3329c1cf5c243899cc295daae6e8ebb2870ffbb30ae97ce3e0a4",
+    "adapted_sha256": "d503c81c645bc6efef77ec7879c23d7db175fe728ba9ecb01418c6a68ff7530a"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/author.html",
+    "original_sha256": "a8377e97b8df1b71812655b06f61d299425c12eb1432b83d20389ae0ce487a77",
+    "previous_adapted_sha256": "882aef0a00546bfd7e96d70568f26bac7c773a4cb704dbd9dc4a01d4773e8177",
+    "adapted_sha256": "8f35a446c87fe8fef2601e1098e5cf765cb77bd7e6c65d7abd24dc2ecf949693"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/categories.html",
+    "original_sha256": "5011ce03f966bee87662dacfaac46952685f91184934540964e2b63f56dad612",
+    "previous_adapted_sha256": "7861517192c40885cfff62c7d2e83af07bf74cef12c00710d3ac4d61c21968ce",
+    "adapted_sha256": "06cb3a232c0e03ab3c0080e5b96eebc590f2d34cbbcfd3116a69ba012d686131"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/category.html",
+    "original_sha256": "0ed864e519893662210dd741896d6453b84c630c824ed84eb90f2817398b9af2",
+    "previous_adapted_sha256": "4769125b037247a456a193e631c064e14983b48670ee3c3ba20ae086b0c3de53",
+    "adapted_sha256": "c7cea79e8efd72a19f4d1f88a5db4141f5578fdadd17e307402ab116774d4408"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/doc-catalog.html",
+    "original_sha256": "be16d427ed6776f8e7a752fc0643a8293ea990d1753f33bc75ea98b4379d3b3f",
+    "previous_adapted_sha256": "10b2de122231bb88ea130fe31be07d2c3be9a054d592f31b3ec9acf1459fef5b",
+    "adapted_sha256": "7642510bb6c006ff719e0e445549d35596decf3eaf337655310e6c4434cb49c1"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/doc.html",
+    "original_sha256": "5e5aaa28c4361103401e94976ace663eb98eacc3dd9378c41ae9cabdab57b82c",
+    "previous_adapted_sha256": "dbeab54b19fa6e3ef5c617f2b3e42725999a1d9dedc2a2f091ad0d96db8810b1",
+    "adapted_sha256": "274955f9cda921006307fa385691ba810aee87b736a524e17f3fb22485d89d0d"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/docs.html",
+    "original_sha256": "04f01ab7e17b33b92c3edfc6e44d6df7cdd644871bf1e1c4896092da3b98f64e",
+    "previous_adapted_sha256": "fb060b9e4e2cef822a9496fd3e64446ad891d2262a85e038bfcd653e2685ff2b",
+    "adapted_sha256": "931d3f3aba2908cd92d1d6ea8cf67d5d56c645f755a557a193690f8fc3a6758d"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/error/error.html",
+    "original_sha256": "00809521addd2731754a02121127c92696bb18a3b453d639b8c7b6158e4149ce",
+    "previous_adapted_sha256": "41dc70f1a8395a2c09c75e2ed229e270626f7df8988f7d243b4df2cb72fe9e61",
+    "adapted_sha256": "4984c6cf42bec69556128f50f0e8f98527d017ad1d67de84cf37d9a75c6938b0"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/index.html",
+    "original_sha256": "f153f46813c89f443cfdd362a76cd77e1fe4d6638594bcad9ff8cf123ce2214e",
+    "previous_adapted_sha256": "803031bdb6073591b9ebf146ef2fb6a437612f5cb8e19ecfe0665292adbe7c73",
+    "adapted_sha256": "8cc18608a25867f37ef6be16938b152e7484468325aa0c26ae2f9991679cd7a8"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/links.html",
+    "original_sha256": "4b02a1599e3aa0b41fe728f54ab6c248926705561228a2bc8a051aa1abba53a0",
+    "previous_adapted_sha256": "c4c815ef982d873c6633dbcacaea85d34d8d312a19ebf7f65f1abb5d7ff384aa",
+    "adapted_sha256": "ce00043463ebce0bb2976b135d843dd0bd9c1b2906a3c6fd0f2307798353fb37"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/moment.html",
+    "original_sha256": "13bb0fdf4c2574eff35088d8281a8fec26de0d2014a04b999605e2a09a98017e",
+    "previous_adapted_sha256": "17f3f534c6644ab45c6de192ad384fa98bf6b57f712454e0dcdfc43a3b692503",
+    "adapted_sha256": "a5d13946811e961f9e98d9dbeb9294d116a9b4232582252783057af946401f9e"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/moments.html",
+    "original_sha256": "65d7d91ea165baef05bd4af4a90ef0ca154baa2f33ed554e3e6b4929fa046cb0",
+    "previous_adapted_sha256": "4a8c6f2ffaa5782826b23e96b69bde8dc0c53352d0d9a9000b216e1d2fb1e225",
+    "adapted_sha256": "56c998d38de2afd1ad48792a153f53da82c1c0052d5b7086d7476b98d05f49e6"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/page.html",
+    "original_sha256": "88fe574b515bd8e97247f33aaff91ad4503f403992f117ed5ca0dbec5f479a04",
+    "previous_adapted_sha256": "eb9bba2332169e66107698dc2019859b640aef7d9a8c0d0b86c801fbf7231ad4",
+    "adapted_sha256": "266bb83afd7e5a444a0f4623b13bbb567a0efa0bcfe39a60e472da902cc05588"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/photos.html",
+    "original_sha256": "41110f3386da2f9a26e0e9cec409cbfc031539aca5746bb30a78f2bc13abcdae",
+    "previous_adapted_sha256": "18d56e8dc8bd584a1be56ac65c5be1cd27047519343a88c887620ecda65b057f",
+    "adapted_sha256": "53ed990c8861eb7e73b6dbb9b004a8e0205f2504058024c8de9f776f1f4ab0ac"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/post.html",
+    "original_sha256": "37fa177971a01f1ef1ae2396e9c5f2af26e8e0acbf0b03abc6117c2e978f56fd",
+    "previous_adapted_sha256": "123a2f637b36fc7241c4568336aae28b1e45fd7204164ddbd86b864c47c589f0",
+    "adapted_sha256": "80b1f7d99c534b538587d0c2d1d2a6edc6698a80ceb582a87db6916e6ab1613d"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/tag.html",
+    "original_sha256": "8345c4a8c2b84426dd1681dd5f7e339a0391aa49227569e604b5f7f1f0246b8b",
+    "previous_adapted_sha256": "d8b9ad9453f04d238bdd9d8d7d57beba9f48098ceb5dfe90aa381380cc9ef333",
+    "adapted_sha256": "8de0f4ea96f97264e0460148d612a7ca0a79d645c1abd1320649a0811aab26c7"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/tags.html",
+    "original_sha256": "91871c6efb890950d9c41336df84574b007f524c6465a3db16e8098b3bb910ce",
+    "previous_adapted_sha256": "5b547bb32c723be708b787a399ff99e195e0afd6cf3f6e0ba17027edb62368e0",
+    "adapted_sha256": "2d4048f725de1c3815160c951f40f3d90201911a160dce6826d6f008e40f20b2"
+  },
+  {
+    "theme": "theme-anatole",
+    "path": "templates/module/layout.html",
+    "original_sha256": "cd08ed77ba24357905e56cf149e967f49c25184cd830276f987e1282f936b819",
+    "previous_adapted_sha256": "d0322622485dc9010664a6353a0cd82ac4dbedcef168284e29d4a5a980a78324",
+    "adapted_sha256": "d0322622485dc9010664a6353a0cd82ac4dbedcef168284e29d4a5a980a78324"
+  },
+  {
+    "theme": "theme-anatole",
+    "path": "templates/layout.html",
+    "original_sha256": null,
+    "previous_adapted_sha256": "ae957d910dc1b6a248da530d86badfa1a040810891b8a8a616c4a73cdfee145b",
+    "adapted_sha256": "ae957d910dc1b6a248da530d86badfa1a040810891b8a8a616c4a73cdfee145b"
+  },
+  {
+    "theme": "theme-anatole",
+    "path": "templates/module/page-top.html",
+    "original_sha256": "789cf6fd19b0632beb06fa6a662ac0a56e2bf0a8b7a7394ab80e95af2a872d3b",
+    "previous_adapted_sha256": "7d885e189599a65c1d661e687a3c68cb6387034ab16f94051b23fa33d547925f",
+    "adapted_sha256": "7d885e189599a65c1d661e687a3c68cb6387034ab16f94051b23fa33d547925f"
+  },
+  {
+    "theme": "theme-anatole",
+    "path": "templates/module/sidebar.html",
+    "original_sha256": "fb305eb209d61a31eb0763893253c8f5b18cfa6628828306eb8f5ecb080f796e",
+    "previous_adapted_sha256": "6671ae8fffad66283b4ca206f022edf6ab8af9a1d7b1da3b5014ae565ea7c73a",
+    "adapted_sha256": "6671ae8fffad66283b4ca206f022edf6ab8af9a1d7b1da3b5014ae565ea7c73a"
+  },
+  {
+    "theme": "theme-anatole",
+    "path": "templates/module/page-heading.html",
+    "original_sha256": "06c1a26a78017e0b452870f62d41ba53b9e3adebc195903bdc7a57d2c6f8a044",
+    "previous_adapted_sha256": "a0de55de1d5b8e453ff5fe5074241a0602f3ad2ddf097fa6422c98a2c57a1a5f",
+    "adapted_sha256": "a0de55de1d5b8e453ff5fe5074241a0602f3ad2ddf097fa6422c98a2c57a1a5f"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/search.html",
+    "original_sha256": null,
+    "previous_adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9",
+    "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
+  },
+  {
+    "theme": "theme-anatole",
+    "path": "templates/search.html",
+    "original_sha256": "16d6cc4e05d99c495a6154ec88e1ce4c7978043e30da9c62c2c736f4e04be46a",
+    "previous_adapted_sha256": "61f3a95f5d2cfbd35523b020b42f087d9de838fdc0ed907e5af27d6ed33203c9",
+    "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/assets/aihyb-editorial.css",
+    "original_sha256": null,
+    "previous_adapted_sha256": "4d977ef8c4b98a1a3349d5f6cadd7bef4757acb5f0893bb9a73a080e7c18647e",
+    "adapted_sha256": "66daffef505998840cd7c8b6b2dfeee61e2659e994b2b1e38f13110b22094996"
+  },
+  {
+    "theme": "theme-earth",
+    "path": "templates/modules/aihyb-footer.html",
+    "original_sha256": null,
+    "previous_adapted_sha256": "eac4ebfff188b6d97d5aed4f5b6bd5ea767f21e755cca02d3abbf1933032551a",
+    "adapted_sha256": "39e3937f59e15f6b43ebf1df881a840fcf79998f2187dc9440553c13d8bee0e7"
+  }
+]

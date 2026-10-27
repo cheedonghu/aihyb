@@ -1,0 +1,8 @@
+.gradle/
+build/
+ui/node_modules/
+ui/build/
+ui/dist/
+ui/src/api/generated/.openapi-generator/
+ui/src/api/generated/git_push.sh
+*.log

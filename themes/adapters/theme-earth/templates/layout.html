@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" th:fragment="html(head,content)">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<th:block th:replace="${head}" />
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-navigation.css?v=20261022-polish5">
+<link rel="icon" type="image/png" href="/aihyb/assets/favicon.png">
+<meta name="theme-color" content="#2855e8">
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-editorial.css?v=20261022-polish5">
+</head><body class="portal-native-layout"><th:block th:replace="~{modules/aihyb-header :: header}" /><main><th:block th:replace="${content}" /></main><th:block th:replace="~{modules/aihyb-footer :: footer}" /></body></html>

@@ -1,53 +1,54 @@
 # AGENTS.md
 
-本仓库的工作约定。改动前先读这里。
+本仓库仅维护 AI好用榜网站开发。改动前先读本文、CONTEXT.md；视觉和信息结构调整先读 docs/design-references.md。
 
-## 处理 Git 的默认行为
+## Git 默认行为
 
-- **提交后默认推送**。`git commit` 完成即执行 `git push` 到 `origin/main`，不需要再问一次。
-- 只有这三种情况停下来问：用户明确说"先别推"、存在冲突需要人工决定、推送需要凭据或权限而当前不可用。
-- 推送前核对 `git status` 干净、`git log origin/main..HEAD` 只有本次提交、且提交内容没有凭据（见下方"不能提交的东西"）。
-- 提交信息用英文，主题行祈使句、一句话说清做了什么；需要解释原因时加正文。不要加 `Co-Authored-By` 之类的尾部标签。
+- 提交后默认推送到 origin/main，不再重复询问。只有用户明确说先别推、冲突需人工决定、或当前缺少推送凭据/权限时暂停。
+- 推送前核对 git status 干净，git log origin/main..HEAD 只有本次提交，暂存内容不包含凭据或运行数据。
+- 提交信息用英文祈使句，不加 Co-Authored-By 等尾部标签。
+- 用户已有的源码和改动必须保留。目录整理先做仓库外归档，再修改引用；不使用清理或重置命令丢弃文件。
 
-## 不能提交的东西
+## 仓库范围与目录
 
-`.gitignore` 已覆盖，但仍要在 `git add` 后复查：
+- plugin-aihyb/：Java 21 Halo 业务插件、Vue 控制台界面、测试和必要的生成 API 客户端。
+- themes/：共享主题源文件、适配器、固定上游源码及必要部署哈希；维护时保留上游许可。
+- contracts/：标准稿件 JSON Schema、OpenAPI 快照与虚构测试样例；插件内 Schema 必须同步。
+- deploy/：按测试/生产区分的 Compose、Caddy 模板及可复用维护脚本。一次性迁移、修补过程不继续积累在源码中。
+- assets/brand/：网站品牌源图；运行时品牌资源随插件或主题打包。
+- docs/：当前架构、开发、部署、设计偏好及必要技术决策；CONTEXT.md 为领域术语表。
+- scripts/：本地仓库检查工具，默认不连接网站、不写运行数据。
 
-- `demo/halo-poc/secrets/`（账号密码、会话 Cookie、COS 凭据、业务基线）
-- `.env`、`*.pem`、`*.key`
-- `demo/halo-poc/backups/`、`data/`
-- 根目录的两份商业计划书（`ai测评网内部执行版商业计划书.md`、`【商业计划书】AI好用榜-AIHYB.COM.docx`）
+视频制作、真实稿件/配图、商业计划、设计预览、运行证据和历史操作资料存放在仓库外。此次归档位置及旧新路径映射见 docs/repository-layout.md；不得删除归档或重新整体加入 Git。旧 demo 目录不再用于开发。
 
-提交前跑一遍形状扫描：`POSTGRES_PASSWORD=`、`BEGIN ... PRIVATE KEY`、`X-CSRF-TOKEN`、`SecretId/SecretKey`、`SESSION=`。
+## 禁止提交
 
-## 仓库结构
+- secrets/、backups/、data/、runtime/，以及真实 .env、*.pem、*.key、会话 Cookie、口令、COS 凭据和业务基线。
+- 依赖、构建产物、缓存、日志、检查报告和浏览器截图；必要虚构样例、接口快照及经过审查的依赖/部署哈希元数据可以提交。
+- 视频目录、真实文章素材、商业资料与仓库外归档。
 
-- `docs/` —— 中文技术记录。当前入口、部署、验证边界写在这里，是主要的事实来源。
-- `demo/halo-poc/` —— Halo PoC 的 Compose 配置、脚本、主题适配、证据。
-- `demo/halo-poc/evidence/` —— **要提交的**。JSON 证据、截图是验证结论的凭据，不是临时产物。
-- `demo/halo-poc/scripts/` —— 服务器脚本。本地 `scripts/` 与远端 `/opt/aihyb-halo-poc/` 扁平目录对应。
-- `video/` —— 视频流水线（edge-tts + Remotion）：`episode.json` 转成带配音、字幕的视频。用法见 `video/README.md`，`build/`、`out/`、`.venv/` 不提交。
-- `CONTEXT.md` —— 内容生产的领域术语表。改术语先看这里。
-- `plan.md` —— 业务计划，不是技术规格。
+git add 后复查文件名单，并扫描 POSTGRES_PASSWORD=、BEGIN ... PRIVATE KEY、X-CSRF-TOKEN、SecretId/SecretKey、SESSION=；逐项区分规则说明、变量名和真实凭据。不得输出实际凭据。
+
+## 本地验证
+
+- 从根目录运行 python scripts/check-repository.py，检查引用、协议同步和主题哈希。
+- 在 plugin-aihyb/ 设置 CI=true 后运行 Gradle Wrapper 的 build；验证 Java 测试、前端测试、类型检查和打包。构建不要求运行中的 Halo，不调用部署脚本。
+- API 客户端及协议快照作为构建输入维护；生成客户端的联网刷新只能明确指向隔离测试实例。私有请求头文件通过 AIHYB_OPENAPI_HEADERS_FILE 指定。
+- 报告与截图写到被忽略的 build/reports 或外部归档，不再要求提交所有 evidence。失败如实报告，不能以只改目录或配置为由跳过验证。
+
+## 环境与部署约束
+
+- 目录整理和本地构建不授权执行线上部署。每次服务器操作前明确目标环境；本地源码迁移不改服务器既有目录布局。
+- 测试：5.231.253.4:22333，目录 /opt/aihyb-halo-poc，Compose 项目 aihyb-halo-poc；公网 http://5.231.253.4/，后台只走本机 18090 SSH 隧道，公网账号类路径保持 403。
+- 生产：121.199.66.66:22333，SSH 别名 aihyb-prd，目录 /opt/aihyb-halo-prd，Compose 项目 aihyb-halo-prd；主站 https://aihyb.com/，后台 https://aihyb.com/console/，www 和 HTTP 跳转主站；备用后台隧道用 18092。
+- 两台主机的 Halo 只监听回环，数据库不发布端口。生产保留后台依赖 /actuator/globalinfo（公开启动配置）和 /actuator/info（Halo 原生认证，匿名 401），其他 actuator、OpenAPI、Swagger 保持 404。
+- 生产备案号为浙ICP备2026090602号，链接 https://beian.miit.gov.cn/，只通过 Earth 主题现有备案设置维护。
+- 生产当前管理员用户名从 secrets/admin-username.txt 读取，口令从 admin-password.txt 读取；旧用户停用但保留历史作者引用。不得使用测试旧默认账号代替生产身份或将口令写入文档。
+- 维护客户端要求明确设置 AIHYB_SITE_ROOT、AIHYB_SITE_URL；备份另要求 AIHYB_COMPOSE_PROJECT。测试写入脚本不得直接用于生产。
+- 只操作本项目目录和容器。禁止全机 docker prune、清库或改动既有 SSH、监控、DNS、系统网络。net.ipv4.ip_forward 必须保持 0；媒体出站只能通过既有 COS 限定代理。
+- 主题更新走 deploy/scripts/deploy-theme-adapters.py 的全量哈希校验和备份流程，先 --check，不直接覆盖 data/halo/themes。未知哈希停止；有覆盖保护的初始化步骤不当更新命令重跑。
+- Halo 站点地址同时核对 HALO_EXTERNAL_URL 与数据库 system.basic.externalUrl。本机代理会产生 198.18.x 假 IP，不能凭本机 ping/端口探测判定服务器状态。
 
 ## 语言
 
-- 文档、报告、面向用户的文案：中文。
-- 代码注释、提交信息、日志字符串：英文。
-- 领域术语以 `CONTEXT.md` 为准，别在代码里另造同义词。
-
-## 部署与验证
-
-- 服务器 `5.231.253.4:22333`，目录 `/opt/aihyb-halo-poc`，Compose 项目名 `aihyb-halo-poc`。
-- 公网入口是 `http://5.231.253.4/`（纯 HTTP + IP）。域名 `aihyb.com` 因备案暂停解析，不要在任何配置里重新引入。详见 `docs/cms-http-ip-deployment.md`。
-- 后台仅走 SSH 隧道 `http://127.0.0.1:18090/console`；公网 `/console`、`/login`、`/uc` 等返回 403。不要把后台开放到公网入口。
-- 只操作本项目目录和容器。**不要**对整台服务器跑 `docker prune`、清库、或改动既有服务（SSH、监控、DNS、系统网络）。
-- `net.ipv4.ip_forward` 必须保持 `0`。媒体出站只允许通过既有的受限 COS 代理。
-- 有覆盖保护的一次性脚本（`prepare` 类）不要当更新命令重跑。
-- 改主题模板走 `deploy-theme-adapters.py` 的哈希校验流程，不要直接写 `data/halo/themes`。
-- 验证脚本失败要如实报告，不能因为"只改了配置"就跳过。
-
-## 排查时注意
-
-- **本机网络走代理**，会把外部地址解析成 `198.18.x` 假 IP。在本机用 ping / 端口探测判断服务器状态会得出错误结论。查端口用服务器侧 `ss` / `curl`，或用第三方节点。
-- Halo 2.26 的站点地址优先读数据库 `system.basic.externalUrl`，改 `HALO_EXTERNAL_URL` 不够，两处必须一致。
+文档、报告和面向用户文案用中文；代码注释、提交信息和日志字符串用英文。领域术语以 CONTEXT.md 为准。当前连接与维护说明见 docs/deployment.md。

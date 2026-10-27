@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "content_id": "poc-pricing-ui-a",
+  "submission_id": "portal-ui-price-a-20261021",
+  "kind": "pricing",
+  "content": {
+    "title": "同任务额度与套餐对比：演示助手 A（虚构）",
+    "summary": "虚构 PoC 样例，不是真实产品建议。",
+    "body_markdown": "## 样例说明\n\n这是界面验收用的虚构方案与虚构任务消耗，不代表任何真实产品的报价或实测。所有百分比、额度、耗时和结果均为测试数据。\n",
+    "tags": [
+      "PoC",
+      "虚构数据"
+    ]
+  },
+  "data": {
+    "task": "office",
+    "tool_id": "usage-demo-a",
+    "tool_name": "演示助手 A（虚构）",
+    "plans": [
+      {
+        "plan_id": "office-a-month",
+        "name": "月付基础版（虚构）",
+        "offer_kind": "subscription",
+        "amount": "49.00",
+        "currency": "CNY",
+        "price_unit": "month",
+        "billing_cycle": "monthly",
+        "region": "CN",
+        "channel": "official-web",
+        "eligibility": "虚构新用户条件",
+        "free_quota": {
+          "amount": "10",
+          "unit": "tasks",
+          "reset_period": "month",
+          "condition": "虚构额度"
+        },
+        "limits": [
+          "虚构限制：需人工核验"
+        ],
+        "source_id": "source-poc",
+        "verified_at": "2026-10-13T15:30:00Z",
+        "reset_rule": "每 5 小时重置一次；周额度独立计算（虚构）",
+        "status": "available",
+        "tax_note": "虚构价格，不含其他费用",
+        "benefits": [
+          "报告整理与写作（虚构）"
+        ],
+        "usage_quota": {
+          "amount": "100",
+          "unit": "percent",
+          "reset_period": "5 小时",
+          "condition": "本轮总额度，虚构示例"
+        }
+      },
+      {
+        "plan_id": "office-a-year",
+        "name": "年付基础版（虚构）",
+        "offer_kind": "subscription",
+        "amount": "468.00",
+        "currency": "CNY",
+        "price_unit": "year",
+        "billing_cycle": "annual",
+        "region": "CN",
+        "channel": "official-web",
+        "eligibility": "按年实际扣款，金额不是月价",
+        "free_quota": {
+          "amount": null,
+          "unit": "tasks",
+          "reset_period": "month",
+          "condition": "未知"
+        },
+        "limits": [
+          "虚构限制：不能把未知额度当零"
+        ],
+        "source_id": "source-poc",
+        "verified_at": "2026-10-13T15:30:00Z",
+        "reset_rule": "每 5 小时重置一次；周额度独立计算（虚构）",
+        "status": "available",
+        "tax_note": "虚构价格，不含其他费用",
+        "benefits": [
+          "报告整理与写作（虚构）"
+        ],
+        "usage_quota": {
+          "amount": "100",
+          "unit": "percent",
+          "reset_period": "5 小时",
+          "condition": "本轮总额度，虚构示例"
+        }
+      },
+      {
+        "plan_id": "free-demo",
+        "name": "免费体验版（虚构）",
+        "offer_kind": "subscription",
+        "amount": "0",
+        "currency": "CNY",
+        "price_unit": "month",
+        "billing_cycle": "monthly",
+        "region": "CN",
+        "channel": "official-web",
+        "eligibility": "虚构新用户条件",
+        "free_quota": {
+          "amount": "5",
+          "unit": "tasks",
+          "reset_period": "day",
+          "condition": "虚构免费体验额度"
+        },
+        "limits": [
+          "不包含高阶功能（虚构）"
+        ],
+        "source_id": "source-poc",
+        "verified_at": "2026-10-13T15:30:00Z",
+        "reset_rule": "每日重置（虚构）",
+        "status": "available",
+        "tax_note": "虚构价格，不含其他费用",
+        "benefits": [
+          "基础对话（虚构）"
+        ],
+        "usage_quota": {
+          "amount": "5",
+          "unit": "tasks",
+          "reset_period": "day",
+          "condition": "虚构免费体验额度"
+        }
+      }
+    ],
+    "task_usage": [
+      {
+        "task_id": "report-20-pages",
+        "task_name": "整理 20 页公开报告，输出摘要与行动清单（虚构）",
+        "conditions": "同一份虚构 20 页材料、同一提示词，输出约 1500 字摘要与 10 条行动项，默认模式。",
+        "plan_id": "office-a-month",
+        "model_version": "poc-v1",
+        "quota_basis": "5 小时额度池 / 100% 为该方案本轮总额（虚构）",
+        "quota_reset": "每 5 小时重置（虚构）",
+        "consumed_percent": 12,
+        "duration_seconds": 212,
+        "revision_count": 1,
+        "sample_count": 3,
+        "outcome": "生成摘要和清单，仍需人工核对；虚构设计样本",
+        "measured_at": "2026-10-21T00:00:00Z",
+        "source_id": "source-poc"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "source-poc",
+      "url": "https://example.com/poc",
+      "author": "AI好用榜 · 虚构界面样例",
+      "original_published_at": null,
+      "retrieved_at": "2026-10-13T15:30:00Z",
+      "material_type": "dataset",
+      "usage_note": "完全虚构的自建测试材料。"
+    }
+  ],
+  "assets": [],
+  "provenance": {
+    "skill_name": "portal-ui-fixture",
+    "skill_version": "1.0",
+    "generated_at": "2026-10-21T00:00:00Z",
+    "input_sha256": null
+  }
+}

@@ -1,0 +1,17 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}">
+<th:block th:fragment="head">
+  <title th:text="${pageTitle} + '-AI好用榜'">AI好用榜</title>
+  <meta name="description" th:content="${pageDescription}">
+  <link rel="canonical" th:href="${site.url} + ${pageCanonical}">
+  <link rel="stylesheet" href="/aihyb/assets/portal.css?v=20261023-news1">
+  <link rel="stylesheet" href="/aihyb/assets/pricing.css?v=20261021">
+  <script src="/aihyb/assets/portal.js?v=20261021" defer></script>
+</th:block>
+<section id="aihyb-portal" th:fragment="content">
+  <nav class="aihyb-module-nav" aria-label="四模块导航">
+    <a href="/aihyb/review">能力测评</a><a href="/aihyb/leaderboard">评分与榜单</a><a href="/aihyb/pricing">价格对比</a><a href="/aihyb/tutorial">使用技巧与教程</a>
+  </nav>
+  <div th:utext="${pageBody}"></div>
+</section>
+</html>

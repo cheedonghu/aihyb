@@ -1,0 +1,10 @@
+# Deployment manifest hashes must match both Windows and Linux checkouts.
+themes/shared/* text eol=lf
+themes/adapters/** text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.bat text eol=crlf
+plugin-aihyb/gradlew text eol=lf

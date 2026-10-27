@@ -1,6 +1,0 @@
-[
-  "api/src/main/java/run/halo/app/core/extension/ReverseProxy.java",
-  "application/src/main/java/run/halo/app/core/reconciler/ReverseProxyReconciler.java",
-  "application/src/main/java/run/halo/app/plugin/resources/ReverseProxyRouterFunctionFactory.java",
-  "application/src/main/java/run/halo/app/plugin/resources/ReverseProxyRouterFunctionRegistry.java"
-]

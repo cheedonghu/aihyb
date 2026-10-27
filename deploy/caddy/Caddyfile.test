@@ -1,0 +1,52 @@
+{
+	admin off
+	# No domain and no certificate: this entry is plain HTTP on the public IP only.
+	auto_https off
+	servers {
+		protocols h1 h2
+	}
+}
+
+:80 {
+	encode zstd gzip
+	header {
+		X-Content-Type-Options nosniff
+		# Apply the default only when the upstream did not set a stricter policy.
+		?Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	# Halo internals stay off the public entry.
+	@internal path /actuator /actuator/* /v3/api-docs /v3/api-docs/* /swagger-ui /swagger-ui/* /swagger-ui.html
+	respond @internal 404
+
+	# Console and account routes stay on the SSH tunnel (http://127.0.0.1:18090/console):
+	# plain HTTP would carry the admin password in clear text.
+	# The two anonymous self-lookup endpoints stay open because public theme widgets call them.
+	@admin {
+		not path /apis/api.console.halo.run/v1alpha1/users/- /apis/api.console.halo.run/v1alpha1/users/-/permissions
+		path /console /console/* /login /logout /signup /password-reset /uc /uc/* /apis/api.console.halo.run/* /apis/uc.api.halo.run/* /apis/console.api.aihyb.run/*
+	}
+	handle @admin {
+		# Deferred ("late") header op: respond sets its own Content-Type first, so a plain
+		# `header` directive would be overwritten and the page would render as plain text.
+		header >Content-Type "text/html; charset=utf-8"
+		respond <<HTML
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>后台不在公网开放</title>
+<body style="font:16px/1.7 system-ui,'Segoe UI',sans-serif;margin:3rem auto;max-width:38rem;padding:0 1.5rem">
+<h1 style="font-size:1.25rem">后台仅通过 SSH 隧道访问</h1>
+<p>这个入口是纯 HTTP，登录口令会明文传输，所以后台、登录页和账号接口不对公网开放。</p>
+<p>在本机建立隧道后访问：<code>http://127.0.0.1:18090/console</code></p>
+<pre style="background:#f4f4f5;padding:.75rem;overflow:auto">ssh -i &lt;私钥&gt; -p 22333 -N -L 127.0.0.1:18090:127.0.0.1:18090 root@5.231.253.4</pre>
+<p>前台浏览：<a href="http://5.231.253.4/">http://5.231.253.4/</a></p>
+</body></html>
+HTML 403
+	}
+
+	reverse_proxy 127.0.0.1:18090 {
+		transport http {
+			dial_timeout 5s
+			response_header_timeout 60s
+		}
+	}
+}

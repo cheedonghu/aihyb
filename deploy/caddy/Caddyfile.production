@@ -1,0 +1,35 @@
+{
+    admin off
+    servers {
+        protocols h1 h2
+    }
+}
+
+aihyb.com {
+    encode zstd gzip
+    header {
+        X-Content-Type-Options nosniff
+        ?Referrer-Policy strict-origin-when-cross-origin
+        Strict-Transport-Security "max-age=2592000"
+    }
+    # Console bootstrap is public; version information keeps Halo's own authentication.
+    @internal {
+        not path /actuator/globalinfo /actuator/info
+        path /actuator /actuator/* /v3/api-docs /v3/api-docs/* /swagger-ui /swagger-ui/* /swagger-ui.html
+    }
+    respond @internal 404
+    reverse_proxy 127.0.0.1:18090 {
+        transport http {
+            dial_timeout 5s
+            response_header_timeout 60s
+        }
+    }
+}
+
+www.aihyb.com {
+    redir https://aihyb.com{uri} 308
+}
+
+http:// {
+    redir https://aihyb.com{uri} 308
+}

@@ -1,0 +1,154 @@
+<!doctype html>
+<html th:lang="${#locale.toLanguageTag}">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+<link th:unless="${#strings.isEmpty(site.logo)}" rel="preload" th:href="${site.logo}" as="image" />
+<script th:inline="javascript">
+  window.i18nResources = {
+    "jsModule.colorSchemeSwitcher.dark": `[(#{jsModule.colorSchemeSwitcher.dark})]`,
+    "jsModule.colorSchemeSwitcher.light": `[(#{jsModule.colorSchemeSwitcher.light})]`,
+    "jsModule.colorSchemeSwitcher.auto": `[(#{jsModule.colorSchemeSwitcher.auto})]`,
+    "jsModule.share.qzone": `[(#{jsModule.share.qzone})]`,
+    "jsModule.share.weibo": `[(#{jsModule.share.weibo})]`,
+    "jsModule.share.douban": `[(#{jsModule.share.douban})]`,
+    "jsModule.share.wechat": `[(#{jsModule.share.wechat})]`,
+    "jsModule.share.native": `[(#{jsModule.share.native})]`,
+    "jsModule.share.windowTitle": `[(#{jsModule.share.windowTitle})]`,
+    "jsModule.upvote.networkError": `[(#{jsModule.upvote.networkError})]`,
+  };
+  var colorScheme = /*[[${theme.config.style.color_scheme}]]*/ "system";
+  var enableChangeColorScheme = /*[[${theme.config.style.enable_change_color_scheme}]]*/ false;
+</script>
+<noscript>
+  <style>
+    body {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+
+    
+    <title th:text="|#{page.archives.title} - ${site.title}|"></title>
+  
+    <script type="module" crossorigin src="/themes/theme-earth/assets/archives-C6eJBPlF.js"></script>
+    <link rel="modulepreload" crossorigin href="/themes/theme-earth/assets/vendor~archives~author~categories~category~doc-catalog~doc~docs~index~links~moment~moments~~ky3hjxy1-O291mca5.js">
+    <link rel="modulepreload" crossorigin href="/themes/theme-earth/assets/main-CLmdnUTa.js">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/vendor~archives~author~categories~category~doc-catalog~doc~docs~index~links~moment~moments~~ky3hjxy1-Wb1VPa9d.css">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/main-BaWd_1hx.css">
+  <link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-navigation.css?v=20261022-polish5">
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-editorial.css?v=20261022-polish5">
+</head>
+  <body class="hidden bg-slate-50 dark:bg-slate-900">
+    <th:block th:replace="~{modules/aihyb-header :: header}" />
+
+
+    
+    <th:block th:replace="~{modules/hero :: hero(isHome = true, cover = null, title = null)}" />
+  
+
+    
+  
+
+  
+
+  <section class="mx-auto mt-6 grid max-w-7xl grid-cols-1 gap-6 px-4 md:grid-cols-[1fr_18rem] lg:px-6">
+    <div class="z-0 min-w-0">
+      <div class="rounded-xl bg-white p-4 dark:bg-slate-800">
+        <h1 class="mb-6 text-2xl font-medium dark:text-slate-50" th:text="#{page.archives.title}"></h1>
+        <div class="flex flex-col gap-4">
+          <th:block th:each="archive : ${archives.items}">
+            <th:block th:each="month : ${archive.months}">
+              <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-12 sm:col-span-3">
+                  <h2
+                    class="sticky top-20 mt-2 text-lg font-medium dark:text-slate-50"
+                    th:text="#{page.archives.date(${archive.year},${month.month})}"
+                  ></h2>
+                </div>
+                <div class="col-span-12 sm:col-span-9">
+                  <th:block th:each="post : ${month.posts}">
+                    <div
+                      class="my-2 rounded-xl border border-gray-300 bg-white shadow-sm hover:border-gray-400 hover:shadow dark:border-slate-600 dark:bg-slate-700 dark:hover:border-slate-700"
+                    >
+                      <div class="relative flex flex-col gap-2 p-4">
+                        <div class="flex min-w-0 flex-wrap items-center justify-between gap-4">
+                          <div class="col-span-7 flex flex-nowrap truncate">
+                            <a
+                              th:href="${post.status.permalink}"
+                              class="truncate text-xl font-medium text-gray-900 hover:text-gray-500 hover:underline dark:text-slate-50 dark:hover:text-white"
+                              th:text="${post.spec.title}"
+                            ></a>
+                          </div>
+                          <div class="col-span-3 col-start-11">
+                            <p
+                              class="truncate text-sm text-gray-600 dark:text-slate-100"
+                              th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"
+                            ></p>
+                          </div>
+                        </div>
+                        <div
+                          th:if="${not #lists.isEmpty(post.categories)} or ${not #lists.isEmpty(post.tags)}"
+                          class="flex flex-wrap items-center gap-2"
+                        >
+                          <a
+                            th:if="${#lists.size(post.categories)} gt 0"
+                            th:href="@{${post.categories[0].status.permalink}}"
+                            th:title="${post.categories[0].spec.displayName}"
+                            th:text="${post.categories[0].spec.displayName}"
+                            class="mr-1 text-sm font-medium text-gray-800 hover:text-gray-900 dark:text-slate-500 dark:hover:text-slate-600"
+                          >
+                          </a>
+                          <a
+                            th:each="tag : ${post.tags}"
+                            th:href="@{${tag.status.permalink}}"
+                            th:title="${tag.spec.displayName}"
+                            th:text="|#${tag.spec.displayName}|"
+                            class="cursor-pointer text-sm italic text-gray-600 hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-500"
+                          >
+                          </a>
+                        </div>
+                        <div class="line-clamp-2 text-sm font-light dark:text-slate-200">
+                          <th:block th:text="${post.status.excerpt}"></th:block>
+                        </div>
+                      </div>
+                    </div>
+                  </th:block>
+                </div>
+              </div>
+            </th:block>
+          </th:block>
+        </div>
+
+        <div th:if="${archives.total == 0}" class="mt-6 flex items-center justify-center">
+          <span class="text-sm font-light text-gray-600" th:text="#{common.noPosts}"></span>
+        </div>
+
+        <th:block
+          th:replace="~{modules/pagination :: pagination(context = '/archives/', prevUrl = ${archives.prevUrl}, nextUrl = ${archives.nextUrl}, totalPages = ${archives.totalPages}, page = ${archives.page}, hasPrevious = ${archives.hasPrevious()}, hasNext = ${archives.hasNext()})}"
+        />
+      </div>
+    </div>
+    <th:block th:replace="~{modules/sidebar :: sidebar(prepend = null)}" />
+  </section>
+
+
+    <th:block th:replace="~{modules/aihyb-footer :: footer}" />
+
+
+
+
+    <button
+      th:if="${theme.config.global.show_scroll_button}"
+      type="button"
+      id="btn-scroll-to-top"
+      th:aria-label="#{fragment.layout.toTop}"
+      class="fixed bottom-5 right-5 flex items-center justify-center rounded-full bg-white p-3 opacity-0 shadow transition-all duration-300 hover:opacity-70 hover:shadow-lg dark:bg-slate-600 lg:bottom-10 lg:right-10"
+    >
+      <span class="i-tabler-chevron-up text-2xl text-gray-600 dark:text-slate-200"></span>
+    </button>
+  </body>
+</html>
+

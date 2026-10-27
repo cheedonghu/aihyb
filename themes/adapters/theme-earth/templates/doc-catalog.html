@@ -1,0 +1,105 @@
+<th:block th:if="${theme.config.plugin.docsme.source == 'plugin'}">
+  <th:block th:replace="~{plugin:plugin-docsme:doc-catalog}" />
+</th:block>
+
+<th:block th:if="${theme.config.plugin.docsme.source == 'theme'}">
+  <!doctype html>
+<html th:lang="${#locale.toLanguageTag}">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+<link th:unless="${#strings.isEmpty(site.logo)}" rel="preload" th:href="${site.logo}" as="image" />
+<script th:inline="javascript">
+  window.i18nResources = {
+    "jsModule.colorSchemeSwitcher.dark": `[(#{jsModule.colorSchemeSwitcher.dark})]`,
+    "jsModule.colorSchemeSwitcher.light": `[(#{jsModule.colorSchemeSwitcher.light})]`,
+    "jsModule.colorSchemeSwitcher.auto": `[(#{jsModule.colorSchemeSwitcher.auto})]`,
+    "jsModule.share.qzone": `[(#{jsModule.share.qzone})]`,
+    "jsModule.share.weibo": `[(#{jsModule.share.weibo})]`,
+    "jsModule.share.douban": `[(#{jsModule.share.douban})]`,
+    "jsModule.share.wechat": `[(#{jsModule.share.wechat})]`,
+    "jsModule.share.native": `[(#{jsModule.share.native})]`,
+    "jsModule.share.windowTitle": `[(#{jsModule.share.windowTitle})]`,
+    "jsModule.upvote.networkError": `[(#{jsModule.upvote.networkError})]`,
+  };
+  var colorScheme = /*[[${theme.config.style.color_scheme}]]*/ "system";
+  var enableChangeColorScheme = /*[[${theme.config.style.enable_change_color_scheme}]]*/ false;
+</script>
+<noscript>
+  <style>
+    body {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+
+    
+      <title th:text="|${site.title}|"></title>
+      <th:block th:replace="~{plugin:plugin-docsme:modules/style}" />
+      <th:block th:replace="~{plugin:plugin-docsme:modules/script}" />
+      <th:block th:replace="~{plugin:plugin-docsme:modules/plugin-scripts}" />
+    
+
+    <script>
+      var docsme = {
+        disableThemeFunction: true,
+      };
+    </script>
+
+    <style>
+      footer {
+        margin: 0 !important;
+      }
+
+      #header-menu {
+        box-shadow: none !important;
+      }
+
+      #btn-search {
+        display: none !important;
+      }
+    </style>
+    <script type="module" crossorigin src="/themes/theme-earth/assets/doc-catalog-BouBGAas.js"></script>
+    <link rel="modulepreload" crossorigin href="/themes/theme-earth/assets/vendor~archives~author~categories~category~doc-catalog~doc~docs~index~links~moment~moments~~ky3hjxy1-O291mca5.js">
+    <link rel="modulepreload" crossorigin href="/themes/theme-earth/assets/main-CLmdnUTa.js">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/vendor~archives~author~categories~category~doc-catalog~doc~docs~index~links~moment~moments~~ky3hjxy1-Wb1VPa9d.css">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/main-BaWd_1hx.css">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/doc-NH2WesVr.css">
+  <link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-navigation.css?v=20261022-polish5">
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-editorial.css?v=20261022-polish5">
+</head>
+
+  <body class="hidden">
+    <th:block th:replace="~{modules/aihyb-header :: header}" />
+
+
+    <section class="w-full">
+      
+    
+    <div class="dm-container">
+      <th:block th:replace="~{plugin:plugin-docsme:modules/header :: header (showThemeSwitcher = false)}" />
+      <th:block th:replace="~{plugin:plugin-docsme:modules/doc-catalog :: doc-catalog (footer = null)}" />
+    </div>
+  
+    </section>
+
+    <th:block th:replace="~{modules/aihyb-footer :: footer}" />
+
+
+
+
+    <button
+      th:if="${theme.config.global.show_scroll_button}"
+      type="button"
+      id="btn-scroll-to-top"
+      th:aria-label="#{fragment.layout.toTop}"
+      class="fixed bottom-5 right-5 flex items-center justify-center rounded-full bg-white p-3 opacity-0 shadow transition-all duration-300 hover:opacity-70 hover:shadow-lg dark:bg-slate-600 lg:bottom-10 lg:right-10"
+    >
+      <span class="i-tabler-chevron-up text-2xl text-gray-600 dark:text-slate-200"></span>
+    </button>
+  </body>
+</html>
+
+</th:block>

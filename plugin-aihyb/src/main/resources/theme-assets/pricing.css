@@ -1,0 +1,40 @@
+/* Complete offer and task-usage tables; safe for both portal and native article layouts. */
+.pricing-catalog,.task-usage-section{min-width:0;max-width:100%;color:#192132;overflow-wrap:anywhere}
+.catalog-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 14px}
+.catalog-heading h2,.catalog-heading h3{margin:0!important;font-size:19px!important;line-height:1.6;font-weight:650}
+.catalog-heading h3 small{display:inline!important;font-size:12px!important;font-weight:400;color:#7c899f;margin-left:8px}
+.catalog-heading>span,.catalog-heading p{font-size:11px;color:#7d8aa0;margin:4px 0 0}
+.pricing-scroll{max-width:100%;min-width:0;overflow-x:auto;border:1px solid #e2e7f0;border-radius:12px;background:#fff;overscroll-behavior-x:contain;contain:inline-size}
+.pricing-scroll:focus-visible{outline:3px solid #8caafa;outline-offset:3px}
+.pricing-scroll .pricing-table,.pricing-scroll .usage-table{display:table;width:100%;min-width:1070px;border-collapse:collapse;margin:0!important;font-size:12px;line-height:1.85;text-align:left}
+.pricing-scroll th,.pricing-scroll td{border:0!important;border-bottom:1px solid #e9edf4!important;padding:18px 17px!important;text-align:left;vertical-align:top;white-space:normal;font-weight:400;background:#fff;color:#53637e}
+.pricing-scroll thead th{padding:13px 17px!important;color:#8591a6;background:#f9fafd;font-size:10px;white-space:nowrap}
+.pricing-scroll tr:last-child th,.pricing-scroll tr:last-child td{border-bottom:0!important}
+.pricing-scroll tbody th{width:17%;color:#273955}
+.pricing-scroll tbody th strong{font-weight:600;font-size:13px;color:#21334f;display:block}
+.pricing-scroll a{color:#4167ba!important;text-decoration:none}
+.pricing-scroll a:hover{text-decoration:underline}
+.pricing-scroll small{display:block;color:#8996aa;font-size:10px;line-height:1.8;margin-top:4px}
+.plan-name{display:block;font-size:11px;color:#8794a9;margin-top:5px}
+.catalog-price{font-size:14px!important;font-weight:600;color:#2b55bd;white-space:nowrap}
+.pricing-table td:nth-child(2){width:17%}.pricing-table td:nth-child(3){width:19%}.pricing-table td:nth-child(4){width:14%}.pricing-table td:nth-child(5){width:20%}.pricing-table td:nth-child(6){width:13%}
+.table-label{display:block;font-size:9px;color:#9aa5b5;letter-spacing:.3px;margin-top:10px}
+.table-label:first-child{margin-top:0}
+.fact-line{display:block;margin:3px 0}
+.catalog-footnote{font-size:10px;color:#8b98ad;line-height:1.9;margin:13px 0 24px}
+.catalog-jumps{display:flex;gap:20px;flex-wrap:wrap;margin:0 0 12px}
+.catalog-jumps a{font-size:12px;color:#2855e8;padding:6px 0;border-bottom:1px solid #d9e2fc}
+.task-usage-section{margin-top:35px;scroll-margin-top:145px}
+#all-plans{scroll-margin-top:145px}
+.task-condition{padding:17px 21px;border:1px solid #dce4f6;border-radius:10px;background:#edf2fd;margin:21px 0 12px}
+.task-condition h3{font-size:15px;margin:0 0 5px!important;color:#3d5485}
+.task-condition p{font-size:11px;line-height:1.9;color:#7184a7;margin:0}
+.usage-table td:nth-child(2){width:13%}.usage-table td:nth-child(3){width:20%}.usage-table td:nth-child(4){width:12%}.usage-table td:nth-child(5){width:24%}
+.usage-percent{font-size:24px!important;color:#2855e8;font-weight:650;line-height:1.5}
+.usage-track{height:5px;background:#edf1f8;width:92px;max-width:100%;border-radius:4px;overflow:hidden;margin-top:9px}
+.usage-track>span{height:100%;background:#7795ed;display:block;border-radius:4px}
+.usage-pending{padding:24px;border:1px solid #e3e8f2;border-radius:12px;background:#fff}
+.usage-pending h3{font-size:16px;margin:0 0 9px!important}.usage-pending p{color:#8290a5;font-size:12px;margin:0}
+.pending-fields{display:flex;gap:12px 24px;flex-wrap:wrap;margin-top:18px;color:#98a4b6;font-size:11px}
+.portal-usage-link{margin-top:0;margin-bottom:12px}
+@media(max-width:650px){.catalog-heading{gap:10px;align-items:start}.catalog-heading h2,.catalog-heading h3{font-size:16px!important}.catalog-heading>span{font-size:9px;max-width:95px;text-align:right}.catalog-heading p{font-size:10px}.pricing-scroll .pricing-table,.pricing-scroll .usage-table{font-size:11px;min-width:1000px}.pricing-scroll th,.pricing-scroll td{padding:15px 13px!important}.catalog-footnote{font-size:9px}.task-condition{padding:15px}.task-condition h3{font-size:13px}.task-condition p{font-size:10px}.task-usage-section{margin-top:26px}.usage-pending{padding:20px}.pending-fields{display:grid;gap:9px}.catalog-jumps{gap:10px 18px}.catalog-jumps a{font-size:11px}}

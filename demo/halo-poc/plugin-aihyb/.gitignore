@@ -1,7 +1,0 @@
-.gradle/
-build/
-ui/node_modules/
-ui/build/
-ui/dist/
-ui/src/api/generated/
-*.log

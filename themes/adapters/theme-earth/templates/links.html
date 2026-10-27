@@ -1,0 +1,116 @@
+<!doctype html>
+<html th:lang="${#locale.toLanguageTag}">
+  <head>
+    <meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+<link th:unless="${#strings.isEmpty(site.logo)}" rel="preload" th:href="${site.logo}" as="image" />
+<script th:inline="javascript">
+  window.i18nResources = {
+    "jsModule.colorSchemeSwitcher.dark": `[(#{jsModule.colorSchemeSwitcher.dark})]`,
+    "jsModule.colorSchemeSwitcher.light": `[(#{jsModule.colorSchemeSwitcher.light})]`,
+    "jsModule.colorSchemeSwitcher.auto": `[(#{jsModule.colorSchemeSwitcher.auto})]`,
+    "jsModule.share.qzone": `[(#{jsModule.share.qzone})]`,
+    "jsModule.share.weibo": `[(#{jsModule.share.weibo})]`,
+    "jsModule.share.douban": `[(#{jsModule.share.douban})]`,
+    "jsModule.share.wechat": `[(#{jsModule.share.wechat})]`,
+    "jsModule.share.native": `[(#{jsModule.share.native})]`,
+    "jsModule.share.windowTitle": `[(#{jsModule.share.windowTitle})]`,
+    "jsModule.upvote.networkError": `[(#{jsModule.upvote.networkError})]`,
+  };
+  var colorScheme = /*[[${theme.config.style.color_scheme}]]*/ "system";
+  var enableChangeColorScheme = /*[[${theme.config.style.enable_change_color_scheme}]]*/ false;
+</script>
+<noscript>
+  <style>
+    body {
+      display: block !important;
+    }
+  </style>
+</noscript>
+
+
+    
+    <title th:text="|${linksTitle ?: #messages.msg('page.links.title')} - ${site.title}|"></title>
+  
+    <script type="module" crossorigin src="/themes/theme-earth/assets/links-CszlVWh-.js"></script>
+    <link rel="modulepreload" crossorigin href="/themes/theme-earth/assets/vendor~archives~author~categories~category~doc-catalog~doc~docs~index~links~moment~moments~~ky3hjxy1-O291mca5.js">
+    <link rel="modulepreload" crossorigin href="/themes/theme-earth/assets/main-CLmdnUTa.js">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/vendor~archives~author~categories~category~doc-catalog~doc~docs~index~links~moment~moments~~ky3hjxy1-Wb1VPa9d.css">
+    <link rel="stylesheet" crossorigin href="/themes/theme-earth/assets/main-BaWd_1hx.css">
+  <link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-navigation.css?v=20261022-polish5">
+<link rel="stylesheet" href="/themes/theme-earth/assets/aihyb-editorial.css?v=20261022-polish5">
+</head>
+  <body class="hidden bg-slate-50 dark:bg-slate-900">
+    <th:block th:replace="~{modules/aihyb-header :: header}" />
+
+
+    
+    <th:block th:replace="~{modules/hero :: hero(isHome = true, cover = null, title = null)}" />
+  
+
+    
+  
+  
+  <section class="mx-auto mt-6 grid max-w-7xl grid-cols-1 gap-6 px-4 md:grid-cols-[1fr_18rem] lg:px-6">
+    <div class="z-0 min-w-0">
+      <div class="rounded-xl bg-white p-4 dark:bg-slate-800">
+        <h1
+          class="mb-3 text-2xl font-medium dark:text-slate-50"
+          th:text="${linksTitle ?: #messages.msg('page.links.title')}"
+        ></h1>
+        <div class="flex flex-col gap-4">
+          <th:block th:each="group : ${groups}">
+            <h2 class="mt-2 text-lg font-medium dark:text-slate-50" th:text="${group.spec.displayName}"></h2>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <a th:each="link : ${group.links}" th:href="${link.spec.url}" target="_blank">
+                <div
+                  class="relative flex items-center space-x-3 rounded border border-gray-300 bg-white px-5 py-4 shadow-sm hover:border-gray-400 hover:shadow dark:border-slate-600 dark:bg-slate-700 dark:hover:border-slate-700"
+                >
+                  <div class="flex-shrink-0">
+                    <img class="size-12 rounded-full" th:src="${link.spec.logo}" th:alt="${link.spec.displayName}" />
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div>
+                      <p
+                        class="truncate text-sm font-medium text-gray-900 dark:text-slate-100"
+                        th:text="${link.spec.displayName}"
+                      ></p>
+                      <p
+                        class="truncate text-sm text-gray-500 dark:text-slate-400"
+                        th:text="${link.spec.description}"
+                      ></p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </th:block>
+        </div>
+        <hr th:if="${haloCommentEnabled}" class="my-10 dark:border-slate-700" />
+        <div th:if="${haloCommentEnabled}">
+          <halo:comment group="plugin.halo.run" kind="Plugin" th:attr="name=${pluginName}" />
+        </div>
+      </div>
+    </div>
+    <th:block th:replace="~{modules/sidebar :: sidebar(prepend = null)}" />
+  </section>
+
+
+    <th:block th:replace="~{modules/aihyb-footer :: footer}" />
+
+
+
+
+    <button
+      th:if="${theme.config.global.show_scroll_button}"
+      type="button"
+      id="btn-scroll-to-top"
+      th:aria-label="#{fragment.layout.toTop}"
+      class="fixed bottom-5 right-5 flex items-center justify-center rounded-full bg-white p-3 opacity-0 shadow transition-all duration-300 hover:opacity-70 hover:shadow-lg dark:bg-slate-600 lg:bottom-10 lg:right-10"
+    >
+      <span class="i-tabler-chevron-up text-2xl text-gray-600 dark:text-slate-200"></span>
+    </button>
+  </body>
+</html>
+
