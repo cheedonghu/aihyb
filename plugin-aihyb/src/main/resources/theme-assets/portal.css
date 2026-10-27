@@ -16,6 +16,7 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 /* Production adapters keep published text and media as the source of truth. */
+.portal-article-card{display:block}.portal-article-card .review-cover{height:180px;min-height:0}.portal-article-card .portal-media-cover>img{object-fit:contain}.home-ranking .review-grid{grid-template-columns:minmax(0,1fr)}.portal-board-list>.portal-board{grid-column:1/-1}
 #aihyb-portal{width:100%;max-width:none;min-width:0;overflow-wrap:anywhere;padding:0;margin:0}
 #aihyb-portal>.aihyb-module-nav{display:none}
 #aihyb-portal a{cursor:pointer}

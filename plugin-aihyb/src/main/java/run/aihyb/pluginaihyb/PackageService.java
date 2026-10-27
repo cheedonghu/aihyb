@@ -188,7 +188,8 @@ public class PackageService {
     }
 
     public Mono<PackageViews.PublishedContent> publicContent(String id) {
-        return publishedRevision(id).map(this::publicView)
+        return publishedEntry(id).flatMap(entry -> revision(entry.getSpec().getPublishedRevision())
+                .map(revision -> publicView(revision, entry.getSpec().getPublishedAt())))
             .onErrorResume(PackageProblem.class, error -> error.status() == 404
                 ? natives.byId(id).switchIfEmpty(Mono.error(error)) : Mono.error(error));
     }
@@ -201,21 +202,29 @@ public class PackageService {
     }
 
     private Mono<ContentRevision> publishedRevision(String id) {
+        return publishedEntry(id).flatMap(entry -> revision(entry.getSpec().getPublishedRevision()));
+    }
+
+    private Mono<ContentEntry> publishedEntry(String id) {
         return entry(id).flatMap(entry -> {
             var selected = entry.getSpec().getPublishedRevision();
             if (!Boolean.TRUE.equals(entry.getSpec().getPublished()) || selected == null) {
                 return Mono.error(new PackageProblem(404, "内容未发布"));
             }
-            return revision(selected);
+            return Mono.just(entry);
         });
     }
 
-    private PackageViews.PublishedContent publicView(ContentRevision revision) {
+    private PackageViews.PublishedContent publicView(ContentRevision revision, String publishedAt) {
         var payload = codec.parse(revision.getSpec().getRawJson());
+        var content = new java.util.LinkedHashMap<>(codec.toMap(payload.get("content")));
+        if (publishedAt != null) {
+            content.put("published_at", publishedAt);
+        }
         var sources = payload.get("sources").deepCopy();
         sources.forEach(source -> ((com.fasterxml.jackson.databind.node.ObjectNode) source).remove("usage_note"));
         return new PackageViews.PublishedContent(revision.getSpec().getContentId(),
-            revision.getMetadata().getName(), ContentSection.of(payload), codec.toMap(payload.get("content")),
+            revision.getMetadata().getName(), ContentSection.of(payload), content,
             codec.toMap(payload.get("data")), codec.toList(sources),java.util.stream.StreamSupport.stream(payload.get("assets").spliterator(),false)
                 .filter(asset -> "public".equals(asset.get("visibility").asText()))
                 .map(asset -> java.util.Map.<String,Object>of("asset_id",asset.get("asset_id").asText(),"content_type",asset.get("content_type").asText(),
@@ -245,13 +254,18 @@ public class PackageService {
         var published = client.listAll(ContentEntry.class, builder.build(), Sort.by(Sort.Direction.DESC, "metadata.creationTimestamp"))
             .flatMapSequential(record -> entry(record.getSpec().getContentId()).flatMap(entry -> {
                 if (!Boolean.TRUE.equals(entry.getSpec().getPublished())) { return Mono.empty(); }
-                return revision(entry.getSpec().getPublishedRevision()).map(this::publicView);
+                return revision(entry.getSpec().getPublishedRevision())
+                    .map(revision -> publicView(revision, entry.getSpec().getPublishedAt()));
             }), 4)
             .collectList();
         return published.zipWith(natives.published()).map(pair -> {
             var items = new java.util.ArrayList<>(pair.getT1());
             items.addAll(pair.getT2());
-            if (kind != null) { items.removeIf(item -> !kind.equals(item.kind())); }
+            if (kind != null) {
+                items.removeIf(item -> !item.inSection(kind));
+                items.replaceAll(item -> item.forSection(kind));
+            }
+            items.sort(java.util.Comparator.comparing(PackageViews.PublishedContent::publicationTime).reversed());
             if ("news".equals(kind)) {
                 items.sort((left, right) -> String.valueOf(right.content().get("news_date")).compareTo(String.valueOf(left.content().get("news_date"))));
             }

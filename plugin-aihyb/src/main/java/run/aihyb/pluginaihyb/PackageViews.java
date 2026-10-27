@@ -22,6 +22,18 @@ public final class PackageViews {
                                    Map<String, Object> content, Map<String, Object> data,
                                    List<Map<String, Object>> sources, List<Map<String,Object>> assets,
                                    String url) {
+        public boolean articleOnly() { return data.isEmpty(); }
+        public boolean inSection(String section) {
+            return section.equals(kind) || (articleOnly() && content.get("sections") instanceof List<?> sections
+                && sections.contains(section));
+        }
+        public PublishedContent forSection(String section) {
+            return new PublishedContent(content_id, revision, section, content, data, sources, assets, url);
+        }
+        public java.time.Instant publicationTime() {
+            var value = content.get("published_at");
+            return value == null ? java.time.Instant.MIN : java.time.Instant.parse(value.toString());
+        }
         /** Package content keeps its own article route; console posts pass their native permalink. */
         public PublishedContent(String content_id, String revision, String kind, Map<String, Object> content,
                                 Map<String, Object> data, List<Map<String, Object>> sources,

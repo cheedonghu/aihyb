@@ -21,13 +21,12 @@ import run.halo.app.extension.ReactiveExtensionClient;
  * Posts written in Halo's native editor. They have no package revision, so they are projected into
  * the same public read model as package content instead of living in a separate list.
  *
- * <p>Only the news timeline accepts console posts for now: its card needs just a title, summary,
- * date and link. The four modules render scores, plans and verification data from package JSON, so
- * a plain article cannot fill them without inventing facts.
+ * <p>Every selected module accepts console posts. Their cards expose article metadata only;
+ * structured rankings, prices and verification claims remain owned by package revisions.
  */
 @Component
 public class NativeCatalog {
-    static final Set<String> CARD_KINDS = Set.of("news");
+    static final Set<String> CARD_KINDS = Set.of("review", "leaderboard", "pricing", "tutorial", "news");
     private static final ZoneId SITE_ZONE = ZoneId.of("Asia/Shanghai");
     private static final int SUMMARY_LIMIT = 140;
     private final ReactiveExtensionClient client;
@@ -44,7 +43,7 @@ public class NativeCatalog {
             .collectList()
             .map(posts -> posts.stream()
                 .sorted(Comparator.comparing(NativeCatalog::publishedAt,
-                    Comparator.nullsLast(Comparator.<Instant>naturalOrder())).reversed())
+                    Comparator.nullsLast(Comparator.<Instant>reverseOrder())))
                 .map(post -> item(post, slugs))
                 .filter(Objects::nonNull)
                 .toList()));
@@ -83,15 +82,19 @@ public class NativeCatalog {
     }
 
     private static PackageViews.PublishedContent item(Post post, Map<String, String> slugs) {
-        var kind = kind(post, slugs);
-        if (kind == null) { return null; }
+        var sections = sections(post, slugs);
+        if (sections.isEmpty()) { return null; }
+        var kind = sections.getFirst();
         var title = post.getSpec().getTitle() == null ? "" : post.getSpec().getTitle();
         var permalink = permalink(post);
         var content = new LinkedHashMap<String, Object>();
         content.put("title", title);
         content.put("summary", summary(post));
         content.put("url", permalink);
-        if ("news".equals(kind)) { content.put("news_date", date(post)); }
+        content.put("sections", sections);
+        var publishedAt = publishedAt(post);
+        if (publishedAt != null) { content.put("published_at", publishedAt.toString()); }
+        if (sections.contains("news")) { content.put("news_date", date(post)); }
         var assets = new ArrayList<Map<String, Object>>();
         var cover = post.getSpec().getCover();
         if (cover != null && !cover.isBlank()) {
@@ -102,14 +105,11 @@ public class NativeCatalog {
             List.copyOf(assets), permalink);
     }
 
-    private static String kind(Post post, Map<String, String> slugs) {
+    private static List<String> sections(Post post, Map<String, String> slugs) {
         var categories = post.getSpec().getCategories();
-        if (categories == null) { return null; }
-        for (var name : categories) {
-            var kind = ContentSection.kindOfSlug(slugs.get(name));
-            if (kind != null && CARD_KINDS.contains(kind)) { return kind; }
-        }
-        return null;
+        if (categories == null) { return List.of(); }
+        return categories.stream().map(name -> ContentSection.kindOfSlug(slugs.get(name)))
+            .filter(Objects::nonNull).filter(CARD_KINDS::contains).distinct().toList();
     }
 
     private static Instant publishedAt(Post post) {

@@ -26,7 +26,7 @@ public class PortalRenderer {
     }
 
     public String home(List<PackageViews.PublishedContent> items) {
-        var review = items.stream().filter(item -> item.kind().equals("review")).findFirst();
+        var review = section(items, "review").stream().findFirst();
         var html = new StringBuilder("<div class='hero-surface'><div class='container'><section class='hero'><div><div class='eyebrow blue'>给每一位认真用 AI 的人</div><h1>选对 AI，<br><em>把时间还给自己。</em></h1><p class='hero-subtitle'>哪款好用、值不值得买、怎么用出效果。<br>从真实任务出发，帮你找到有依据的答案。</p><form class='searchbox' action='/search' method='get'><span aria-hidden='true'>⌕</span><input name='keyword' aria-label='搜索任务、工具或教程' placeholder='想用 AI 做什么？试试「做 PPT」'><button class='primary' type='submit'>找答案 →</button></form><div class='popular'><span>大家在看</span><a href='/aihyb/review?task=presentation'>做 PPT</a><a href='/aihyb/tutorial'>工作流与技巧</a><a href='/aihyb/pricing'>会员怎么选 ↗</a></div></div>");
         if (review.isPresent()) {
             var item = review.get();
@@ -41,7 +41,9 @@ public class PortalRenderer {
                 html.append("<div class='portal-hero-paper' aria-hidden='true'><span>从一个具体任务开始</span><strong>看结果，<br>也看过程。</strong><i></i><i></i><i></i></div><div class='portal-art-index' aria-hidden='true'><b>↗</b><span>任务</span><span>样例</span><span>依据</span></div><span class='art-note'>专题排版示意</span>");
             }
             html.append("</div><div class='story-caption'><div><h3>")
-                .append(esc(title(item))).append("</h3><p>").append(esc(task(item))).append(" · 结论与证据一起看</p></div><span class='round-arrow'>↗</span></div></a>");
+                .append(esc(title(item))).append("</h3><p>")
+                .append(item.articleOnly() ? "能力测评 · 阅读全文" : esc(task(item)) + " · 结论与证据一起看")
+                .append("</p></div><span class='round-arrow'>↗</span></div></a>");
         } else {
             html.append("<a class='featured-story' href='/aihyb/review'><div class='featured-art portal-empty-art'><strong>好不好用，<br>任务里见。</strong></div><div class='story-caption'><h3>从能力测评开始了解 AI</h3><span class='round-arrow'>↗</span></div></a>");
         }
@@ -56,11 +58,11 @@ public class PortalRenderer {
         html.append("</div></div></div><div class='container home-content'><div class='scene-row'><span class='scene-label'>你想做什么</span><nav class='scene-options' aria-label='按场景找 AI'>")
             .append(sceneLinks("leaderboard", null, false)).append("</nav></div>");
         html.append("<section class='news-section' id='latest-news' aria-labelledby='latest-news-title'><div class='news-heading'><div><span class='news-eyebrow'>AI 动态 · 观察与解读</span><h2 id='latest-news-title'>最新资讯<span aria-hidden='true'>↗</span></h2><p>关注新变化，也保留理解它的上下文。</p></div><a class='text-link' href='/aihyb/news'>查看全部资讯 →</a></div>")
-            .append(news(items.stream().filter(item -> "news".equals(item.kind()))
+            .append(news(section(items, "news").stream()
                 .sorted(java.util.Comparator.comparing((PackageViews.PublishedContent item) -> String.valueOf(item.content().get("news_date"))).reversed())
                 .limit(5).toList())).append("</section>");
         html.append(sectionHeading("01", "好不好用，任务里见。", "每份榜单保留任务、评分口径、日期与推荐理由。", "leaderboard", "看全部榜单"));
-        var boards = items.stream().filter(item -> item.kind().equals("leaderboard")).limit(1).toList();
+        var boards = section(items, "leaderboard").stream().limit(1).toList();
         html.append("<div class='home-ranking'><div>");
         if (boards.isEmpty()) { html.append(empty("暂无已发布榜单", "核验后的任务榜单会在这里展示。")); }
         for (var board : boards) { html.append(board(board)); }
@@ -70,12 +72,13 @@ public class PortalRenderer {
         }
         html.append("</div></aside></div></section>")
             .append(sectionHeading("02", "把结果摆出来，再下结论。", "任务、关键差异与原始来源，一起看。", "review", "看全部测评"))
-            .append(cards(items.stream().filter(item -> item.kind().equals("review")).limit(3).toList(), false)).append("</section>")
+            .append(cards(section(items, "review").stream().limit(3).toList(), false)).append("</section>")
             .append(sectionHeading("03", "买得明白，才能用得痛快。", "所有方案直接展开，额度、重置、地区与限制放在报价旁边。", "pricing", "看全部价格与任务消耗"))
-            .append(PricingRenderer.render(PricingRenderer.records(items), true))
+            .append(PricingRenderer.render(PricingRenderer.records(section(items, "pricing")), true))
+            .append(articleCards(section(items, "pricing").stream().limit(3).toList()))
             .append("<a class='text-link portal-usage-link' href='/aihyb/pricing#task-usage'>同一任务消耗多少百分比额度？看使用记录 →</a></section>")
             .append(sectionHeading("04", "选完工具，下一步就上手。", "少一点反复摸索，多一点可以复用的方法。", "tutorial", "看全部教程"))
-            .append(cards(items.stream().filter(item -> item.kind().equals("tutorial")).limit(3).toList(), true)).append("</section>")
+            .append(cards(section(items, "tutorial").stream().limit(3).toList(), true)).append("</section>")
             .append("<div class='closing-note'><span>结论有来源，价格有口径，内容有核验日期。</span><span>让每一次选择，都有依据。</span></div></div>");
         return html.toString();
     }
@@ -93,12 +96,17 @@ public class PortalRenderer {
         }
         if (kind.equals("pricing")) {
             html.append("<nav class='catalog-jumps' aria-label='价格对比章节'><a href='#all-plans'>全部套餐与额度 ↓</a><a href='#task-usage'>同任务体感额度消耗 ↓</a></nav><div id='all-plans'>")
-                .append(PricingRenderer.render(PricingRenderer.records(page.items()), false)).append("</div>");
+                .append(PricingRenderer.render(PricingRenderer.records(page.items()), false)).append("</div>")
+                .append(articleCards(page.items()));
         } else if (kind.equals("news")) {
             html.append(news(page.items()));
         } else if (kind.equals("leaderboard")) {
             if (page.items().isEmpty()) { html.append(empty("暂时没有符合条件的榜单", "试试其他任务分类。")); }
-            for (var item : page.items()) { html.append(board(item)); }
+            html.append("<div class='review-grid review-page-grid portal-board-list'>");
+            for (var item : page.items()) {
+                html.append(item.articleOnly() ? articleCard(item) : board(item));
+            }
+            html.append("</div>");
         } else {
             html.append("<div class='page-subheading'><h2>").append(LABELS.get(kind)).append("<small>共 ").append(page.total()).append(" 条已发布内容</small></h2></div>")
                 .append(cards(page.items(), kind.equals("tutorial")));
@@ -148,7 +156,9 @@ public class PortalRenderer {
         var html = new StringBuilder(tutorials ? "<div class='tutorial-page-list'>" : "<div class='review-grid review-page-grid'>");
         for (var item : items) {
             var data = codec.tree(item.data());
-            if (tutorials) {
+            if (item.articleOnly()) {
+                html.append(articleCard(item));
+            } else if (tutorials) {
                 html.append("<a class='tutorial-detail-card' href='").append(url(item)).append("'><span>↗</span><div><span class='pill'>")
                     .append(esc(task(item))).append("</span><h3>").append(esc(title(item))).append("</h3><p>").append(esc(summary(item)))
                     .append("</p><div class='meta-line'><span>").append(esc(data.path("tool_name").asText("实用教程"))).append("</span><span>")
@@ -171,7 +181,34 @@ public class PortalRenderer {
         }
         return html.append("</div>").toString();
     }
+    private static List<PackageViews.PublishedContent> section(List<PackageViews.PublishedContent> items, String kind) {
+        return items.stream().filter(item -> item.inSection(kind)).map(item -> item.forSection(kind)).toList();
+    }
+    private String articleCards(List<PackageViews.PublishedContent> items) {
+        var articles = items.stream().filter(PackageViews.PublishedContent::articleOnly).toList();
+        return articles.isEmpty() ? "" : cards(articles, false);
+    }
+    private String articleCard(PackageViews.PublishedContent item) {
+        var html = new StringBuilder("<a class='review-card portal-article-card' href='").append(url(item)).append("'>");
+        var image = item.assets().stream().filter(asset -> String.valueOf(asset.get("content_type")).startsWith("image/")).findFirst();
+        if (image.isPresent()) {
+            html.append("<div class='review-cover portal-media-cover'><img loading='lazy' src='")
+                .append(esc(String.valueOf(image.get().get("url")))).append("' alt='")
+                .append(esc(String.valueOf(image.get().get("alt")))).append("'></div>");
+        }
+        html.append("<div class='review-body'><div class='meta-line'><span class='tag'>")
+            .append(LABELS.get(item.kind())).append("</span>");
+        var date = item.content().get("published_at");
+        if (date != null) {
+            html.append("<time datetime='").append(esc(date.toString())).append("'>")
+                .append(java.time.LocalDate.ofInstant(item.publicationTime(), java.time.ZoneId.of("Asia/Shanghai")))
+                .append("</time>");
+        }
+        return html.append("</div><h3>").append(esc(title(item))).append("</h3><p>").append(esc(summary(item)))
+            .append("</p><div class='review-footer'><span>阅读全文 →</span></div></div></a>").toString();
+    }
     private String board(PackageViews.PublishedContent item) {
+        if (item.articleOnly()) { return cards(List.of(item), false); }
         var data = codec.tree(item.data()); var sources = codec.tree(item.sources());
         boolean overall="overall".equals(data.path("task").asText());
         var html = new StringBuilder("<section class='panel portal-board'><div class='panel-head'><div class='panel-title'><a href='")

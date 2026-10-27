@@ -61,7 +61,8 @@ public class WebController {
             .GET("/aihyb", this::listing).GET("/aihyb/{kind}", this::listing)
             .GET("/aihyb/content/{id}", request -> service.publicContent(request.pathVariable("id"))
                 .flatMap(content -> ServerResponse.status(HttpStatus.FOUND)
-                    .location(URI.create("/archives/aihyb-" + content.content_id())).header("Cache-Control", "no-cache").build()))
+                    .location(URI.create(content.articleOnly() ? content.url() : "/archives/aihyb-" + content.content_id()))
+                    .header("Cache-Control", "no-cache").build()))
             .build().filter((request, next) -> Mono.defer(() -> next.handle(request)).onErrorResume(PackageProblem.class, AdminController::error));
     }
     private Mono<ServerResponse> listing(ServerRequest request) {

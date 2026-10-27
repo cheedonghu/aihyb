@@ -15,7 +15,7 @@ public final class PricingRenderer {
     private PricingRenderer() {}
 
     public static List<Record> records(List<PackageViews.PublishedContent> contents) {
-        return contents.stream().filter(item -> "pricing".equals(item.kind())).map(item ->
+        return contents.stream().filter(item -> "pricing".equals(item.kind()) && !item.articleOnly()).map(item ->
             new Record(MAPPER.valueToTree(item.data()), MAPPER.valueToTree(item.sources()),
                 "/aihyb/content/" + item.content_id(), String.valueOf(item.content().get("title")))).toList();
     }

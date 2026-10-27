@@ -37,7 +37,7 @@ class NativeCatalogTest {
         assertTrue(item.assets().isEmpty());
     }
 
-    @Test void keepsDraftsDeletedManagedPrivateAndStructuredModulesOut() {
+    @Test void keepsDraftsDeletedManagedPrivateScheduledAndHiddenPostsOut() {
         var managed = post("p2", "cat-news");
         managed.getMetadata().setAnnotations(new HashMap<>(Map.of(NativeMirror.ID, "managed-id")));
         var deleted = post("p3", "cat-news");
@@ -46,24 +46,64 @@ class NativeCatalogTest {
         privatePost.getSpec().setVisible(Post.VisibleEnum.PRIVATE);
         var scheduled = post("p5", "cat-news");
         scheduled.getSpec().setPublishTime(Instant.parse("2099-01-01T00:00:00Z"));
-        var pricing = post("p6", "cat-prices");
+        var draft = post("p6", "cat-news");
+        draft.getSpec().setPublish(false);
         var uncategorized = post("p7", "cat-other");
-        var items = catalog(managed, deleted, privatePost, scheduled, pricing, uncategorized, post("p1", "cat-news")).published().block();
+        var hidden = post("p8", "cat-reviews");
+        hidden.getStatus().setHideFromList(true);
+        var deletedMetadata = post("p9", "cat-tutorials");
+        deletedMetadata.getMetadata().setDeletionTimestamp(Instant.now());
+        var items = catalog(managed, deleted, privatePost, scheduled, draft, uncategorized, hidden, deletedMetadata, post("p1", "cat-news")).published().block();
         assertEquals(List.of("p1"), items.stream().map(PackageViews.PublishedContent::content_id).toList());
     }
 
-    @Test void keepsModuleCategoriesPackageOnlyUntilTheyCarryStructuredData() {
-        assertTrue(catalog(post("p1", "cat-reviews")).published().block().isEmpty());
-        assertTrue(catalog(post("p2", "cat-tutorials")).published().block().isEmpty());
-        assertTrue(catalog(post("p3", "cat-leaderboards")).published().block().isEmpty());
-        assertTrue(catalog(post("p4", "cat-prices")).published().block().isEmpty());
+    @Test void projectsAllFourModuleCategoriesWithoutInventingStructuredData() {
+        var expected = Map.of("cat-reviews", "review", "cat-tutorials", "tutorial",
+            "cat-leaderboards", "leaderboard", "cat-prices", "pricing");
+        expected.forEach((category, kind) -> {
+            var source = post("p1", category);
+            source.getSpec().setCover("/upload/cover.png");
+            var item = catalog(source).published().block().getFirst();
+            assertEquals(kind, item.kind());
+            assertTrue(item.data().isEmpty());
+            assertTrue(item.sources().isEmpty());
+            assertEquals("/upload/cover.png", item.assets().getFirst().get("url"));
+            assertEquals("2026-10-01T08:00:00Z", item.content().get("published_at"));
+            assertFalse(item.inSection("news"));
+        });
+    }
+
+    @Test void preservesEverySelectedModuleWithoutDuplicatingTheArticle() {
+        var source = post("p1", "cat-other");
+        source.getSpec().setCategories(List.of("cat-other", "cat-reviews", "cat-news", "cat-prices", "cat-reviews"));
+        var items = catalog(source).published().block();
+        assertEquals(1, items.size());
+        var item = items.getFirst();
+        assertEquals(List.of("review", "news", "pricing"), item.content().get("sections"));
+        assertTrue(item.inSection("news"));
+        assertEquals("2026-10-01", item.content().get("news_date"));
+    }
+
+    @Test void newestPublishedArticleComesFirstAndUnknownDatesComeLast() {
+        var older = post("old", "cat-reviews");
+        var newer = post("new", "cat-reviews");
+        newer.getSpec().setPublishTime(Instant.parse("2026-10-02T08:00:00Z"));
+        var undated = post("undated", "cat-reviews");
+        undated.getSpec().setPublishTime(null);
+        undated.getMetadata().setCreationTimestamp(null);
+        assertEquals(List.of("new", "old", "undated"), catalog(older, undated, newer).published().block().stream()
+            .map(PackageViews.PublishedContent::content_id).toList());
     }
 
     @Test void byIdResolvesOnlyPublicUnmanagedPosts() {
         when(client.fetch(Post.class, "p1")).thenReturn(Mono.just(post("p1", "cat-news")));
         assertEquals("/archives/openai-new-model", catalog().byId("p1").block().url());
         when(client.fetch(Post.class, "p2")).thenReturn(Mono.just(post("p2", "cat-leaderboards")));
-        assertNull(catalog().byId("p2").block());
+        assertEquals("leaderboard", catalog().byId("p2").block().kind());
+        var privatePost = post("private", "cat-reviews");
+        privatePost.getSpec().setVisible(Post.VisibleEnum.PRIVATE);
+        when(client.fetch(Post.class, "private")).thenReturn(Mono.just(privatePost));
+        assertNull(catalog().byId("private").block());
     }
 
     private NativeCatalog catalog(Post... posts) {
