@@ -11,6 +11,7 @@ public class PortalFinderImpl implements PortalFinder {
     public PortalFinderImpl(PackageService service, PortalRenderer renderer, SiteSettings settings) { this.service = service; this.renderer = renderer; this.settings=settings; }
     @Override public Mono<String> home() { return service.publicCatalog(null, null).zipWith(settings.get()).map(pair -> renderer.home(pair.getT1(),pair.getT2())); }
     @Override public Mono<String> footer() { return settings.get().map(SiteFooter::render); }
+    @Override public Mono<String> footerContent() { return settings.get().map(SiteFooter::content); }
     @Override public Mono<String> article(String contentId, String releaseRevision, String fallback) {
         return service.publicNativeBody(contentId, releaseRevision).defaultIfEmpty(fallback);
     }

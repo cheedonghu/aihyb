@@ -6,7 +6,12 @@ import java.util.List;
 public final class SiteFooter {
     private SiteFooter() {}
     public static String render(SiteSettings.Settings settings) {
-        var html=new StringBuilder("<div class='aihyb-footer-inner'><div class='aihyb-footer-main'><div class='aihyb-footer-brand'><a href='/'><img src='/aihyb/assets/logo-primary.png' alt='AI好用榜' width='164'></a><p>让每一次选择，都有依据。</p></div><nav class='aihyb-footer-nav' aria-label='页脚导航'><ul>");
+        return "<div class='aihyb-footer-inner'>" + content(settings)
+            + "<div class='aihyb-footer-bottom'>© 2026 AI好用榜 AIHYB.COM</div></div>";
+    }
+    /** Navigation and QR content; the host theme can supply its own legal row. */
+    public static String content(SiteSettings.Settings settings) {
+        var html=new StringBuilder("<div class='aihyb-footer-main'><div class='aihyb-footer-brand'><a href='/'><img src='/aihyb/assets/logo-primary.png' alt='AI好用榜' width='164'></a><p>让每一次选择，都有依据。</p></div><nav class='aihyb-footer-nav' aria-label='页脚导航'><ul>");
         for(var kind:List.of("review","leaderboard","pricing","tutorial","news")) {
             html.append("<li><a href='/aihyb/").append(kind).append("'>").append(PortalRenderer.LABELS.get(kind)).append("</a></li>");
         }
@@ -23,7 +28,7 @@ public final class SiteFooter {
             html.append("<p class='aihyb-qr-expired'>微信群二维码已到期，");
             html.append(active.stream().anyMatch(qr->qr.id().equals("support"))?"请通过客服入口联系。":"请等待管理员更新。").append("</p>");
         }
-        return html.append("<div class='aihyb-footer-bottom'>© 2026 AI好用榜 AIHYB.COM</div></div>").toString();
+        return html.toString();
     }
     private static String esc(String text) { return PackageRenderer.escape(text); }
 }
