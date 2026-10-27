@@ -3,10 +3,118 @@
   "files": [
     {
       "theme": "theme-earth",
+      "path": "templates/modules/aihyb-header.html",
+      "adapted_sha256": "548fcdec3e21f7ac26cdab3949062de9c2960850466ce4484bde14d71f2f0e3d"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/assets/aihyb-navigation.css",
+      "adapted_sha256": "44492e03e188c35f94fda2315ddc6692cad82e52b99de195316bfe550ed6f949"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/layout.html",
+      "adapted_sha256": "0a2e70b982649efaa04684406b24ee0e0c92c67a7b3275fc86c11669b41734c2"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/archives.html",
+      "adapted_sha256": "d503c81c645bc6efef77ec7879c23d7db175fe728ba9ecb01418c6a68ff7530a"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/author.html",
+      "adapted_sha256": "8f35a446c87fe8fef2601e1098e5cf765cb77bd7e6c65d7abd24dc2ecf949693"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/categories.html",
+      "adapted_sha256": "06cb3a232c0e03ab3c0080e5b96eebc590f2d34cbbcfd3116a69ba012d686131"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/category.html",
+      "adapted_sha256": "c7cea79e8efd72a19f4d1f88a5db4141f5578fdadd17e307402ab116774d4408"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/doc-catalog.html",
+      "adapted_sha256": "7642510bb6c006ff719e0e445549d35596decf3eaf337655310e6c4434cb49c1"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/doc.html",
+      "adapted_sha256": "274955f9cda921006307fa385691ba810aee87b736a524e17f3fb22485d89d0d"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/docs.html",
+      "adapted_sha256": "931d3f3aba2908cd92d1d6ea8cf67d5d56c645f755a557a193690f8fc3a6758d"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/error/error.html",
+      "adapted_sha256": "4984c6cf42bec69556128f50f0e8f98527d017ad1d67de84cf37d9a75c6938b0"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/index.html",
+      "adapted_sha256": "8cc18608a25867f37ef6be16938b152e7484468325aa0c26ae2f9991679cd7a8"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/links.html",
+      "adapted_sha256": "ce00043463ebce0bb2976b135d843dd0bd9c1b2906a3c6fd0f2307798353fb37"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/moment.html",
+      "adapted_sha256": "a5d13946811e961f9e98d9dbeb9294d116a9b4232582252783057af946401f9e"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/moments.html",
+      "adapted_sha256": "56c998d38de2afd1ad48792a153f53da82c1c0052d5b7086d7476b98d05f49e6"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/page.html",
+      "adapted_sha256": "266bb83afd7e5a444a0f4623b13bbb567a0efa0bcfe39a60e472da902cc05588"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/photos.html",
+      "adapted_sha256": "53ed990c8861eb7e73b6dbb9b004a8e0205f2504058024c8de9f776f1f4ab0ac"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/post.html",
+      "adapted_sha256": "80b1f7d99c534b538587d0c2d1d2a6edc6698a80ceb582a87db6916e6ab1613d"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/tag.html",
+      "adapted_sha256": "8de0f4ea96f97264e0460148d612a7ca0a79d645c1abd1320649a0811aab26c7"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/tags.html",
+      "adapted_sha256": "2d4048f725de1c3815160c951f40f3d90201911a160dce6826d6f008e40f20b2"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/search.html",
+      "adapted_sha256": "8c0d422f9532326610c25e71323e8d9c23e6fe9136f463acb4a6e585172c016a"
+    },
+    {
+      "theme": "theme-earth",
+      "path": "templates/assets/aihyb-editorial.css",
+      "adapted_sha256": "66daffef505998840cd7c8b6b2dfeee61e2659e994b2b1e38f13110b22094996"
+    },
+    {
+      "theme": "theme-earth",
       "path": "templates/modules/aihyb-footer.html",
-      "original_sha256": null,
-      "previous_adapted_sha256": "eac4ebfff188b6d97d5aed4f5b6bd5ea767f21e755cca02d3abbf1933032551a",
-      "adapted_sha256": "39e3937f59e15f6b43ebf1df881a840fcf79998f2187dc9440553c13d8bee0e7"
+      "adapted_sha256": "c8a4695d28c0d161d39b532c9ff63dfe87a805573879eb628e21b40e94c87572"
     }
   ]
 }
