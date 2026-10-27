@@ -6,14 +6,11 @@ import java.util.List;
 public final class SiteFooter {
     private SiteFooter() {}
     public static String render(SiteSettings.Settings settings) {
-        var html=new StringBuilder("<div class='aihyb-footer-inner'><div class='aihyb-footer-brand'><a href='/'><img src='/aihyb/assets/logo-primary.png' alt='AI好用榜' width='180'></a><p>让每一次选择，都有依据。</p></div><nav class='aihyb-footer-nav' aria-label='页脚栏目与任务'>");
-        for(var kind:List.of("review","leaderboard","pricing","tutorial")) {
-            html.append("<section><h2><a href='/aihyb/").append(kind).append("'>").append(PortalRenderer.LABELS.get(kind)).append("</a></h2><ul>");
-            if(kind.equals("leaderboard")) for(var scene:SiteSettings.SCENE_ORDER) html.append("<li><a href='/aihyb/leaderboard?scene=").append(scene).append("'>").append(SiteSettings.SCENES.get(scene)).append("</a></li>");
-            else for(var tag:settings.tags()) if(tag.enabled()) html.append("<li><a href='/aihyb/").append(kind).append("?task=").append(tag.id()).append("'>").append(esc(tag.label())).append("</a></li>");
-            html.append("</ul></section>");
+        var html=new StringBuilder("<div class='aihyb-footer-inner'><div class='aihyb-footer-main'><div class='aihyb-footer-brand'><a href='/'><img src='/aihyb/assets/logo-primary.png' alt='AI好用榜' width='164'></a><p>让每一次选择，都有依据。</p></div><nav class='aihyb-footer-nav' aria-label='页脚导航'><ul>");
+        for(var kind:List.of("review","leaderboard","pricing","tutorial","news")) {
+            html.append("<li><a href='/aihyb/").append(kind).append("'>").append(PortalRenderer.LABELS.get(kind)).append("</a></li>");
         }
-        html.append("<section><h2><a href='/aihyb/news'>最新资讯</a></h2><ul><li><a href='/archives'>内容归档</a></li></ul></section></nav>");
+        html.append("<li><a href='/archives'>内容归档</a></li></ul></nav></div>");
         var active=settings.qrs().stream().filter(SiteSettings::active).toList();
         if(!active.isEmpty()) {
             html.append("<div class='aihyb-footer-qrs' aria-label='关注与联系'>");

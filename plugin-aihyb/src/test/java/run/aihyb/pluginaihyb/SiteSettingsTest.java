@@ -37,7 +37,8 @@ class SiteSettingsTest {
         var renderer=new PackageRenderer();
         var body=renderer.nativeBody(payload,renderer.markdown(payload.path("content").path("body_markdown").asText()),"release",config);
         assertTrue(body.contains("办公新名称"));assertTrue(body.contains("虚构演示"));assertTrue(body.contains("?task=presentation"));
-        assertTrue(SiteFooter.render(config).contains("办公新名称"));
+        var navigation=new PortalRenderer(codec).listing("review",new PackageViews.Page<>(List.of(),0,1,20),null,null,config);
+        assertTrue(Jsoup.parse(navigation).select(".filter-buttons a[href='/aihyb/review?task=presentation']").text().contains("办公新名称"));
         assertFalse(Jsoup.parse(body).select("h1").size()>0);
     }
     @Test void settingsValidateNamesScopesImagesAndRelations() {
