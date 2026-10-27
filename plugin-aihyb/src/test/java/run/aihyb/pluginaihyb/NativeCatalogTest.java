@@ -48,13 +48,24 @@ class NativeCatalogTest {
         scheduled.getSpec().setPublishTime(Instant.parse("2099-01-01T00:00:00Z"));
         var draft = post("p6", "cat-news");
         draft.getSpec().setPublish(false);
-        var uncategorized = post("p7", "cat-other");
         var hidden = post("p8", "cat-reviews");
         hidden.getStatus().setHideFromList(true);
         var deletedMetadata = post("p9", "cat-tutorials");
         deletedMetadata.getMetadata().setDeletionTimestamp(Instant.now());
-        var items = catalog(managed, deleted, privatePost, scheduled, draft, uncategorized, hidden, deletedMetadata, post("p1", "cat-news")).published().block();
+        var items = catalog(managed, deleted, privatePost, scheduled, draft, hidden, deletedMetadata, post("p1", "cat-news")).published().block();
         assertEquals(List.of("p1"), items.stream().map(PackageViews.PublishedContent::content_id).toList());
+    }
+
+    @Test void uncategorizedAndCustomCategoryPostsJoinTheLatestArticles() {
+        var uncategorized = post("uncategorized", "cat-news");
+        uncategorized.getSpec().setCategories(null);
+        var items = catalog(uncategorized, post("custom", "cat-other")).published().block();
+        assertEquals(2, items.size());
+        for (var item : items) {
+            assertEquals("news", item.kind());
+            assertEquals(List.of(), item.content().get("sections"));
+            assertTrue(item.inLatestArticles());
+        }
     }
 
     @Test void projectsAllFourModuleCategoriesWithoutInventingStructuredData() {

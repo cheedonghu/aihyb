@@ -38,7 +38,7 @@ class NewsSectionTest {
         ((ObjectNode) payload.get("content")).remove("news_date");
         assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(payload)));
     }
-    @Test void homeSeparatesNewsFromAllFourModulesAndLimitsTheStream() throws Exception {
+    @Test void homeKeepsTheFourModuleEntrancesAndLimitsTheArticleStream() throws Exception {
         var items = new java.util.ArrayList<PackageViews.PublishedContent>();
         for (int day = 10; day <= 16; day++) { items.add(view(news("2026-10-" + day))); }
         var document = Jsoup.parse(new PortalRenderer(codec).home(items));
@@ -59,7 +59,7 @@ class NewsSectionTest {
         assertEquals("A <script>alert(1)</script> & B", document.selectFirst(".news-card h3").text());
         assertTrue(document.select("script,.news-source,.filter-bar").isEmpty());
         assertEquals(2, document.select(".portal-pagination a").size());
-        assertTrue(renderer.listing("news", new PackageViews.Page<>(List.of(), 0, 1, 20), null).contains("新的资讯正在路上"));
+        assertTrue(renderer.listing("news", new PackageViews.Page<>(List.of(), 0, 1, 20), null).contains("新的文章正在路上"));
     }
     @Test void newsBodyRetainsProseAndSourcesWithoutCapabilityReviewClaims() throws Exception {
         var payload = news("2026-10-23"); var renderer = new PackageRenderer();
@@ -94,7 +94,7 @@ class NewsSectionTest {
         verify(client, never()).fetch(ContentRevision.class, "unpublished");
         rs.setRawJson(codec.canonical(codec.parse(Files.readString(Path.of("../contracts/examples/review.json")))));
         rs.setRequestHash(PackageCodec.hash(rs.getRawJson()));
-        assertTrue(service.publicCatalog("news", null).block().isEmpty());
+        assertEquals("review", service.publicCatalog("news", null).block().getFirst().kind());
         assertEquals("review", service.publicCatalog("review", null).block().getFirst().kind());
     }
     @Test void consolePostsJoinTheSameNewsStreamAndKeepTheirOwnRoute() throws Exception {

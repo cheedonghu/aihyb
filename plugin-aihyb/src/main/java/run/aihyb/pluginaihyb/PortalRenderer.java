@@ -57,9 +57,9 @@ public class PortalRenderer {
         }
         html.append("</div></div></div><div class='container home-content'><div class='scene-row'><span class='scene-label'>你想做什么</span><nav class='scene-options' aria-label='按场景找 AI'>")
             .append(sceneLinks("leaderboard", null, false)).append("</nav></div>");
-        html.append("<section class='news-section' id='latest-news' aria-labelledby='latest-news-title'><div class='news-heading'><div><span class='news-eyebrow'>AI 动态 · 观察与解读</span><h2 id='latest-news-title'>最新资讯<span aria-hidden='true'>↗</span></h2><p>关注新变化，也保留理解它的上下文。</p></div><a class='text-link' href='/aihyb/news'>查看全部资讯 →</a></div>")
-            .append(news(section(items, "news").stream()
-                .sorted(java.util.Comparator.comparing((PackageViews.PublishedContent item) -> String.valueOf(item.content().get("news_date"))).reversed())
+        html.append("<section class='news-section' id='latest-news' aria-labelledby='latest-news-title'><div class='news-heading'><div><span class='news-eyebrow'>AI 动态 · 测评与教程</span><h2 id='latest-news-title'>最新资讯<span aria-hidden='true'>↗</span></h2><p>最新发布的文章，按时间更新。</p></div><a class='text-link' href='/aihyb/news'>查看全部文章 →</a></div>")
+            .append(news(items.stream().filter(PackageViews.PublishedContent::inLatestArticles)
+                .sorted(java.util.Comparator.comparing(PackageViews.PublishedContent::publicationTime).reversed())
                 .limit(5).toList())).append("</section>");
         html.append(sectionHeading("01", "好不好用，任务里见。", "每份榜单保留任务、评分口径、日期与推荐理由。", "leaderboard", "看全部榜单"));
         var boards = section(items, "leaderboard").stream().limit(1).toList();
@@ -86,7 +86,7 @@ public class PortalRenderer {
     public String listing(String kind, PackageViews.Page<PackageViews.PublishedContent> page, String selectedTask) {
         if (kind == null) { return home(page.items()); }
         var titles = Map.of("review", "先看结果，再看结论。", "leaderboard", "找到适合这件事的 AI。", "pricing", "看清权益，也看真实花费。", "tutorial", "把 AI，变成你的工作习惯。", "news", "最新资讯");
-        var descriptions = Map.of("review", "从任务条件与样例出发，查看结论、证据和原始来源。", "leaderboard", "每份榜单独立保留评分口径，不混合不同任务与基准的分数。", "pricing", "各产品全部方案默认展开，直接看额度、重置方式、地区、限制与同任务消耗。", "tutorial", "从一个小任务开始，学习可以复用的提示词、工作流与使用方法。", "news", "AI 动态、行业观察与有出处的解读，按收录日期更新。");
+        var descriptions = Map.of("review", "从任务条件与样例出发，查看结论、证据和原始来源。", "leaderboard", "每份榜单独立保留评分口径，不混合不同任务与基准的分数。", "pricing", "各产品全部方案默认展开，直接看额度、重置方式、地区、限制与同任务消耗。", "tutorial", "从一个小任务开始，学习可以复用的提示词、工作流与使用方法。", "news", "最新发布的资讯、能力测评和教程文章，按发布时间更新。");
         var html = new StringBuilder("<div class='container'><div class='page-head'><div><div class='breadcrumb'><a href='/'>首页</a><span>/</span><span>")
             .append(LABELS.get(kind)).append("</span></div><h1>").append(titles.get(kind)).append("</h1><p>").append(descriptions.get(kind)).append("</p></div></div>");
         if (!kind.equals("news")) {
@@ -122,14 +122,15 @@ public class PortalRenderer {
     }
 
     private String news(List<PackageViews.PublishedContent> items) {
-        if (items.isEmpty()) { return empty("新的资讯正在路上", "有出处的 AI 动态与观察，会陆续收录在这里。"); }
+        if (items.isEmpty()) { return empty("新的文章正在路上", "最新发布的资讯、能力测评和教程文章，会显示在这里。"); }
         var html = new StringBuilder("<ol class='news-timeline'>");
         for (var item : items) {
-            var date = String.valueOf(item.content().get("news_date"));
+            var date = item.publicationDate();
             var source = codec.tree(item.sources()).path(0);
             html.append("<li class='news-entry'><div class='news-date'><time datetime='").append(esc(date)).append("'>")
-                .append(esc(date.length() == 10 ? date.substring(5).replace('-', '/') : date)).append("</time><span>")
-                .append(esc(date.length() == 10 ? date.substring(0, 4) + " · 收录" : "收录日期")).append("</span></div><article class='news-card'><div class='news-copy'><div class='news-meta'><span class='news-label'>资讯解读</span>");
+                .append(esc(date.length() == 10 ? date.substring(5).replace('-', '/') : "待补充")).append("</time><span>")
+                .append(esc(date.length() == 10 ? date.substring(0, 4) + " · 发布" : "发布时间")).append("</span></div><article class='news-card'><div class='news-copy'><div class='news-meta'><span class='news-label'>")
+                .append(esc("news".equals(item.kind()) ? "资讯解读" : LABELS.get(item.kind()))).append("</span>");
             if (!item.sources().isEmpty()) {
                 html.append("<span>").append(esc(source.path("author").asText("来源材料"))).append("</span>");
             }

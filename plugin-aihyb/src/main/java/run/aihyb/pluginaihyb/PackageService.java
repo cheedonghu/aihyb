@@ -261,14 +261,13 @@ public class PackageService {
         return published.zipWith(natives.published()).map(pair -> {
             var items = new java.util.ArrayList<>(pair.getT1());
             items.addAll(pair.getT2());
-            if (kind != null) {
+            if ("news".equals(kind)) {
+                items.removeIf(item -> !item.inLatestArticles());
+            } else if (kind != null) {
                 items.removeIf(item -> !item.inSection(kind));
                 items.replaceAll(item -> item.forSection(kind));
             }
             items.sort(java.util.Comparator.comparing(PackageViews.PublishedContent::publicationTime).reversed());
-            if ("news".equals(kind)) {
-                items.sort((left, right) -> String.valueOf(right.content().get("news_date")).compareTo(String.valueOf(left.content().get("news_date"))));
-            }
             return java.util.List.copyOf(items);
         }).flatMap(items -> configuration().map(config -> items.stream()
             .filter(item -> SiteSettings.matches(config,item,task,null)).toList()));

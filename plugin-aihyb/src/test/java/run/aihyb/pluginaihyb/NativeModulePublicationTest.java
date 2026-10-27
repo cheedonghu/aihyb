@@ -48,7 +48,7 @@ class NativeModulePublicationTest {
         assertEquals(1, all.size());
         var home = Jsoup.parse(renderer.home(all));
         assertEquals(4, home.select(".portal-article-card").size());
-        assertEquals(1, home.select(".news-entry").size());
+        assertEquals(0, home.select(".news-entry").size());
         assertEquals("/archives/native-article", home.selectFirst(".featured-story").attr("href"));
         assertTrue(home.select(".portal-ranking,.pricing-table,.usage-table").isEmpty());
         var output = Path.of("build/reports/native-modules");
@@ -58,7 +58,8 @@ class NativeModulePublicationTest {
         Files.writeString(output.resolve("home.html"), "<!doctype html><html lang='zh-CN'><meta charset='utf-8'>"
             + "<meta name='viewport' content='width=device-width, initial-scale=1'><style>" + style
             + "</style><main id='aihyb-portal'>" + renderer.home(all) + "</main></html>");
-        for (var kind : List.of("review", "leaderboard", "pricing", "tutorial", "news")) {
+        assertTrue(service.publicCatalog("news", null).block().isEmpty());
+        for (var kind : List.of("review", "leaderboard", "pricing", "tutorial")) {
             var page = service.publicList(kind, null, 1, 20).block();
             assertEquals(1, page.total());
             assertEquals(kind, page.items().getFirst().kind());
@@ -71,12 +72,13 @@ class NativeModulePublicationTest {
         }
     }
 
-    @Test void reviewDoesNotAutomaticallyEnterNewsAndPaginationKeepsArticlesDistinct() {
+    @Test void reviewAutomaticallyEntersNewsAndPaginationKeepsArticlesDistinct() {
         var older = post("older", List.of("review"));
         var newer = post("newer", List.of("review"));
         newer.getSpec().setPublishTime(Instant.parse("2026-10-02T08:00:00Z"));
         when(client.listAll(eq(Post.class), any(ListOptions.class), isNull())).thenReturn(Flux.just(older, newer));
-        assertTrue(service.publicCatalog("news", null).block().isEmpty());
+        assertEquals(List.of("newer", "older"), service.publicCatalog("news", null).block().stream()
+            .map(PackageViews.PublishedContent::content_id).toList());
         var first = service.publicSelection("review", null, null, 1, 1).block();
         var second = service.publicSelection("review", null, null, 2, 1).block();
         assertEquals(2, first.total());
@@ -107,6 +109,63 @@ class NativeModulePublicationTest {
         assertEquals("sample", all.getFirst().content_id());
         assertEquals(all.getFirst().content().get("published_at"), service.publicContent("sample").block().content().get("published_at"));
         assertEquals(1, Jsoup.parse(renderer.home(all)).select(".portal-article-card").size());
+    }
+
+    @Test void latestArticlesIncludeUncategorizedPostsAndExcludeMixedRankingAndPricingBeforePaging() {
+        var posts = new java.util.ArrayList<Post>();
+        var sections = List.of(List.<String>of(), List.of("custom"), List.of("news"), List.of("review"),
+            List.of("review", "tutorial", "news", "review"), List.of("tutorial"), List.of("leaderboard"),
+            List.of("pricing"), List.of("news", "pricing"), List.of("review", "leaderboard"));
+        for (int index = 0; index < sections.size(); index++) {
+            var article = post("post-" + index, sections.get(index));
+            article.getSpec().setPublishTime(Instant.parse("2026-10-01T" + String.format("%02d", index) + ":00:00Z"));
+            posts.add(article);
+        }
+        var draft = post("draft", List.of()); draft.getSpec().setPublish(false); posts.add(draft);
+        var privatePost = post("private", List.of("custom")); privatePost.getSpec().setVisible(Post.VisibleEnum.PRIVATE); posts.add(privatePost);
+        var hidden = post("hidden", List.of("review")); hidden.getStatus().setHideFromList(true); posts.add(hidden);
+        var scheduled = post("scheduled", List.of("tutorial")); scheduled.getSpec().setPublishTime(Instant.parse("2099-01-01T00:00:00Z")); posts.add(scheduled);
+        when(client.listAll(eq(Post.class), any(ListOptions.class), isNull())).thenReturn(Flux.fromIterable(posts));
+        var latest = service.publicSelection("news", null, null, 1, 2).block();
+        assertEquals(6, latest.total());
+        assertEquals(List.of("post-5", "post-4"), latest.items().stream().map(PackageViews.PublishedContent::content_id).toList());
+        assertEquals("tutorial", latest.items().getFirst().kind());
+        assertEquals(List.of("post-3", "post-2"), service.publicList("news", null, 2, 2).block().items().stream()
+            .map(PackageViews.PublishedContent::content_id).toList());
+        assertEquals(List.of("post-1", "post-0"), service.publicList("news", null, 3, 2).block().items().stream()
+            .map(PackageViews.PublishedContent::content_id).toList());
+        var home = Jsoup.parse(renderer.home(service.publicCatalog(null, null).block()));
+        var links = home.select(".news-card h3 a").eachAttr("href");
+        assertEquals(List.of("/archives/post-5", "/archives/post-4", "/archives/post-3", "/archives/post-2", "/archives/post-1"), links);
+        assertEquals("使用技巧与教程", home.selectFirst(".news-label").text());
+        assertEquals(1, links.stream().filter(link -> link.equals("/archives/post-4")).count());
+        var listing = Jsoup.parse(renderer.listing("news", latest, null));
+        assertEquals(1, listing.select(".portal-pagination a[href*=page=2]").size());
+    }
+
+    @Test void latestArticlesKeepReleasedPackageTypesAndPreferPublicationTimeToCollectionDate() throws Exception {
+        var review = new PortalRendererTest().published("review");
+        var tutorial = new PortalRendererTest().published("tutorial");
+        var content = new java.util.LinkedHashMap<>(review.content());
+        content.put("published_at", "2026-10-01T23:30:00Z");
+        content.put("news_date", "2099-01-01");
+        review = new PackageViews.PublishedContent(review.content_id(), review.revision(), review.kind(), content,
+            review.data(), review.sources(), review.assets(), review.url());
+        var olderContent = new java.util.LinkedHashMap<>(tutorial.content());
+        olderContent.put("published_at", "2026-10-01T20:00:00Z");
+        tutorial = new PackageViews.PublishedContent(tutorial.content_id(), tutorial.revision(), tutorial.kind(), olderContent,
+            tutorial.data(), tutorial.sources(), tutorial.assets(), tutorial.url());
+        var items = List.of(tutorial, new PortalRendererTest().published("pricing"), review,
+            new PortalRendererTest().published("leaderboard"));
+        var natives = mock(NativeCatalog.class); when(natives.published()).thenReturn(Mono.just(items));
+        var catalog = new PackageService(client, codec, new PackageRenderer(), mock(NativeMirror.class), mock(MediaService.class), natives);
+        var latest = catalog.publicList("news", null, 1, 20).block();
+        assertEquals(List.of("review", "tutorial"), latest.items().stream().map(PackageViews.PublishedContent::kind).toList());
+        var home = Jsoup.parse(renderer.home(items));
+        assertEquals(List.of(review.url(), tutorial.url()), home.select(".news-card h3 a").eachAttr("href"));
+        assertEquals("2026-10-02", home.selectFirst(".news-entry time").attr("datetime"));
+        assertEquals("能力测评", home.selectFirst(".news-label").text());
+        assertTrue(home.selectFirst(".news-date").text().contains("发布"));
     }
 
     @Test void mixedLeaderboardCardsKeepTheCatalogOrder() throws Exception {

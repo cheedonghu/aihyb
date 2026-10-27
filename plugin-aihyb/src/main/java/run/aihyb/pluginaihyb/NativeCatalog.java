@@ -83,8 +83,7 @@ public class NativeCatalog {
 
     private static PackageViews.PublishedContent item(Post post, Map<String, String> slugs) {
         var sections = sections(post, slugs);
-        if (sections.isEmpty()) { return null; }
-        var kind = sections.getFirst();
+        var kind = sections.isEmpty() ? "news" : sections.getFirst();
         var title = post.getSpec().getTitle() == null ? "" : post.getSpec().getTitle();
         var permalink = permalink(post);
         var content = new LinkedHashMap<String, Object>();
