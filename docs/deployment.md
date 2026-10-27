@@ -17,6 +17,8 @@
 
 生产 Caddy 配置保留 HTTPS 主站、`www`/HTTP 跳转及正常后台认证。只对 `/actuator/globalinfo` 与 `/actuator/info` 保留 Halo 原生处理：前者为公开启动配置，后者匿名应为 401；其他 actuator、OpenAPI、Swagger 继续 404。测试公网账号路由继续 403，Halo 本身只绑定回环，数据库不发布端口。
 
+生产域名验证文件放在服务器项目目录的 `public/site-verification/`，由 Caddy 只读挂载并在根路径提供 `baidu_verify_*.html`；文件名和内容须保持原样，验证成功后仍须保留。该目录属于站点运行文件，不进入 Git，备份脚本会一并保存。2026-10-27 已为百度验证增加此挂载和路由；服务器继续使用原有扁平目录。
+
 生产页脚备案为 `浙ICP备2026090602号`，链接 `https://beian.miit.gov.cn/`，通过 Earth 主题现有“备案设置”维护。生产管理员名从目标服务器 `secrets/admin-username.txt` 读取，密码从同目录 `admin-password.txt` 读取；旧账号保留历史作者引用。不要复用测试环境默认账号。
 
 ## 日常更新

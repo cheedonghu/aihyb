@@ -17,11 +17,17 @@ aihyb.com {
         not path /actuator/globalinfo /actuator/info
         path /actuator /actuator/* /v3/api-docs /v3/api-docs/* /swagger-ui /swagger-ui/* /swagger-ui.html
     }
-    respond @internal 404
-    reverse_proxy 127.0.0.1:18090 {
-        transport http {
-            dial_timeout 5s
-            response_header_timeout 60s
+    handle /baidu_verify_*.html {
+        root * /srv/site-verification
+        file_server
+    }
+    handle {
+        respond @internal 404
+        reverse_proxy 127.0.0.1:18090 {
+            transport http {
+                dial_timeout 5s
+                response_header_timeout 60s
+            }
         }
     }
 }

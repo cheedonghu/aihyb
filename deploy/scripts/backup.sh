@@ -25,6 +25,7 @@ cp compose.yaml compose.media.yaml compose.public.yaml "$TARGET/"
 ENTRY=$(docker compose config --format json | python3 -c 'import json,sys; print(next(v["source"] for v in json.load(sys.stdin)["services"]["caddy"]["volumes"] if v["target"] == "/etc/caddy/Caddyfile"))')
 mkdir "$TARGET/public"
 cp "$ENTRY" "$TARGET/public/Caddyfile"
+if [ -d public/site-verification ]; then cp -a public/site-verification "$TARGET/public/site-verification"; fi
 if [ -d caddy ]; then cp -a caddy "$TARGET/caddy"; fi
 if [ -d runtime ]; then cp -a runtime "$TARGET/runtime"; fi
 if [ -d data/caddy ]; then tar -czf "$TARGET/caddy-files.tar.gz" data/caddy; fi

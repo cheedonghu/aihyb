@@ -9,6 +9,7 @@ services:
     network_mode: host
     volumes:
       - ${AIHYB_CADDYFILE:?Select the environment-specific Caddyfile}:/etc/caddy/Caddyfile:ro
+      - ./public/site-verification:/srv/site-verification:ro
       - ./data/caddy/data:/data
       - ./data/caddy/config:/config
     read_only: true
