@@ -73,7 +73,7 @@ public class WebController {
         return result.zipWith(settings.get()).flatMap(pair -> {
             var items=pair.getT1(); var config=pair.getT2();
             var model = new HashMap<String, Object>();
-            model.put("pageTitle", kind == null ? HOME_TITLE : PAGE_TITLES.getOrDefault(kind, "四模块内容"));
+            model.put("pageTitle", kind == null ? HOME_TITLE : PAGE_TITLES.getOrDefault(kind, "AI好用指南"));
             model.put("pageDescription", kind == null ? HOME_DESCRIPTION : "news".equals(kind) ? "最新发布的资讯、能力测评和教程文章" : "AI好用榜四模块已发布内容");
             model.put("pageBody", portal.listing(kind, items, task, scene, config));
             model.put("pageCanonical", "/aihyb" + (kind == null ? "" : "/" + kind));

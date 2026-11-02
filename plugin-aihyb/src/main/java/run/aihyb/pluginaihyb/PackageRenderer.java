@@ -143,7 +143,7 @@ public class PackageRenderer {
 
     public String listing(String kind, PackageViews.Page<PackageViews.PublishedContent> entries, String task) {
         var labels = PortalRenderer.LABELS;
-        var label = kind == null ? "四模块内容" : labels.getOrDefault(kind, "四模块内容");
+        var label = kind == null ? "AI好用指南" : labels.getOrDefault(kind, "AI好用指南");
         var html = new StringBuilder("<h1>" + label + "</h1><p>按任务筛选：</p><form><input name='task' value='" + escape(task == null ? "" : task) + "' placeholder='例如 office、image、presentation' aria-label='任务分类'><button>筛选</button></form><section class='cards'>");
         for (var item : entries.items()) {
             html.append("<article class='card'><p class='tag'>").append(labels.get(item.kind())).append("</p><h2><a href='/aihyb/content/")

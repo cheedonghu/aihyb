@@ -122,8 +122,8 @@
     "theme": "theme-earth",
     "path": "templates/post.html",
     "original_sha256": "37fa177971a01f1ef1ae2396e9c5f2af26e8e0acbf0b03abc6117c2e978f56fd",
-    "previous_adapted_sha256": "123a2f637b36fc7241c4568336aae28b1e45fd7204164ddbd86b864c47c589f0",
-    "adapted_sha256": "80b1f7d99c534b538587d0c2d1d2a6edc6698a80ceb582a87db6916e6ab1613d"
+    "previous_adapted_sha256": "80b1f7d99c534b538587d0c2d1d2a6edc6698a80ceb582a87db6916e6ab1613d",
+    "adapted_sha256": "51a4106da08b273cfdaf06bc5fab5beebf4384e804881fb1c6edf8498df946a0"
   },
   {
     "theme": "theme-earth",
