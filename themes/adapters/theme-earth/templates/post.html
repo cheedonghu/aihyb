@@ -74,8 +74,11 @@
     <div class="z-0 min-w-0">
       <div x-data="upvote('post','content.halo.run','posts')" class="aihyb-article-card rounded-xl bg-white p-4 dark:bg-slate-800">
         <div class="aihyb-article-intro">
-          <nav class="aihyb-article-breadcrumb" aria-label="当前位置"><a href="/">首页</a><span>/</span><a th:href="${post.metadata.annotations['aihyb.run/published-section'] == 'news' ? '/aihyb/news' : '/aihyb'}" th:text="${post.metadata.annotations['aihyb.run/published-section'] == 'news' ? '最新资讯' : 'AI好用指南'}">AI好用指南</a><span>/</span><span>正文</span></nav>
-          <div class="aihyb-article-labels"><a th:each="category : ${post.categories}" th:href="${category.status.permalink}" th:text="${category.spec.displayName}"></a><span>AI好用榜 · 内容与依据</span></div>
+          <nav class="aihyb-article-breadcrumb" aria-label="当前位置" th:with="section=${pluginFinder.available('plugin-aihyb') ? aihybArticleFinder.section(post.spec.categories) : null}">
+            <a href="/">首页</a><span>/</span>
+            <a th:href="${section != null ? section.url : '/archives'}" th:text="${section != null ? section.label : '内容归档'}">内容归档</a><span>/</span><span aria-current="page">正文</span>
+          </nav>
+          <div class="aihyb-article-labels"><a th:each="category : ${post.categories}" th:href="${pluginFinder.available('plugin-aihyb') ? aihybArticleFinder.categoryUrl(category.spec.slug, category.status.permalink) : category.status.permalink}" th:text="${category.spec.displayName}"></a><span>AI好用榜 · 内容与依据</span></div>
         <h1
           th:if="${#strings.isEmpty(post.spec.cover)} or ${theme.config.post.title_position == 'content'}"
           class="aihyb-article-title"
