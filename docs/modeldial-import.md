@@ -48,6 +48,8 @@ python scripts/modeldial_import.py `
 | aesthetic | programming | ModelDial/aesthetic/政策 ID |
 | maintainability | programming | ModelDial/maintainability/政策 ID |
 
+新草稿面向用户的标题依次为“后端工程榜”“前端交互榜”“知识推理榜”“视觉审美榜”“可维护性榜”，摘要例如“对比各模型在后端工程方面的能力表现与排名。”，使用简洁能力导语。标题和摘要不要求用户先区分来源，不带 ModelDial 前缀、快照日期、原始配置或方法版本。来源署名、许可、批次与转换说明仍完整保留在公开正文说明中；结构化来源、模型身份与全部 provenance/metadata 字段继续保留，评分、排名、过滤校验和稳定 ID 的生成策略不变。
+
 每份稿件只含该轴一项成绩，`score_unit=custom`、`higher_is_better=true`、`allow_ties=true`、`ranking_mode=score`。自定义评分不表示通过率。ModelDial 的加权综合分不映射到本站 `overall`，本站综合榜仍是独立的人工排序概念。
 
 每个轴先过滤隐藏模型、隐藏候选和产品/Bot 评测，再排除该轴明确为 `null` 的配置；实际零分保留。对每个原始 `model_id`，仅选当前轴成绩最高的一个配置；相同模型不同版本不会合并。若最高分有多个配置，按原始 `connection_id`、`reasoning_effort`、`candidate_id` 的字典序确定唯一配置。模型按成绩降序，同分按模型 ID 和配置身份确定展示顺序，采用竞赛名次 `1,2,2,4`，不使用来源行顺序或旧 `rank`。
@@ -78,4 +80,4 @@ python -m unittest discover -s scripts -p test_modeldial_import.py -v
 python scripts/check-repository.py
 ```
 
-测试在临时目录构造虚构模型、分数、批次与哈希，不下载真实数据；覆盖 Schema、各轴配置选择、并列排名、隐藏与产品过滤、缺项与零分、最终质量分、公开许可署名、来源一致性、哈希与稳定 ID、重复和冲突、输出目录保护、改稿保护及 CLI 离线运行。
+测试在临时目录构造虚构模型、分数、批次与哈希，不下载真实数据；覆盖 Schema、能力标题与简洁摘要、各轴配置选择、并列排名、隐藏与产品过滤、缺项与零分、最终质量分、五份草稿的完整公开许可署名、来源一致性、哈希与稳定 ID、重复和冲突、输出目录保护、改稿保护及 CLI 离线运行。

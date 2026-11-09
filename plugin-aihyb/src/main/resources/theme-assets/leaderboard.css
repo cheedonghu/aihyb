@@ -1,0 +1,81 @@
+/* Ranking layout belongs to AIHYB; sources supply data, never page markup. */
+.ranking-catalog{min-width:0;max-width:100%;margin:0 0 28px;color:#192b43;font-size:14px;line-height:1.7;overflow-wrap:anywhere}
+.ranking-catalog [hidden]{display:none!important}
+.ranking-catalog .ranking-controls{display:flex;align-items:flex-end;gap:12px;padding:15px 16px;background:#fff;border:1px solid #dfe6ef;border-radius:10px;margin-bottom:16px}
+.ranking-catalog .ranking-controls label{display:flex;flex-direction:column;gap:6px;min-width:150px;color:#4d6079;font-size:12px;font-weight:600}
+.ranking-catalog .ranking-controls .ranking-search{flex:1;min-width:0}
+.ranking-catalog .ranking-controls select,.ranking-catalog .ranking-controls input{box-sizing:border-box;width:100%;min-width:0;height:42px;padding:8px 11px;border:1px solid #c7d2e2;border-radius:6px;background:#fff;color:#24364f;font:inherit;font-size:14px;line-height:1.5}
+.ranking-catalog .ranking-controls input::placeholder{color:#596a80;opacity:1}
+.ranking-catalog .ranking-reset{flex-shrink:0;min-height:42px;padding:8px 13px;border:1px solid #c7d2e2;border-radius:6px;color:#365580;background:#f7f9fd;font-size:13px}
+.ranking-catalog .ranking-reset:hover{background:#edf2ff;border-color:#9fb3dd}
+.ranking-catalog .ranking-tabs{display:flex;align-items:stretch;flex-wrap:wrap;gap:7px;padding:0 0 16px;margin:0}
+.ranking-catalog .ranking-tabs a{display:flex;align-items:center;justify-content:center;min-height:42px;max-width:100%;padding:9px 14px;border:1px solid #d7dfeb;border-radius:7px;background:#fff;color:#4d6079;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.ranking-catalog .ranking-tabs a:hover{color:#234cce;border-color:#a7b9e7;background:#f4f7ff}
+.ranking-catalog .ranking-tabs a[aria-current='true']{color:#fff;background:#2855e8;border-color:#2855e8;font-weight:600}
+.ranking-catalog .ranking-board{min-width:0;max-width:100%;scroll-margin-top:110px;background:#fff;border:1px solid #dfe6ef;border-radius:11px;overflow:hidden;margin:0 0 22px}
+.ranking-catalog .ranking-board-head{display:block;padding:19px 22px 3px;margin:0}
+.ranking-catalog .ranking-board-head h2,.aihyb-article-page #content .ranking-catalog .ranking-board-head h2{padding:0;margin:0;border:0;color:#172b46;font-size:21px;font-weight:650;line-height:1.5;letter-spacing:0}
+.ranking-catalog .ranking-table-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 22px 16px;color:#596a80;font-size:12px;line-height:1.7}
+.ranking-catalog .ranking-table-toolbar p{margin:0;padding:0;color:#415c7d;font-size:13px;font-weight:500;line-height:inherit}
+.ranking-catalog .ranking-table-scroll{max-width:100%;min-width:0;overflow-x:visible}
+.ranking-catalog .ranking-data-table{display:table;width:100%;min-width:0;max-width:100%;margin:0;border:0;border-collapse:separate;border-spacing:0;text-align:left;table-layout:fixed}
+.ranking-catalog .ranking-data-table th,.ranking-catalog .ranking-data-table td{box-sizing:border-box;padding:17px 14px;border:0;border-bottom:1px solid #e7edf5;background:#fff;text-align:left;vertical-align:middle;line-height:1.6}
+.ranking-catalog .ranking-data-table th:first-child,.ranking-catalog .ranking-data-table td:first-child{width:52px;padding-left:16px;padding-right:6px}
+.ranking-catalog .ranking-data-table th:last-child,.ranking-catalog .ranking-data-table td:last-child{width:110px;padding-left:8px;padding-right:22px}
+.ranking-catalog .ranking-data-table thead th{padding-top:11px;padding-bottom:11px;border-top:1px solid #e7edf5;background:#f6f8fc;color:#596a80;font-size:12px;font-weight:500}
+.ranking-catalog .ranking-data-table tbody tr:last-child>th,.ranking-catalog .ranking-data-table tbody tr:last-child>td{border-bottom:0}
+.ranking-catalog .ranking-data-table tbody tr:hover>th,.ranking-catalog .ranking-data-table tbody tr:hover>td{background:#f8faff}
+.ranking-catalog .ranking-position{display:inline-block;width:auto;height:auto;margin:0;padding:0;border:0;border-radius:0;background:none;color:#596a80;font-size:15px;font-weight:550;line-height:1.6;font-variant-numeric:tabular-nums}
+.ranking-catalog .ranking-position-top{color:#2855e8;font-weight:750}
+.ranking-catalog .ranking-data-table tbody th>strong{display:block;margin:0;color:#20344f;font-size:15px;line-height:1.65;font-weight:650;overflow-wrap:anywhere}
+.ranking-catalog .ranking-product{display:inline-block;margin-top:4px;border:0;color:#365d9b;font-size:12px;line-height:1.7;text-decoration:none}
+.ranking-catalog .ranking-score-cell>strong,:is(#content,main) .aihyb-content-report .ranking-catalog .ranking-score-cell>strong{color:#2855e8;font-size:21px;font-weight:650;line-height:1.4;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ranking-catalog .ranking-score-cell>small,.aihyb-article-page #content .ranking-catalog .ranking-score-cell>small{display:block;margin-top:3px;color:#596a80;font-size:11px;line-height:1.5}
+.ranking-catalog .ranking-score-bar{display:block;height:4px;max-width:100%;margin-top:8px;border-radius:4px;background:#e8eef9;overflow:hidden}
+.ranking-catalog .ranking-score-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#2855e8,#238093)}
+.ranking-catalog .ranking-board-foot{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:13px 22px;border-top:1px solid #e3eaf4;background:#fafbfd;color:#596a80;font-size:12px;line-height:1.8}
+.ranking-catalog .ranking-references{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 15px;min-width:0}
+.ranking-catalog .ranking-references>span:first-child{color:#52647b;font-weight:500}
+.ranking-catalog .ranking-board-foot a,.aihyb-article-page #content .ranking-catalog .ranking-board-foot a{border:0;color:#365d9b;font-size:inherit;text-decoration:underline;text-decoration-color:#aebfdc;text-underline-offset:3px;overflow-wrap:anywhere}
+.ranking-catalog .ranking-board-foot a:hover,.aihyb-article-page #content .ranking-catalog .ranking-board-foot a:hover,.ranking-catalog .ranking-product:hover{color:#234cce;text-decoration:underline}
+.ranking-catalog .ranking-reference-notes{min-width:0;max-width:100%;margin:0;padding:0;scroll-margin-top:110px;color:#52647b;font-size:12px}
+.ranking-catalog .ranking-reference-notes>summary{display:list-item;width:fit-content;max-width:100%;min-height:28px;padding:2px 0;cursor:pointer;color:#365d9b;font-size:12px;line-height:1.8}
+.ranking-catalog .ranking-reference-notes[open]>summary{margin-bottom:12px}
+.ranking-catalog .ranking-reference-notes>.report-prose{padding:15px 0 2px;border-top:1px solid #e3eaf4;color:#52647b;font-size:13px;line-height:1.9}
+:is(#content,main) .aihyb-review-report .ranking-reference-notes .report-facts{margin-bottom:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+:is(#content,main) .aihyb-review-report .ranking-reference-notes .report-facts dt{color:#596a80;font-size:12px}
+:is(#content,main) .aihyb-review-report .ranking-reference-notes .report-facts dd{color:#415775;font-size:13px}
+.ranking-catalog .ranking-no-results{margin:0;padding:28px 20px;text-align:center;color:#596a80;font-size:14px;line-height:1.8}
+.ranking-catalog :is(a,button,input,select,summary,.ranking-table-scroll):focus-visible{outline:3px solid #2855e8;outline-offset:3px}
+.ranking-page .page-head{padding:28px 0 22px}
+.ranking-page .filter-bar{margin:0 0 16px;padding:12px 16px}
+@media(max-width:650px){
+  .ranking-page .page-head{padding:22px 0 18px}
+  .ranking-page .filter-bar{padding:10px 12px;margin-bottom:16px}
+  .ranking-page .filter-line{align-items:center;gap:8px}
+  .ranking-page .filter-buttons{flex-wrap:nowrap;min-width:0;overflow-x:auto;max-width:100%;padding:2px 0}
+  .ranking-page .filter-buttons a{flex-shrink:0;min-height:34px;display:flex;align-items:center}
+  .ranking-catalog .ranking-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;padding:13px;gap:10px;margin-bottom:14px}
+  .ranking-catalog .ranking-controls label{min-width:0;font-size:12px}
+  .ranking-catalog .ranking-controls .ranking-search{grid-column:1/-1}
+  .ranking-catalog .ranking-controls select,.ranking-catalog .ranking-controls input{height:44px;font-size:16px}
+  .ranking-catalog .ranking-reset{align-self:end;min-height:44px;padding:9px 12px}
+  .ranking-catalog .ranking-tabs{gap:6px;padding-bottom:14px}
+  .ranking-catalog .ranking-tabs a{flex:0 1 auto;min-height:42px;padding:8px 11px;font-size:12px}
+  .ranking-catalog .ranking-board{border-radius:9px;margin-bottom:18px}
+  .ranking-catalog .ranking-board-head{padding:17px 14px 3px}
+  .ranking-catalog .ranking-board-head h2,.aihyb-article-page #content .ranking-catalog .ranking-board-head h2{font-size:19px}
+  .ranking-catalog .ranking-table-toolbar{padding:8px 14px 13px;gap:8px;font-size:11px}
+  .ranking-catalog .ranking-table-toolbar p{font-size:12px}
+  .ranking-catalog .ranking-data-table th,.ranking-catalog .ranking-data-table td{padding:15px 10px}
+  .ranking-catalog .ranking-data-table th:first-child,.ranking-catalog .ranking-data-table td:first-child{width:52px;padding-left:14px;padding-right:4px}
+  .ranking-catalog .ranking-data-table th:last-child,.ranking-catalog .ranking-data-table td:last-child{width:94px;padding-left:7px;padding-right:14px}
+  .ranking-catalog .ranking-data-table thead th{font-size:12px;padding-top:10px;padding-bottom:10px}
+  .ranking-catalog .ranking-data-table tbody th>strong{font-size:14px;line-height:1.65}
+  .ranking-catalog .ranking-position{font-size:14px}
+  .ranking-catalog .ranking-score-cell>strong,:is(#content,main) .aihyb-content-report .ranking-catalog .ranking-score-cell>strong{font-size:20px}
+  .ranking-catalog .ranking-score-cell>small,.aihyb-article-page #content .ranking-catalog .ranking-score-cell>small{font-size:11px}
+  .ranking-catalog .ranking-board-foot{padding:12px 14px;font-size:11px;gap:8px}
+  .ranking-catalog .ranking-references{gap:3px 12px}
+  .ranking-catalog .ranking-reference-notes>summary{font-size:12px}
+}

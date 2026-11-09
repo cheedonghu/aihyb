@@ -126,6 +126,20 @@ class ConversionTests(unittest.TestCase):
             self.assertEqual(item["data"]["benchmark"], f"ModelDial/{axis}/{importer.POLICY}")
         self.assertEqual(package(outputs, "knowledge")["data"]["task"], "research")
 
+    def test_public_titles_and_summaries_focus_on_capabilities(self):
+        outputs = run_convert(overview())
+        expected_titles = {"backend": "后端工程榜", "frontend": "前端交互榜", "knowledge": "知识推理榜",
+                           "aesthetic": "视觉审美榜", "maintainability": "可维护性榜"}
+        for axis, title in expected_titles.items():
+            with self.subTest(axis=axis):
+                content = package(outputs, axis)["content"]
+                self.assertEqual(content["title"], title)
+                self.assertIn(title[:-1], content["summary"])
+                self.assertLessEqual(len(content["summary"]), 40)
+                for detail in ("ModelDial", "来源", "原始", "五轴", "配置", "档位", "连接", "版本",
+                               "2026-01-02", "fictional-batch-001", importer.POLICY):
+                    self.assertNotIn(detail, content["title"] + content["summary"])
+
     def test_axis_best_configuration_and_connections_are_independent(self):
         a = candidate("fictional-a-v1", "high", "route-a", backend=90, frontend=30)
         b = candidate("fictional-a-v1", "low", "route-b", backend=60, frontend=95)
@@ -255,14 +269,20 @@ class ConversionTests(unittest.TestCase):
         self.assertEqual(package(outputs, "maintainability")["data"]["entries"][0]["score"], "73")
 
     def test_attribution_is_public_and_source_dates_are_not_invented(self):
-        item = package(run_convert(overview()))
-        body = item["content"]["body_markdown"]
-        for value in ("ModelDial", importer.RADAR_URL, "CC BY 4.0", importer.LICENSE_URL,
-                      "fictional-batch-001", RECORDED, "格式转换", "未作独立实测核验"):
-            self.assertIn(value, body)
-        self.assertEqual(item["sources"][0]["original_published_at"], RECORDED)
-        self.assertNotIn("verification_status", item["data"])
-        self.assertNotIn("product_url", item["data"]["entries"][0])
+        outputs = run_convert(overview())
+        for axis in importer.AXES:
+            with self.subTest(axis=axis):
+                item = package(outputs, axis)
+                body = item["content"]["body_markdown"]
+                for value in ("ModelDial", importer.RADAR_URL, importer.OVERVIEW_URL, "CC BY 4.0",
+                              importer.LICENSE_URL, "https://modeldial.com/data-license",
+                              "fictional-batch-001", RECORDED, "格式转换、筛选、按轴选配置及重新排名",
+                              "分项成绩未修改", "未作独立实测核验", f"ModelDial/{axis}/{importer.POLICY}",
+                              importer.POLICY + "/axis-best-v" + importer.VERSION):
+                    self.assertIn(value, body)
+                self.assertEqual(item["sources"][0]["original_published_at"], RECORDED)
+                self.assertNotIn("verification_status", item["data"])
+                self.assertNotIn("product_url", item["data"]["entries"][0])
 
     def test_same_input_has_byte_identical_drafts_and_hash_mapping(self):
         data = overview()

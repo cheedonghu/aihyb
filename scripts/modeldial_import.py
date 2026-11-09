@@ -340,8 +340,8 @@ def convert(raw, *, retrieved_at, generated_at):
         package = {
             "schema_version": "1.0", "content_id": content_id,
             "submission_id": "pending", "kind": "leaderboard",
-            "content": {"title": f"ModelDial {label}分项榜（{identity['published_at'][:10]}）",
-                        "summary": f"来源五轴口径下的{label}分项成绩；每个模型选取当前轴最高分配置，保留档位与连接身份。",
+            "content": {"title": f"{label}榜",
+                        "summary": f"对比各模型在{label}方面的能力表现与排名。",
                         "body_markdown": body, "tags": ["ModelDial", label], "task_tags": [task]},
             "data": {"task": task, "benchmark": f"ModelDial/{axis}/{POLICY}",
                      "method_version": method, "as_of": identity["published_at"], "score_unit": "custom",

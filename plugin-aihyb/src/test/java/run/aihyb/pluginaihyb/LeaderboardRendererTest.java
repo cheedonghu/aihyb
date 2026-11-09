@@ -27,33 +27,65 @@ class LeaderboardRendererTest {
             codec.toMap(root.path("content")), codec.toMap(root.path("data")), codec.toList(root.path("sources")), List.of());
     }
 
-    @Test void sourceSnapshotsRemainSeparateAndReadableWithoutJavascript() throws Exception {
+    @Test void comparisonsShowOnlyRanksNamesAndScoresWithReferencesAtTheBottom() throws Exception {
         var first = fixture("source-a", "虚构：代码质量榜", "演示来源甲");
         var second = fixture("source-b", "虚构：交互能力榜", "演示来源乙");
+        var before = codec.canonical(first);
         var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(first), published(second)), codec));
         assertEquals(2, doc.select("[data-ranking-board]").size());
         assertEquals(2, doc.select("[data-ranking-tab]").size());
         assertEquals(4, doc.select("[data-ranking-row]").size());
         assertTrue(doc.select("[data-ranking-board][hidden]").isEmpty());
         assertTrue(doc.selectFirst("[data-ranking-controls]").hasAttr("hidden"));
-        assertEquals(3, doc.select("[data-ranking-source] option").size());
-        assertTrue(doc.selectFirst("#ranking-source-a").text().contains("演示来源甲"));
-        assertFalse(doc.selectFirst("#ranking-source-a").text().contains("演示来源乙"));
+        assertTrue(doc.select("[data-ranking-source], [data-sources], .ranking-facts, .ranking-overview").isEmpty());
+        assertEquals(List.of("排名", "模型", "评分"), doc.selectFirst("table").select("thead th").eachText());
+        assertFalse(doc.select("header,nav,table,[data-ranking-controls]").text().contains("演示来源"));
+        assertFalse(doc.html().contains("poc-v1"));
         assertEquals("85.5", doc.selectFirst("#ranking-source-a .ranking-score-cell strong").text());
-        assertTrue(doc.select("[data-ranking-row] details summary").size() == 4);
-        assertFalse(doc.select("script,iframe").size() > 0);
+        assertEquals(2, doc.select(".ranking-board-foot .ranking-references a[href='https://example.com/poc']").size());
+        assertTrue(doc.select(".ranking-references a[href$='#ranking-reference-notes']").size() == 2);
+        for (var board : doc.select("[data-ranking-board]")) {
+            assertTrue(board.children().last().hasClass("ranking-board-foot"));
+        }
+        assertEquals(before, codec.canonical(first));
     }
 
-    @Test void multipleSourcesAreSeparateFilterOptionsAndRemainOnTheSameSnapshot() throws Exception {
-        var root = fixture("mixed", "虚构：多来源榜单", "演示来源甲");
+    @Test void multipleReferencesAreRetainedOnlyInTheFooter() throws Exception {
+        var root = fixture("mixed", "虚构榜单", "演示来源甲");
         var source = ((ObjectNode) root.path("sources").get(0)).deepCopy();
-        source.put("source_id", "source-second").put("author", "演示来源乙");
+        source.put("source_id", "source-second").put("author", "演示来源乙").put("url", "https://example.com/second");
         root.withArray("sources").add(source);
         var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(root)), codec));
-        assertEquals(List.of("", "演示来源乙", "演示来源甲"), doc.select("[data-ranking-source] option").eachAttr("value"));
-        var values = codec.parse(doc.selectFirst("[data-ranking-board]").attr("data-sources"));
-        assertEquals(2, values.size());
-        assertTrue(doc.selectFirst(".ranking-facts").text().contains("演示来源甲 / 演示来源乙"));
+        assertTrue(doc.select("select[data-ranking-source]").isEmpty());
+        assertEquals(List.of("演示来源甲 ↗", "演示来源乙 ↗"), doc.select(".ranking-references a[data-link-kind=reference]").eachText());
+        assertFalse(doc.select("header,nav,table").text().contains("演示来源"));
+    }
+
+    @Test void bottomNotesRetainEachRanksOwnReference() throws Exception {
+        var root = fixture("mixed", "虚构榜单", "演示来源甲");
+        var source = ((ObjectNode) root.path("sources").get(0)).deepCopy();
+        source.put("source_id", "source-second").put("author", "演示来源乙").put("url", "https://example.com/second");
+        root.withArray("sources").add(source);
+        ((ObjectNode) root.path("data").path("entries").get(1)).put("source_id", "source-second");
+        var doc = Jsoup.parse(LeaderboardRenderer.article(root, "<p>虚构引用说明</p>", ""));
+        var rows = doc.select(".ranking-reference-notes li");
+        assertEquals(2, rows.size());
+        assertEquals("https://example.com/poc", rows.get(0).selectFirst("a").attr("href"));
+        assertEquals("https://example.com/second", rows.get(1).selectFirst("a").attr("href"));
+        assertTrue(rows.get(0).selectFirst("strong").text().startsWith("1."));
+        assertTrue(rows.get(1).selectFirst("strong").text().startsWith("2."));
+        assertTrue(doc.select("table a[data-link-kind=reference]").isEmpty());
+        assertFalse(doc.selectFirst(".ranking-reference-notes").hasAttr("open"));
+    }
+
+    @Test void homepageRankingUsesTheSameThreeColumnPresentation() throws Exception {
+        var root = fixture("home", "虚构榜单", "演示来源");
+        var doc = Jsoup.parse(renderer.home(List.of(published(root))));
+        var board = doc.selectFirst("[data-ranking-board]");
+        assertEquals(List.of("排名", "模型", "评分"), board.select("thead th").eachText());
+        assertFalse(board.select("header,table").text().contains("演示来源"));
+        assertFalse(board.html().contains("poc-v1"));
+        assertTrue(board.children().last().hasClass("ranking-board-foot"));
     }
 
     @Test void editorialOverallKeepsItsRanksAndUnknownScores() throws Exception {
@@ -66,8 +98,8 @@ class LeaderboardRendererTest {
         var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(root)), codec));
         assertEquals("未提供", doc.selectFirst(".ranking-score-cell strong").text());
         assertTrue(doc.select(".ranking-score-bar").isEmpty());
-        assertEquals("1", doc.selectFirst(".ranking-position").text());
-        assertTrue(doc.text().contains("参考成绩不用于自动合成总分"));
+        assertEquals(List.of("1", "2"), doc.select(".ranking-position").eachText());
+        assertTrue(doc.text().contains("编辑排序"));
     }
 
     @Test void unsafeTextAndMissingScoresDoNotCreateMarkupOrSyntheticResults() throws Exception {
@@ -89,12 +121,24 @@ class LeaderboardRendererTest {
         var doc = Jsoup.parse(renderer.listing("leaderboard", new PackageViews.Page<>(List.of(published(root), article), 2, 1, 20), null));
         assertEquals(1, doc.select("[data-ranking-board]").size());
         assertEquals(1, doc.select(".ranking-reading a[href='/archives/native-article']").size());
-        assertTrue(doc.select(".portal-board-list").isEmpty());
+    }
+
+    static String localAssets(String html) {
+        var document = Jsoup.parse(html);
+        for (var asset : document.select("link[href^='/aihyb/assets/'],script[src^='/aihyb/assets/']")) {
+            var attribute = asset.tagName().equals("link") ? "href" : "src";
+            var name = asset.attr(attribute).substring("/aihyb/assets/".length()).split("\\?", 2)[0];
+            var path = Path.of("src/main/resources/theme-assets", name).toAbsolutePath();
+            assertTrue(Files.isRegularFile(path), name);
+            asset.attr(attribute, path.toUri().toString());
+        }
+        return document.outerHtml();
     }
 
     @Test void exportFictionalRankingPreview() throws Exception {
         var labels = List.of("后端工程", "前端交互", "知识推理", "视觉表现", "代码可维护性");
         var boards = new java.util.ArrayList<PackageViews.PublishedContent>();
+        ObjectNode firstBoard = null;
         for (int axis = 0; axis < labels.size(); axis++) {
             var root = fixture("preview-" + axis, "虚构演示 · " + labels.get(axis) + "榜", axis == 4 ? "演示来源乙" : "演示来源甲");
             var data = (ObjectNode) root.path("data");
@@ -111,11 +155,18 @@ class LeaderboardRendererTest {
             }
             codec.validate(codec.canonical(root));
             boards.add(published(root));
+            if (firstBoard == null) firstBoard = root;
         }
         var output = Path.of("build/reports/leaderboard"); Files.createDirectories(output);
         var css = Path.of("src/main/resources/theme-assets/portal.css").toAbsolutePath().toUri();
+        var rankingCss = Path.of("src/main/resources/theme-assets/leaderboard.css").toAbsolutePath().toUri();
+        var pricingCss = Path.of("src/main/resources/theme-assets/pricing.css").toAbsolutePath().toUri();
         var js = Path.of("src/main/resources/theme-assets/portal.js").toAbsolutePath().toUri();
+        var opening = "<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>AI好用榜 · 榜单虚构预览</title><link rel='stylesheet' href='" + css + "'><link rel='stylesheet' href='" + pricingCss + "'><link rel='stylesheet' href='" + rankingCss + "'><script defer src='" + js + "'></script></head><body class='portal-native-layout'><header class='preview-note'>仅供布局验证 · 全部模型和成绩为虚构数据</header><main id='aihyb-portal'>";
         var fragment = renderer.listing("leaderboard", new PackageViews.Page<>(boards, boards.size(), 1, 20), null);
-        Files.writeString(output.resolve("preview.html"), "<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>AI好用榜 · 评分与榜单虚构预览</title><link rel='stylesheet' href='" + css + "'><script defer src='" + js + "'></script></head><body class='portal-native-layout'><header class='preview-note'>仅供布局验证 · 全部模型和成绩为虚构数据</header><main id='aihyb-portal'>" + fragment + "</main></body></html>");
+        Files.writeString(output.resolve("preview.html"), opening + fragment + "</main></body></html>");
+        var article = new PackageRenderer();
+        Files.writeString(output.resolve("article-preview.html"), localAssets(article.article(firstBoard,
+            article.markdown(firstBoard.path("content").path("body_markdown").asText()), true, "preview-revision")));
     }
 }

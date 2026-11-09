@@ -7,21 +7,20 @@ const script = readFileSync(resolve(process.cwd(), '../src/main/resources/theme-
 const opened: JSDOM[] = []
 const markup = `<section data-ranking-catalog>
   <div data-ranking-controls hidden>
-    <select data-ranking-source><option value="">全部来源</option><option>来源甲</option><option>来源乙</option></select>
-    <input data-ranking-search><select data-ranking-sort><option value="rank">来源名次</option><option value="name">模型名称</option></select>
+    <input data-ranking-search><select data-ranking-sort><option value="rank">默认排名</option><option value="name">模型名称</option></select>
     <button data-ranking-reset>重置</button>
   </div>
-  <a data-ranking-tab data-sources='["来源甲"]' href="#ranking-a">榜单甲</a>
-  <a data-ranking-tab data-sources='["来源乙"]' href="#ranking-b">榜单乙</a>
-  <section data-ranking-board data-sources='["来源甲"]' id="ranking-a">
+  <a data-ranking-tab href="#ranking-a">能力榜甲</a>
+  <a data-ranking-tab href="#ranking-b">能力榜乙</a>
+  <section data-ranking-board id="ranking-a">
     <p data-ranking-count></p><table><tbody>
-      <tr data-ranking-row data-name="Zeta high" data-order="0"><td>1</td></tr>
-      <tr data-ranking-row data-name="Alpha low" data-order="1"><td>2</td></tr>
+      <tr data-ranking-row data-name="Zeta" data-order="0"><td>1</td></tr>
+      <tr data-ranking-row data-name="Alpha" data-order="1"><td>2</td></tr>
     </tbody></table><p data-ranking-empty hidden>无匹配</p>
   </section>
-  <section data-ranking-board data-sources='["来源乙"]' id="ranking-b">
+  <section data-ranking-board id="ranking-b">
     <p data-ranking-count></p><table><tbody>
-      <tr data-ranking-row data-name="Beta default" data-order="0"><td>3</td></tr>
+      <tr data-ranking-row data-name="Beta" data-order="0"><td>3</td></tr>
     </tbody></table><p data-ranking-empty hidden>无匹配</p>
   </section>
 </section>`
@@ -45,61 +44,48 @@ function change(dom: JSDOM, selector: string, value: string, event = 'change') {
 
 afterEach(() => opened.splice(0).forEach(dom => dom.window.close()))
 
-describe('published leaderboard interactions', () => {
-  it('opens a bookmarked snapshot and switches sources without combining rows', () => {
+describe('simplified leaderboard interactions', () => {
+  it('initializes and switches bookmarked boards without source controls', () => {
     const dom = open('#ranking-b')
+    expect(element<HTMLElement>(dom, '[data-ranking-controls]').hidden).toBe(false)
+    expect(dom.window.document.querySelector('[data-ranking-source]')).toBeNull()
     expect(element<HTMLElement>(dom, '#ranking-a').hidden).toBe(true)
     expect(element<HTMLElement>(dom, '#ranking-b').hidden).toBe(false)
-    change(dom, '[data-ranking-source]', '来源甲')
+    element<HTMLAnchorElement>(dom, '[href="#ranking-a"]').click()
     expect(element<HTMLElement>(dom, '#ranking-a').hidden).toBe(false)
     expect(element<HTMLElement>(dom, '#ranking-b').hidden).toBe(true)
-    expect(element<HTMLElement>(dom, '[href="#ranking-b"]').hidden).toBe(true)
     expect(dom.window.location.hash).toBe('#ranking-a')
     expect(element(dom, '#ranking-a tbody').children.length).toBe(2)
+    expect(element(dom, '#ranking-b tbody').children.length).toBe(1)
   })
 
-  it('keeps a snapshot available under either of its independent sources', () => {
+  it('searches model names and reports an empty result without renumbering ranks', () => {
     const dom = open()
-    for (const selector of ['#ranking-b', '[href="#ranking-b"]']) {
-      element<HTMLElement>(dom, selector).dataset.sources = JSON.stringify(['来源甲', '来源乙'])
-    }
-    change(dom, '[data-ranking-source]', '来源甲')
-    expect(element<HTMLElement>(dom, '[href="#ranking-b"]').hidden).toBe(false)
-    element<HTMLAnchorElement>(dom, '[href="#ranking-b"]').click()
-    expect(element<HTMLElement>(dom, '#ranking-b').hidden).toBe(false)
-    change(dom, '[data-ranking-source]', '来源乙')
-    expect(element<HTMLElement>(dom, '#ranking-b').hidden).toBe(false)
-  })
-
-  it('searches model versions and reports an empty result without renumbering ranks', () => {
-    const dom = open()
-    change(dom, '[data-ranking-search]', ' LOW ', 'input')
+    change(dom, '[data-ranking-search]', ' ALPHA ', 'input')
     const rows = [...dom.window.document.querySelectorAll<HTMLElement>('#ranking-a [data-ranking-row]')]
     expect(rows.map(row => row.hidden)).toEqual([true, false])
     expect(rows[1]?.textContent).toBe('2')
-    expect(element(dom, '#ranking-a [data-ranking-count]').textContent).toContain('1 / 2')
+    expect(element(dom, '#ranking-a [data-ranking-count]').textContent).toBe('显示 1 / 2 个模型')
     change(dom, '[data-ranking-search]', '不存在', 'input')
     expect(element<HTMLElement>(dom, '#ranking-a [data-ranking-empty]').hidden).toBe(false)
   })
 
-  it('restores source order and original ranks when filters are reset', () => {
+  it('restores default order and original ranks when search and sorting are reset', () => {
     const dom = open()
     change(dom, '[data-ranking-sort]', 'name')
-    expect(element(dom, '#ranking-a tbody').firstElementChild?.getAttribute('data-name')).toBe('Alpha low')
+    expect(element(dom, '#ranking-a tbody').firstElementChild?.getAttribute('data-name')).toBe('Alpha')
     change(dom, '[data-ranking-search]', 'Alpha', 'input')
     element<HTMLButtonElement>(dom, '[data-ranking-reset]').click()
-    expect(element(dom, '#ranking-a tbody').firstElementChild?.getAttribute('data-name')).toBe('Zeta high')
+    expect(element(dom, '#ranking-a tbody').firstElementChild?.getAttribute('data-name')).toBe('Zeta')
     expect(element<HTMLInputElement>(dom, '[data-ranking-search]').value).toBe('')
-    expect(element(dom, '#ranking-a [data-ranking-count]').textContent).toContain('2 / 2')
+    expect(element(dom, '#ranking-a [data-ranking-count]').textContent).toBe('显示 2 / 2 个模型')
     expect(element(dom, '#ranking-a tbody').textContent?.replace(/\s/g, '')).toBe('12')
   })
 
-  it('allows browser hash navigation to select a different source', () => {
+  it('follows browser hash navigation between independent boards', () => {
     const dom = open()
-    change(dom, '[data-ranking-source]', '来源甲')
     dom.window.location.hash = '#ranking-b'
     dom.window.dispatchEvent(new dom.window.HashChangeEvent('hashchange'))
-    expect(element<HTMLSelectElement>(dom, '[data-ranking-source]').value).toBe('')
     expect(element<HTMLElement>(dom, '#ranking-b').hidden).toBe(false)
     expect(element(dom, '[href="#ranking-b"]').getAttribute('aria-current')).toBe('true')
   })

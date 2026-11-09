@@ -2,11 +2,8 @@ package run.aihyb.pluginaihyb;
 
 import static run.aihyb.pluginaihyb.ReportBodyLayout.*;
 import com.fasterxml.jackson.databind.JsonNode;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.StreamSupport;
 import org.jsoup.Jsoup;
 
 /** Kind-specific detail, using the same report layout and original published values. */
@@ -14,51 +11,11 @@ final class ModuleBodyRenderer {
     private ModuleBodyRenderer() {}
     static String render(JsonNode payload, String body, String attachments, String revision) {
         return switch (payload.path("kind").asText()) {
-            case "leaderboard" -> leaderboard(payload, body, attachments, revision);
+            case "leaderboard" -> LeaderboardRenderer.article(payload, body, attachments);
             case "pricing" -> pricing(payload, body, attachments, revision);
             case "tutorial" -> tutorial(payload, body, attachments, revision);
             default -> throw new IllegalArgumentException("Unsupported article kind");
         };
-    }
-    private static String leaderboard(JsonNode payload, String body, String attachments, String revision) {
-        var data = payload.path("data"); var sources = payload.path("sources");
-        boolean overall="overall".equals(data.path("task").asText());
-        var entries = StreamSupport.stream(data.path("entries").spliterator(), false)
-            .sorted(Comparator.comparingInt(entry -> entry.path("rank").asInt())).toList();
-        var mode = Map.of("score", "按原始成绩排名", "source_rank", "沿用来源名次", "editorial_order", "编辑排序")
-            .getOrDefault(data.path("ranking_mode").asText(), "排名口径待补充");
-        var unit = data.path("score_unit").asText();
-        if (unit.equals("percent")) { unit = "百分比"; }
-        var html = new StringBuilder(open(payload, "榜单速览", entries.size() + (overall?" 个模型版本，按编辑依据人工排序。":" 款工具，在同一任务下比较。"), "榜单快照",
-            overall?"阅读模型版本、排名依据与适用范围":"先看原始成绩，再读排名依据", "report-ranking", "查看完整榜单"));
-        html.append(facts(new Fact("任务场景", task(data)), new Fact("基准 / 任务口径", data.path("benchmark").asText()),
-            new Fact("方法版本", data.path("method_version").asText()), new Fact("快照日期", PricingRenderer.date(data.path("as_of").asText()))))
-            .append(jumps(new Jump("report-ranking", "01 原始成绩"), new Jump("report-reasons", "02 排名依据"),
-                new Jump("report-method", "03 评分方法"), new Jump("report-sources", "04 原始来源")))
-            .append(heading("01", "report-ranking", "原始成绩与名次", "保留原始数值与型号，不混合不同基准的分数。"))
-            .append("<div class='report-method-note'><strong>").append(esc(mode)).append("</strong><span>成绩单位：").append(esc(unit))
-            .append("</span><span>").append(overall ? "人工排序，不计算综合总分" : data.path("higher_is_better").asBoolean() ? "成绩越高越好" : "成绩越低越好")
-            .append("</span><span>").append(data.path("allow_ties").asBoolean() ? "允许并列名次" : "不使用并列名次")
-            .append("</span></div><div class='report-ranking-scroll' role='region' aria-label='完整榜单原始成绩' tabindex='0'><table class='report-ranking-table'><thead><tr><th scope='col'>名次</th><th scope='col'>工具 / 型号</th><th scope='col'>原始成绩</th><th scope='col'>依据</th></tr></thead><tbody>");
-        for (var entry : entries) {
-            html.append("<tr><td><span class='report-rank-number'>").append(entry.path("rank").asInt()).append("</span></td><th scope='row'><strong>")
-                .append(esc(entry.path("tool_name").asText())).append("</strong><small>").append(esc(entry.path("model_version").asText()))
-                .append(entry.path("product_url").asText().isBlank()?"":" <a data-link-kind='reference' href='"+esc(entry.path("product_url").asText())+"' target='_blank' rel='noopener'>使用入口 ↗</a>")
-                .append("</small></th><td><strong class='report-raw-score'>").append(entry.path("score").isNull() ? "未提供" : esc(entry.path("score").asText()))
-                .append("</strong><small>").append(esc(unit)).append("</small></td><td><a href='#report-rank-").append(esc(entry.path("entry_id").asText())).append("'>查看排名依据 ↗</a></td></tr>");
-        }
-        html.append("</tbody></table></div></section>").append(heading("02", "report-reasons", "为什么这样排", "每个条目保留推荐理由及对应来源。"))
-            .append("<div class='report-evidence-grid'>");
-        for (var entry : entries) {
-            html.append("<div class='report-evidence-card report-rank-card' id='report-rank-").append(esc(entry.path("entry_id").asText()))
-                .append("'><div class='report-evidence-title'><span>").append(entry.path("rank").asInt()).append("</span><h3>")
-                .append(esc(entry.path("tool_name").asText())).append("</h3></div><div class='report-evidence-material'><span>排名依据</span><p>")
-                .append(esc(entry.path("reason").asText())).append("</p></div>")
-                .append(sourceRef(sources, entry.path("source_id").asText())).append("</div>");
-        }
-        return html.append("</div></section>").append(heading("03", "report-method", "评分方法与阅读边界", "请在同一任务、同一方法版本和快照时间内理解本榜单。"))
-            .append("<div class='report-prose'>").append(prose(body + attachments)).append("</div></section>")
-            .append(sources(sources, "04")).append(finish(revision)).toString();
     }
     private static String pricing(JsonNode payload, String body, String attachments, String revision) {
         var data = payload.path("data"); var sources = payload.path("sources"); var plans = data.path("plans");

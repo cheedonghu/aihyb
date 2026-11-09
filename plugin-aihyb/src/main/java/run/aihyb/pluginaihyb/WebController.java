@@ -29,7 +29,7 @@ public class WebController {
         "leaderboard", "评分与榜单-最新AI评分_AI排行榜",
         "pricing", "价格对比-最新AI大模型价格_AI价格对比",
         "tutorial", "AI资源库-AI教程_AI使用技巧_AI工具箱");
-    private static final Map<String, String> ASSETS = Map.of("site.css", "text/css", "portal.css", "text/css", "pricing.css", "text/css", "review.css", "text/css",
+    private static final Map<String, String> ASSETS = Map.of("site.css", "text/css", "portal.css", "text/css", "pricing.css", "text/css", "review.css", "text/css", "leaderboard.css", "text/css",
         "portal.js", "text/javascript", "logo-primary.png", "image/png", "logo-icon.png", "image/png", "favicon.png", "image/png");
     public WebController(PackageService service, PackageRenderer renderer, TemplateNameResolver templates, PortalRenderer portal, SiteSettings settings) {
         this.service = service; this.renderer = renderer; this.templates = templates; this.portal = portal; this.settings=settings;

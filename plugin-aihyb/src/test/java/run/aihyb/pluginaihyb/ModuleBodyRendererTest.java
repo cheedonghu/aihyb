@@ -23,21 +23,36 @@ class ModuleBodyRendererTest {
             var document = render(fixture(kind));
             assertEquals(1, document.select(".aihyb-content-report[data-report-kind=" + kind + "]").size());
             assertTrue(document.select("h1").isEmpty());
-            assertEquals(4, document.select(".report-facts dd").size());
-            assertEquals(1, document.select(".report-source-card").size());
+            if (kind.equals("leaderboard")) {
+                assertTrue(document.select(".report-source-card, .report-version").isEmpty());
+                assertEquals(1, document.select(".ranking-references a[data-link-kind=reference]").size());
+                assertTrue(document.selectFirst(".ranking-reference-notes").parent().hasClass("ranking-board-foot"));
+            } else {
+                assertEquals(4, document.select(".report-facts dd").size());
+                assertEquals(1, document.select(".report-source-card").size());
+            }
             for (var link : document.select("a[href^='#report-']")) {
                 assertNotNull(document.getElementById(link.attr("href").substring(1)), link.outerHtml());
             }
         }
     }
-    @Test void leaderboardKeepsRawScoresDirectionMethodAndPerEntrySource() throws Exception {
+    @Test void leaderboardKeepsScoresAndBottomReferencesWithoutTechnicalDetailsInTheComparison() throws Exception {
         var payload = fixture("leaderboard"); var before = codec.canonical(payload);
+        ((ObjectNode) payload.path("data").path("entries").get(0)).put("model_version", "INTERNAL_MODEL_VERSION");
+        ((ObjectNode) payload.path("data")).put("method_version", "INTERNAL_METHOD_VERSION");
+        before = codec.canonical(payload);
         var document = render(payload);
         assertEquals(List.of("85.5", "79.0"), document.select(".report-raw-score").eachText());
         assertEquals(List.of("1", "2"), document.select(".report-rank-number").eachText());
-        assertTrue(document.text().contains("poc-image-only"));
-        assertTrue(document.text().contains("成绩越高越好"));
-        assertEquals(2, document.select(".report-rank-card a[href='#report-source-source-poc']").size());
+        assertEquals(List.of("排名", "模型", "评分"), document.select("thead th").eachText());
+        assertTrue(document.text().contains("评分越高越好"));
+        assertFalse(document.html().contains("INTERNAL_MODEL_VERSION"));
+        assertFalse(document.html().contains("INTERNAL_METHOD_VERSION"));
+        var notes = document.selectFirst(".ranking-reference-notes");
+        assertFalse(notes.hasAttr("open"));
+        assertTrue(notes.text().contains("poc-image-only"));
+        assertEquals(1, document.select(".ranking-references a[href='https://example.com/poc']").size());
+        assertFalse(document.select("header, table").text().contains("PoC fixture"));
         assertEquals(before, codec.canonical(payload));
     }
     @Test void editorialOrderWithMissingScoresDoesNotBecomeAnInventedScoreOrWinner() throws Exception {
@@ -48,7 +63,8 @@ class ModuleBodyRendererTest {
         var document = render(payload);
         assertEquals(List.of("未提供", "未提供"), document.select(".report-raw-score").eachText());
         assertTrue(document.text().contains("编辑排序"));
-        assertTrue(document.text().contains("成绩越低越好"));
+        assertFalse(document.text().contains("评分越低越好"));
+        assertTrue(document.select(".ranking-score-bar").isEmpty());
         assertFalse(document.text().contains("按原始成绩排名"));
     }
     @Test void pricingRetainsEveryOfferAndAnnualChargeAndUnknownQuotaWithoutObjectSelection() throws Exception {

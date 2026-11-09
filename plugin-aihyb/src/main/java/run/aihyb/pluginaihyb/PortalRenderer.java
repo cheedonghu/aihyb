@@ -61,7 +61,7 @@ public class PortalRenderer {
             .append(news(items.stream().filter(PackageViews.PublishedContent::inLatestArticles)
                 .sorted(java.util.Comparator.comparing(PackageViews.PublishedContent::publicationTime).reversed())
                 .limit(5).toList())).append("</section>");
-        html.append(sectionHeading("01", "好不好用，任务里见。", "每份榜单保留任务、评分口径、日期与推荐理由。", "leaderboard", "看全部榜单"));
+        html.append(sectionHeading("01", "好不好用，任务里见。", "按任务选择榜单，找到适合你的 AI。", "leaderboard", "看全部榜单"));
         var boards = section(items, "leaderboard").stream().limit(1).toList();
         html.append("<div class='home-ranking'><div>");
         if (boards.isEmpty()) { html.append(empty("暂无已发布榜单", "核验后的任务榜单会在这里展示。")); }
@@ -86,7 +86,7 @@ public class PortalRenderer {
     public String listing(String kind, PackageViews.Page<PackageViews.PublishedContent> page, String selectedTask) {
         if (kind == null) { return home(page.items()); }
         var titles = Map.of("review", "先看结果，再看结论。", "leaderboard", "评分与榜单", "pricing", "看清权益，也看真实花费。", "tutorial", "把 AI，变成你的工作习惯。", "news", "最新资讯");
-        var descriptions = Map.of("review", "从任务条件与样例出发，查看结论、证据和原始来源。", "leaderboard", "每份榜单独立保留评分口径，不混合不同任务与基准的分数。", "pricing", "各产品全部方案默认展开，直接看额度、重置方式、地区、限制与同任务消耗。", "tutorial", "从一个小任务开始，学习可以复用的提示词、工作流与使用方法。", "news", "最新发布的资讯、能力测评和教程文章，按发布时间更新。");
+        var descriptions = Map.of("review", "从任务条件与样例出发，查看结论、证据和原始来源。", "leaderboard", "按任务选择榜单，找到适合你的 AI。", "pricing", "各产品全部方案默认展开，直接看额度、重置方式、地区、限制与同任务消耗。", "tutorial", "从一个小任务开始，学习可以复用的提示词、工作流与使用方法。", "news", "最新发布的资讯、能力测评和教程文章，按发布时间更新。");
         var html = new StringBuilder("<div class='container" + ("leaderboard".equals(kind) ? " ranking-page" : "") + "'><div class='page-head'><div><div class='breadcrumb'><a href='/'>首页</a><span>/</span><span>")
             .append(LABELS.get(kind)).append("</span></div><h1>").append(titles.get(kind)).append("</h1><p>").append(descriptions.get(kind)).append("</p></div></div>");
         if (!kind.equals("news")) {
@@ -210,24 +210,7 @@ public class PortalRenderer {
     }
     private String board(PackageViews.PublishedContent item) {
         if (item.articleOnly()) { return cards(List.of(item), false); }
-        var data = codec.tree(item.data()); var sources = codec.tree(item.sources());
-        boolean overall="overall".equals(data.path("task").asText());
-        var html = new StringBuilder("<section class='panel portal-board'><div class='panel-head'><div class='panel-title'><a href='")
-            .append(url(item)).append("'>").append(esc(title(item))).append("</a><small>").append(esc(task(item))).append(" · ")
-            .append(esc(data.path("benchmark").asText())).append(" · ").append(esc(data.path("score_unit").asText()))
-            .append("</small></div><span class='pill'>方法 ").append(esc(data.path("method_version").asText())).append("</span></div>")
-            .append("<div class='ranking-table-wrapper'><table class='ranking-table portal-ranking'><thead><tr><th scope='col'>名次</th><th scope='col'>工具 / 型号</th><th scope='col'>原始成绩</th><th scope='col'>推荐理由</th><th scope='col'>来源</th></tr></thead><tbody>");
-        for (var entry : data.path("entries")) {
-            html.append("<tr><td class='rank-number'>").append(esc(entry.path("rank").asText())).append("</td><th scope='row'><strong>")
-                .append(esc(entry.path("tool_name").asText())).append("</strong><small>").append(esc(entry.path("model_version").asText()))
-                .append(entry.path("product_url").asText().isBlank()?"":" <a data-link-kind='reference' href='"+esc(entry.path("product_url").asText())+"' target='_blank' rel='noopener'>使用入口 ↗</a>")
-                .append("</small></th><td><strong class='score-value'>").append(entry.path("score").isNull() ? (overall?"人工排序，不计算总分":"未知") : esc(entry.path("score").asText()))
-                .append("</strong></td><td class='rank-reason'>").append(esc(entry.path("reason").asText())).append("</td><td>")
-                .append(PricingRenderer.source(sources, entry.path("source_id").asText())).append("</td></tr>");
-        }
-        html.append("</tbody></table></div><div class='panel-foot'><span>榜单快照 ").append(esc(PricingRenderer.date(data.path("as_of").asText())))
-            .append(" · 分数仅在同一口径内比较</span><a href='").append(url(item)).append("'>完整方法与依据 ↗</a></div></section>");
-        return html.toString();
+        return LeaderboardRenderer.preview(item, codec);
     }
     private String taskLinks(String kind,String selected,boolean includeAll) {
         var html=new StringBuilder();
