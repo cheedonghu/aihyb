@@ -32,7 +32,7 @@ public class NativeThemeHead implements TemplateHeadProcessor {
             var html = new StringBuilder("<style id='aihyb-theme-assets'>")
                 .append(".aihyb-module-nav{display:flex;flex-wrap:wrap;gap:10px 24px;max-width:1080px;margin:12px auto;padding:12px 20px;min-width:0}.aihyb-module-nav a{color:#2454c6;text-decoration:none}")
                 .append(".aihyb-native{max-width:100%;min-width:0;overflow-wrap:anywhere}.aihyb-native .scroll{max-width:100%;overflow-x:auto;contain:inline-size}.aihyb-native .scroll table{display:table;min-width:660px;width:100%;border-collapse:collapse}.aihyb-native td,.aihyb-native th{padding:10px;border:1px solid #cbd5e1;white-space:normal}.aihyb-native th{background:#edf2fc;color:#172036}.aihyb-native small{display:block;overflow-wrap:anywhere}.aihyb-native pre{max-width:100%;overflow:auto;white-space:pre;background:#f1f5f9;padding:16px;border-radius:8px;color:#172036}.aihyb-native img{max-width:100%;height:auto}.aihyb-native input,.aihyb-native select{padding:7px;border:1px solid #cbd5e1;max-width:100%}.aihyb-native .filters{display:flex;gap:10px;flex-wrap:wrap}.aihyb-native #compare-message{color:#9a3b12}.aihyb-native .token.keyword{color:#7c3aed}.aihyb-native .token.string{color:#047857}.aihyb-native .token.number,.aihyb-native .token.boolean{color:#b45309}.aihyb-native .token.comment{color:#64748b}.aihyb-native .token.function{color:#1d4ed8}")
-                .append("</style><link rel='stylesheet' href='/aihyb/assets/leaderboard.css?v=20261109-simple'>");
+                .append("</style><link rel='stylesheet' href='/aihyb/assets/leaderboard.css?v=20261109-chart'>");
             var value = context.getVariable("post");
             var managed = false;
             if (value != null) {
@@ -55,7 +55,7 @@ public class NativeThemeHead implements TemplateHeadProcessor {
             if (managed) {
                 html.append("<link rel='stylesheet' href='/aihyb/assets/review.css?v=20261023-body3'>")
                     .append("<link rel='stylesheet' href='/aihyb/assets/pricing.css?v=20261021'>")
-                    .append("<script src='/aihyb/assets/portal.js?v=20261021' defer></script>")
+                    .append("<script src='/aihyb/assets/portal.js?v=20261109-chart' defer></script>")
                     .append(PackageRenderer.priceScript().replace("document.querySelector", "root.querySelector")
                     .replace("(()=>{", "document.addEventListener('DOMContentLoaded',()=>{const root=document.querySelector('.aihyb-native');if(!root)return;")
                     .replace("})();", "});"))

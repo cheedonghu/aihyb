@@ -167,7 +167,7 @@ public class PackageRenderer {
             + "<title>" + escape(title) + " · AI好用榜</title><meta name='description' content='" + escape(summary) + "'>"
             + "<link rel='stylesheet' href='/aihyb/assets/pricing.css?v=20261021'>"
             + "<link rel='stylesheet' href='/aihyb/assets/review.css?v=20261023-body3'>"
-            + "<link rel='stylesheet' href='/aihyb/assets/leaderboard.css?v=20261109-simple'>"
+            + "<link rel='stylesheet' href='/aihyb/assets/leaderboard.css?v=20261109-chart'>"
             + "<style>body{margin:0;background:#f5f7fa;color:#172036;font:16px/1.75 system-ui,sans-serif}main,nav{max-width:1080px;margin:auto;padding:24px}nav{display:flex;gap:20px;flex-wrap:wrap}a{color:#2454c6}article,.card{background:white;padding:26px;border:1px solid #dde3ee;border-radius:14px;margin:18px 0}h1{line-height:1.35}.summary{color:#536178}.tag,small{color:#617089}small{display:block;overflow-wrap:anywhere}.notice{background:#fff0c6;padding:16px;border-radius:10px}.scroll{overflow-x:auto}table{border-collapse:collapse;min-width:660px;width:100%}th,td{border:1px solid #dce2eb;padding:12px;text-align:left}th{background:#edf2fc}pre{overflow:auto;background:#eef2f8;padding:16px}img{max-width:100%}input,select,button{padding:9px;margin:5px}#compare-message{color:#9a3b12}</style></head><body>"
             + "<nav><strong>AI好用榜 · PoC</strong><a href='/aihyb'>首页</a><a href='/aihyb/review'>测评</a><a href='/aihyb/leaderboard'>榜单</a><a href='/aihyb/pricing'>价格</a><a href='/aihyb/tutorial'>教程</a><a href='/console/aihyb-packages'>内容审核</a></nav><main>"
             + content + "</main>" + PRICE_SCRIPT + "</body></html>";

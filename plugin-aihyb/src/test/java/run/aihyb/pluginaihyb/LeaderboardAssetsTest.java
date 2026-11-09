@@ -44,7 +44,7 @@ class LeaderboardAssetsTest {
             .expectHeader().contentType("text/css").expectBody(String.class).consumeWith(response -> {
                 var css = response.getResponseBody();
                 assertNotNull(css);
-                assertTrue(css.contains(".ranking-catalog .ranking-data-table"));
+                assertTrue(css.contains(".ranking-chart-list"));
                 assertFalse(css.contains(":root"));
                 assertFalse(css.matches("(?s).*\\bbody\\s*\\{.*"));
             });
@@ -60,7 +60,8 @@ class LeaderboardAssetsTest {
         var document = Jsoup.parse(html);
         assertEquals(1, document.select("head link[href^='/aihyb/assets/leaderboard.css']").size());
         assertTrue(document.select("head link[href^='/aihyb/assets/portal.css']").isEmpty());
-        assertEquals(3, document.select(".ranking-data-table thead th").size());
+        assertTrue(document.select("table").isEmpty());
+        assertEquals(2, document.select("[data-ranking-chart] .ranking-chart-row").size());
     }
 
     @Test void exportNativePreviewUsingTheRealHeadProcessorAndEarthContext() throws Exception {

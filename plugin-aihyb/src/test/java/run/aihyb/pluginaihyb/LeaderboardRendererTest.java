@@ -36,10 +36,11 @@ class LeaderboardRendererTest {
         assertEquals(2, doc.select("[data-ranking-tab]").size());
         assertEquals(4, doc.select("[data-ranking-row]").size());
         assertTrue(doc.select("[data-ranking-board][hidden]").isEmpty());
-        assertTrue(doc.selectFirst("[data-ranking-controls]").hasAttr("hidden"));
+        assertTrue(doc.select("input,select,button,table,[data-ranking-controls],[data-ranking-search]").isEmpty());
         assertTrue(doc.select("[data-ranking-source], [data-sources], .ranking-facts, .ranking-overview").isEmpty());
-        assertEquals(List.of("排名", "模型", "评分"), doc.selectFirst("table").select("thead th").eachText());
-        assertFalse(doc.select("header,nav,table,[data-ranking-controls]").text().contains("演示来源"));
+        assertEquals(2, doc.select("[data-ranking-chart] .ranking-chart-list").size());
+        assertEquals(4, doc.select(".ranking-chart-row .ranking-comparison").size());
+        assertFalse(doc.select("header,nav,[data-ranking-chart]").text().contains("演示来源"));
         assertFalse(doc.html().contains("poc-v1"));
         assertEquals("85.5", doc.selectFirst("#ranking-source-a .ranking-score-cell strong").text());
         assertEquals(2, doc.select(".ranking-board-foot .ranking-references a[href='https://example.com/poc']").size());
@@ -58,7 +59,7 @@ class LeaderboardRendererTest {
         var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(root)), codec));
         assertTrue(doc.select("select[data-ranking-source]").isEmpty());
         assertEquals(List.of("演示来源甲 ↗", "演示来源乙 ↗"), doc.select(".ranking-references a[data-link-kind=reference]").eachText());
-        assertFalse(doc.select("header,nav,table").text().contains("演示来源"));
+        assertFalse(doc.select("header,nav,[data-ranking-chart]").text().contains("演示来源"));
     }
 
     @Test void bottomNotesRetainEachRanksOwnReference() throws Exception {
@@ -74,18 +75,61 @@ class LeaderboardRendererTest {
         assertEquals("https://example.com/second", rows.get(1).selectFirst("a").attr("href"));
         assertTrue(rows.get(0).selectFirst("strong").text().startsWith("1."));
         assertTrue(rows.get(1).selectFirst("strong").text().startsWith("2."));
-        assertTrue(doc.select("table a[data-link-kind=reference]").isEmpty());
+        assertTrue(doc.select("[data-ranking-chart] a[data-link-kind=reference]").isEmpty());
         assertFalse(doc.selectFirst(".ranking-reference-notes").hasAttr("open"));
     }
 
-    @Test void homepageRankingUsesTheSameThreeColumnPresentation() throws Exception {
+    @Test void homepageRankingUsesTheSameHorizontalChart() throws Exception {
         var root = fixture("home", "虚构榜单", "演示来源");
         var doc = Jsoup.parse(renderer.home(List.of(published(root))));
         var board = doc.selectFirst("[data-ranking-board]");
-        assertEquals(List.of("排名", "模型", "评分"), board.select("thead th").eachText());
-        assertFalse(board.select("header,table").text().contains("演示来源"));
+        assertTrue(board.select("table").isEmpty());
+        assertEquals(2, board.select(".ranking-chart-list > li").size());
+        assertFalse(board.select("header,[data-ranking-chart]").text().contains("演示来源"));
         assertFalse(board.html().contains("poc-v1"));
         assertTrue(board.children().last().hasClass("ranking-board-foot"));
+    }
+
+    @Test void barsShareAZeroBasedScaleAndKeepTiedOriginalRanks() throws Exception {
+        var root = fixture("ties", "虚构并列榜", "演示来源");
+        ((ObjectNode) root.path("data")).put("allow_ties", true);
+        for (var entry : root.path("data").path("entries")) {
+            ((ObjectNode) entry).put("score", "80").put("rank", 1);
+        }
+        codec.validate(codec.canonical(root));
+        var before = codec.canonical(root);
+        var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(root)), codec));
+        assertEquals(List.of("0", "80"), doc.select(".ranking-chart-axis span").eachText());
+        assertEquals(List.of("1", "1"), doc.select(".ranking-position").eachText());
+        assertEquals(List.of("1", "1"), doc.select(".ranking-chart-row").eachAttr("value"));
+        assertEquals(List.of("left:0%;width:100%", "left:0%;width:100%"), doc.select(".ranking-score-bar i").eachAttr("style"));
+        assertEquals(before, codec.canonical(root));
+    }
+
+    @Test void zeroAndUnknownScoresAreDistinctWithoutSyntheticBars() throws Exception {
+        var root = fixture("zero", "虚构零分榜", "演示来源");
+        ((ObjectNode) root.path("data")).put("ranking_mode", "source_rank");
+        ((ObjectNode) root.path("data").path("entries").get(0)).put("score", "0");
+        ((ObjectNode) root.path("data").path("entries").get(1)).putNull("score");
+        codec.validate(codec.canonical(root));
+        var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(root)), codec));
+        assertEquals(List.of("0", "未提供"), doc.select(".ranking-score-cell strong").eachText());
+        assertEquals(List.of("0"), doc.select(".ranking-chart-axis span").eachText());
+        assertEquals("left:0%;width:0%", doc.selectFirst(".ranking-score-bar i").attr("style"));
+        assertTrue(doc.select(".ranking-chart-row").get(1).select(".ranking-score-bar").isEmpty());
+    }
+
+    @Test void lowerIsBetterKeepsTheOriginalValuesAndRankingDirection() throws Exception {
+        var root = fixture("lower", "虚构耗时榜", "演示来源");
+        ((ObjectNode) root.path("data")).put("higher_is_better", false).put("score_unit", "seconds");
+        ((ObjectNode) root.path("data").path("entries").get(0)).put("score", "10");
+        ((ObjectNode) root.path("data").path("entries").get(1)).put("score", "20");
+        codec.validate(codec.canonical(root));
+        var doc = Jsoup.parse(LeaderboardRenderer.render(List.of(published(root)), codec));
+        assertEquals(List.of("10", "20"), doc.select(".ranking-score-cell strong").eachText());
+        assertEquals(List.of("left:0%;width:50%", "left:0%;width:100%"), doc.select(".ranking-score-bar i").eachAttr("style"));
+        assertEquals(List.of("1", "2"), doc.select(".ranking-position").eachText());
+        assertTrue(doc.text().contains("评分越低越好"));
     }
 
     @Test void editorialOverallKeepsItsRanksAndUnknownScores() throws Exception {

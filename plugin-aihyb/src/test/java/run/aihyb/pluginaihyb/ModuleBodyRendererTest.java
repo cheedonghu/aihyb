@@ -44,7 +44,8 @@ class ModuleBodyRendererTest {
         var document = render(payload);
         assertEquals(List.of("85.5", "79.0"), document.select(".report-raw-score").eachText());
         assertEquals(List.of("1", "2"), document.select(".report-rank-number").eachText());
-        assertEquals(List.of("排名", "模型", "评分"), document.select("thead th").eachText());
+        assertTrue(document.select("table").isEmpty());
+        assertEquals(2, document.select(".ranking-chart-list > li").size());
         assertTrue(document.text().contains("评分越高越好"));
         assertFalse(document.html().contains("INTERNAL_MODEL_VERSION"));
         assertFalse(document.html().contains("INTERNAL_METHOD_VERSION"));
