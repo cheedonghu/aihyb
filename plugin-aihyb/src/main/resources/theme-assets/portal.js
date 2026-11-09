@@ -1,6 +1,85 @@
 /* Progressive enhancement only; published content remains readable without JavaScript. */
 (() => {
+  function enhanceRankings() {
+    document.querySelectorAll('[data-ranking-catalog]').forEach(root => {
+      if (root.dataset.enhanced) return;
+      const panels = [...root.querySelectorAll('[data-ranking-board]')];
+      const tabs = [...root.querySelectorAll('[data-ranking-tab]')];
+      const source = root.querySelector('[data-ranking-source]');
+      const search = root.querySelector('[data-ranking-search]');
+      const sort = root.querySelector('[data-ranking-sort]');
+      if (!panels.length || !tabs.length || !source || !search || !sort) return;
+      let active = null;
+      const fromSource = element => !source.value || JSON.parse(element.dataset.sources || '[]').includes(source.value);
+      function filter() {
+        if (!active) return;
+        const rows = [...active.querySelectorAll('[data-ranking-row]')];
+        const term = search.value.trim().toLocaleLowerCase();
+        rows.sort((a, b) => sort.value === 'name'
+          ? a.dataset.name.localeCompare(b.dataset.name, 'zh-CN', {numeric: true}) || Number(a.dataset.order) - Number(b.dataset.order)
+          : Number(a.dataset.order) - Number(b.dataset.order));
+        const body = active.querySelector('tbody');
+        let count = 0;
+        rows.forEach(row => {
+          row.hidden = !row.dataset.name.toLocaleLowerCase().includes(term);
+          if (!row.hidden) count++;
+          body.append(row);
+        });
+        active.querySelector('[data-ranking-count]').textContent = `显示 ${count} / ${rows.length} 个模型配置`;
+        active.querySelector('[data-ranking-empty]').hidden = count > 0;
+      }
+      function choose(panel, updateHash = false) {
+        active = panel;
+        panels.forEach(item => { item.hidden = item !== panel; });
+        tabs.forEach(tab => {
+          if (tab.hash === '#' + panel.id) tab.setAttribute('aria-current', 'true');
+          else tab.removeAttribute('aria-current');
+        });
+        filter();
+        if (updateHash) {
+          try { history.replaceState(history.state, '', '#' + panel.id); }
+          catch { /* Local previews may not permit history replacement. */ }
+        }
+      }
+      function filterSources() {
+        tabs.forEach(tab => { tab.hidden = !fromSource(tab); });
+        if (!active || !fromSource(active)) {
+          const next = panels.find(fromSource);
+          if (next) choose(next, true);
+        }
+      }
+      function followHash() {
+        const target = panels.find(panel => '#' + panel.id === location.hash);
+        if (!target) return false;
+        if (!fromSource(target)) {
+          source.value = '';
+          tabs.forEach(tab => { tab.hidden = false; });
+        }
+        choose(target);
+        return true;
+      }
+      tabs.forEach(tab => tab.addEventListener('click', event => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const panel = panels.find(item => '#' + item.id === tab.hash);
+        if (!panel) return;
+        event.preventDefault();
+        choose(panel, true);
+      }));
+      source.addEventListener('change', filterSources);
+      search.addEventListener('input', filter);
+      sort.addEventListener('change', filter);
+      root.querySelector('[data-ranking-reset]').addEventListener('click', () => {
+        source.value = ''; search.value = ''; sort.value = 'rank';
+        filterSources(); filter(); search.focus();
+      });
+      window.addEventListener('hashchange', followHash);
+      root.dataset.enhanced = 'true';
+      root.querySelector('[data-ranking-controls]').hidden = false;
+      if (!followHash()) choose(panels[0]);
+    });
+  }
   function enhance() {
+    enhanceRankings();
     document.querySelectorAll('.aihyb-native pre').forEach(pre => {
       if (pre.querySelector('.aihyb-copy')) return;
       const code = pre.querySelector('code');

@@ -168,16 +168,17 @@ class NativeModulePublicationTest {
         assertTrue(home.selectFirst(".news-date").text().contains("发布"));
     }
 
-    @Test void mixedLeaderboardCardsKeepTheCatalogOrder() throws Exception {
+    @Test void mixedLeaderboardCatalogKeepsSnapshotsAndNativeArticles() throws Exception {
         var structured = new PortalRendererTest().published("leaderboard");
         var article = new PackageViews.PublishedContent("native", "post-1", "leaderboard",
             Map.of("title", "后台榜单文章", "summary", "一段摘要"), Map.of(), List.of(), List.of(), "/archives/native");
         for (var items : List.of(List.of(article, structured), List.of(structured, article))) {
             var document = Jsoup.parse(renderer.listing("leaderboard", new PackageViews.Page<>(items, 2, 1, 20), null));
-            var children = document.selectFirst(".portal-board-list").children();
-            assertEquals(2, children.size());
-            assertEquals(items.getFirst().articleOnly(), children.getFirst().hasClass("portal-article-card"));
-            assertEquals(1, document.select(".portal-ranking").size());
+            assertEquals(1, document.select("[data-ranking-board]").size());
+            assertEquals(structured.data().get("entries") instanceof List<?> entries ? entries.size() : 0,
+                document.select("[data-ranking-row]").size());
+            assertEquals(1, document.select(".ranking-reading .portal-article-card[href='/archives/native']").size());
+            assertTrue(document.selectFirst(".ranking-reading").text().contains("后台榜单文章"));
         }
     }
 

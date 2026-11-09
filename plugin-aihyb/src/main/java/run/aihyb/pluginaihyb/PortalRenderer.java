@@ -85,9 +85,9 @@ public class PortalRenderer {
 
     public String listing(String kind, PackageViews.Page<PackageViews.PublishedContent> page, String selectedTask) {
         if (kind == null) { return home(page.items()); }
-        var titles = Map.of("review", "先看结果，再看结论。", "leaderboard", "找到适合这件事的 AI。", "pricing", "看清权益，也看真实花费。", "tutorial", "把 AI，变成你的工作习惯。", "news", "最新资讯");
+        var titles = Map.of("review", "先看结果，再看结论。", "leaderboard", "评分与榜单", "pricing", "看清权益，也看真实花费。", "tutorial", "把 AI，变成你的工作习惯。", "news", "最新资讯");
         var descriptions = Map.of("review", "从任务条件与样例出发，查看结论、证据和原始来源。", "leaderboard", "每份榜单独立保留评分口径，不混合不同任务与基准的分数。", "pricing", "各产品全部方案默认展开，直接看额度、重置方式、地区、限制与同任务消耗。", "tutorial", "从一个小任务开始，学习可以复用的提示词、工作流与使用方法。", "news", "最新发布的资讯、能力测评和教程文章，按发布时间更新。");
-        var html = new StringBuilder("<div class='container'><div class='page-head'><div><div class='breadcrumb'><a href='/'>首页</a><span>/</span><span>")
+        var html = new StringBuilder("<div class='container" + ("leaderboard".equals(kind) ? " ranking-page" : "") + "'><div class='page-head'><div><div class='breadcrumb'><a href='/'>首页</a><span>/</span><span>")
             .append(LABELS.get(kind)).append("</span></div><h1>").append(titles.get(kind)).append("</h1><p>").append(descriptions.get(kind)).append("</p></div></div>");
         if (!kind.equals("news")) {
             html.append("<div class='filter-bar'><div class='filter-line'><span>场景</span><nav class='filter-buttons' aria-label='任务分类'>")
@@ -101,12 +101,12 @@ public class PortalRenderer {
         } else if (kind.equals("news")) {
             html.append(news(page.items()));
         } else if (kind.equals("leaderboard")) {
-            if (page.items().isEmpty()) { html.append(empty("暂时没有符合条件的榜单", "试试其他任务分类。")); }
-            html.append("<div class='review-grid review-page-grid portal-board-list'>");
-            for (var item : page.items()) {
-                html.append(item.articleOnly() ? articleCard(item) : board(item));
+            html.append(LeaderboardRenderer.render(page.items(), codec));
+            var articles = page.items().stream().filter(PackageViews.PublishedContent::articleOnly).toList();
+            if (!articles.isEmpty()) {
+                html.append("<section class='ranking-reading'><div class='page-subheading'><h2>榜单解读</h2></div>")
+                    .append(cards(articles, false)).append("</section>");
             }
-            html.append("</div>");
         } else {
             html.append("<div class='page-subheading'><h2>").append(LABELS.get(kind)).append("<small>共 ").append(page.total()).append(" 条已发布内容</small></h2></div>")
                 .append(cards(page.items(), kind.equals("tutorial")));
