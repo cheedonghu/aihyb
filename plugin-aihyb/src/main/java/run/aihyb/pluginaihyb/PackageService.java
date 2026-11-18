@@ -23,10 +23,18 @@ public class PackageService {
     private final NativeMirror nativeMirror;
     private final MediaService media;
     private final NativeCatalog natives;
+    private final AutomaticBoards automaticBoards;
     @org.springframework.beans.factory.annotation.Autowired private SiteSettings settings;
     private Mono<SiteSettings.Settings> configuration() { return settings == null ? Mono.just(SiteSettings.defaults()) : settings.get(); }
 
     public PackageService(ReactiveExtensionClient client, PackageCodec codec, PackageRenderer renderer, NativeMirror nativeMirror, MediaService media, NativeCatalog natives) {
+        this(client, codec, renderer, nativeMirror, media, natives, new AutomaticBoards((java.nio.file.Path) null, codec));
+    }
+
+    @org.springframework.beans.factory.annotation.Autowired
+    public PackageService(ReactiveExtensionClient client, PackageCodec codec, PackageRenderer renderer, NativeMirror nativeMirror,
+                          MediaService media, NativeCatalog natives, AutomaticBoards automaticBoards) {
+        this.automaticBoards = automaticBoards;
         this.client = client;
         this.codec = codec;
         this.renderer = renderer;
@@ -188,6 +196,19 @@ public class PackageService {
     }
 
     public Mono<PackageViews.PublishedContent> publicContent(String id) {
+        var prefix = PackageViews.PublishedContent.MODULE_PREFIX;
+        if (id.startsWith(prefix)) {
+            return automaticBoards.byId(id.substring(prefix.length()))
+                .switchIfEmpty(Mono.error(new PackageProblem(404, "榜单暂无公开数据")));
+        }
+        return publishedPost(id);
+    }
+
+    public Mono<JsonNode> automaticBoard(String id) {
+        return automaticBoards.payload(id).switchIfEmpty(Mono.error(new PackageProblem(404, "榜单暂无公开数据")));
+    }
+
+    private Mono<PackageViews.PublishedContent> publishedPost(String id) {
         return publishedEntry(id).flatMap(entry -> revision(entry.getSpec().getPublishedRevision())
                 .map(revision -> publicView(revision, entry.getSpec().getPublishedAt())))
             .onErrorResume(PackageProblem.class, error -> error.status() == 404
@@ -258,9 +279,15 @@ public class PackageService {
                     .map(revision -> publicView(revision, entry.getSpec().getPublishedAt()));
             }), 4)
             .collectList();
-        return published.zipWith(natives.published()).map(pair -> {
-            var items = new java.util.ArrayList<>(pair.getT1());
-            items.addAll(pair.getT2());
+        var boards = kind == null || "leaderboard".equals(kind) ? automaticBoards.published()
+            : Mono.just(java.util.List.<PackageViews.PublishedContent>of());
+        return Mono.zip(published, natives.published(), boards).map(batch -> {
+            var items = new java.util.ArrayList<>(batch.getT1());
+            items.addAll(batch.getT2());
+            for (var board : batch.getT3()) {
+                items.removeIf(item -> previousSnapshot(item, board));
+                items.add(board);
+            }
             if ("news".equals(kind)) {
                 items.removeIf(item -> !item.inLatestArticles());
             } else if (kind != null) {
@@ -271,6 +298,17 @@ public class PackageService {
             return java.util.List.copyOf(items);
         }).flatMap(items -> configuration().map(config -> items.stream()
             .filter(item -> SiteSettings.matches(config,item,task,null)).toList()));
+    }
+
+    // Only retire legacy converter snapshots from navigation. Their own public release URLs stay valid.
+    private static boolean previousSnapshot(PackageViews.PublishedContent item, PackageViews.PublishedContent current) {
+        if (!"leaderboard".equals(item.kind()) || item.articleOnly()
+            || !Objects.equals(item.data().get("benchmark"), current.data().get("benchmark"))
+            || !Objects.equals(item.data().get("method_version"), current.data().get("method_version"))) return false;
+        String id = current.content_id().substring(PackageViews.PublishedContent.MODULE_PREFIX.length());
+        String prefix = id.equals(AutomaticBoardBatch.OPEN_ID) ? "epoch-open-"
+            : "md-" + id.substring(AutomaticBoardBatch.DIAL_PREFIX.length()) + "-";
+        return item.content_id().matches(prefix + "[a-f0-9]{48}");
     }
 
     public Mono<PackageViews.Page<PackageViews.PublishedContent>> publicSelection(String kind,String task,String scene,int page,int size) {

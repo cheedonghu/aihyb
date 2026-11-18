@@ -10,7 +10,7 @@
 | [deploy](deploy/README.md) | 按环境区分的 Compose/Caddy 配置及维护脚本 |
 | [assets/brand](assets/brand) | 网站品牌源图 |
 | [docs](docs/architecture.md) | 当前架构、开发、部署及设计约定 |
-| [外部数据接入](docs/external-sources.md) | 获取评测快照，将开放权重模型与 ModelDial 成绩转换为榜单草稿 |
+| [外部数据接入](docs/external-sources.md) | 自动更新开放权重与 ModelDial 榜单，也可从快照生成待审稿件 |
 
 首次开发先读 [AGENTS.md](AGENTS.md)、[术语表](CONTEXT.md)及[开发说明](docs/development.md)。
 

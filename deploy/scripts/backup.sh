@@ -19,6 +19,9 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 docker compose exec -T db pg_dump -U halo -d halo -Fc > "$TARGET/halo.dump"
 tar -czf "$TARGET/halo-files.tar.gz" data/halo
+if [ -d data/module-boards ]; then
+  tar -czf "$TARGET/module-boards.tar.gz" data/module-boards
+fi
 cp .env "$TARGET/runtime.env"
 cp -a secrets "$TARGET/secrets"
 cp compose.yaml compose.media.yaml compose.public.yaml "$TARGET/"
@@ -37,6 +40,9 @@ else
   cp /usr/local/lib/aihyb-halo-poc/s3-egress-proxy.py "$TARGET/"
 fi
 (cd "$TARGET" && sha256sum halo.dump halo-files.tar.gz > checksums.txt)
+if [ -f "$TARGET/module-boards.tar.gz" ]; then
+  (cd "$TARGET" && sha256sum module-boards.tar.gz >> checksums.txt)
+fi
 if [ -f "$TARGET/caddy-files.tar.gz" ]; then
   (cd "$TARGET" && sha256sum caddy-files.tar.gz >> checksums.txt)
 fi

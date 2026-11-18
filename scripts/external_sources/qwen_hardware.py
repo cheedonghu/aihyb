@@ -29,7 +29,7 @@ class _BenchmarkPage(HTMLParser):
                 self.table.append(self.row)
             elif tag in ('th', 'td') and self.row is not None:
                 span = attrs.get('rowspan', '1')
-                require(re.fullmatch(r'[1-9]\d{0,2}', span) and attrs.get('colspan', '1') == '1',
+                require(isinstance(span, str) and re.fullmatch(r'[1-9]\d{0,2}', span) and attrs.get('colspan', '1') == '1',
                         f'{section}: unsupported cell span')
                 self.cell = []
                 self.row.append((int(span), self.cell))

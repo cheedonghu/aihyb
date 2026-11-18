@@ -22,6 +22,8 @@ public final class PackageViews {
                                    Map<String, Object> content, Map<String, Object> data,
                                    List<Map<String, Object>> sources, List<Map<String,Object>> assets,
                                    String url) {
+        public static final String MODULE_PREFIX = "module:";
+        public boolean moduleBoard() { return content_id.startsWith(MODULE_PREFIX); }
         public boolean articleOnly() { return data.isEmpty(); }
         public boolean inSection(String section) {
             return section.equals(kind) || (articleOnly() && content.get("sections") instanceof List<?> sections

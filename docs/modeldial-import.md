@@ -4,7 +4,7 @@
 
 入口为 [modeldial_import.py](../scripts/modeldial_import.py)，离线虚构测试为 [test_modeldial_import.py](../scripts/test_modeldial_import.py)。稿件结构遵循现有 [统一稿件包协议](../contracts/README.md) 与 [Schema](../contracts/content-package-v1.schema.json)，没有新增协议字段。
 
-也可通过[外部数据接入模块](external-sources.md)的 `fetch modeldial` 取得来源快照，随后通过 `convert modeldial` 离线转换。下列旧入口仍支持直接读取本地 overview。
+需要更新网站当前五维榜单时，运行 `sync modeldial` 即可从同一份 overview 更新五个固定页面。需要独立稿件时，可用 `fetch modeldial` 保存快照，接着用 `convert modeldial` 离线转换，也可用下列入口直接读取本地 overview。[外部数据接入说明](external-sources.md)
 
 ## 已核对的来源结构
 

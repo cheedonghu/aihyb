@@ -59,12 +59,24 @@ public class WebController {
                 .flatMap(items -> ServerResponse.ok().contentType(MediaType.TEXT_HTML).header("Cache-Control", "no-cache")
                     .bodyValue(renderer.listing(null, items))))
             .GET("/aihyb", this::listing).GET("/aihyb/{kind}", this::listing)
+            .GET("/aihyb/boards/{id}", this::board)
             .GET("/aihyb/content/{id}", request -> service.publicContent(request.pathVariable("id"))
                 .flatMap(content -> ServerResponse.status(HttpStatus.FOUND)
-                    .location(URI.create(content.articleOnly() ? content.url() : "/archives/aihyb-" + content.content_id()))
+                    .location(URI.create(content.articleOnly() || content.moduleBoard() ? content.url() : "/archives/aihyb-" + content.content_id()))
                     .header("Cache-Control", "no-cache").build()))
             .build().filter((request, next) -> Mono.defer(() -> next.handle(request)).onErrorResume(PackageProblem.class, AdminController::error));
     }
+    private Mono<ServerResponse> board(ServerRequest request) {
+        var id = request.pathVariable("id");
+        return service.automaticBoard(id).flatMap(payload -> {
+            var content = payload.path("content");
+            var body = renderer.articleFragment(payload, renderer.markdown(content.path("body_markdown").asText()),
+                false, payload.path("submission_id").asText());
+            return renderPortal(request, content.path("title").asText(), content.path("summary").asText(),
+                "/aihyb/boards/" + id, "<div class='container ranking-page'><p class='breadcrumb'><a href='/aihyb/leaderboard'>评分与榜单</a></p>" + body + "</div>");
+        });
+    }
+
     private Mono<ServerResponse> listing(ServerRequest request) {
         var kind = request.pathVariables().get("kind"); var task = request.queryParam("task").orElse(null);
         var page = AdminController.number(request, "page", 1); var size = AdminController.number(request, "size", 20);
@@ -72,15 +84,21 @@ public class WebController {
         var result = service.publicSelection(kind,task,scene,page,size,kind==null || "pricing".equals(kind));
         return result.zipWith(settings.get()).flatMap(pair -> {
             var items=pair.getT1(); var config=pair.getT2();
-            var model = new HashMap<String, Object>();
-            model.put("pageTitle", kind == null ? HOME_TITLE : PAGE_TITLES.getOrDefault(kind, "AI好用指南"));
-            model.put("pageDescription", kind == null ? HOME_DESCRIPTION : "news".equals(kind) ? "最新发布的资讯、能力测评和教程文章" : "AI好用榜四模块已发布内容");
-            model.put("pageBody", portal.listing(kind, items, task, scene, config));
-            model.put("pageCanonical", "/aihyb" + (kind == null ? "" : "/" + kind));
-            model.put(ModelConst.TEMPLATE_ID, "plugin:plugin-aihyb:portal");
-            return templates.resolveTemplateNameOrDefault(request.exchange(), "aihyb-portal")
-                .flatMap(template -> ServerResponse.ok().contentType(MediaType.TEXT_HTML)
-                    .header("Cache-Control", "no-cache").render(template, model));
+            return renderPortal(request, kind == null ? HOME_TITLE : PAGE_TITLES.getOrDefault(kind, "AI好用指南"),
+                kind == null ? HOME_DESCRIPTION : "news".equals(kind) ? "最新发布的资讯、能力测评和教程文章" : "AI好用榜四模块已发布内容",
+                "/aihyb" + (kind == null ? "" : "/" + kind), portal.listing(kind, items, task, scene, config));
         });
+    }
+
+    private Mono<ServerResponse> renderPortal(ServerRequest request, String title, String description, String canonical, String body) {
+        var model = new HashMap<String, Object>();
+        model.put("pageTitle", title);
+        model.put("pageDescription", description);
+        model.put("pageBody", body);
+        model.put("pageCanonical", canonical);
+        model.put(ModelConst.TEMPLATE_ID, "plugin:plugin-aihyb:portal");
+        return templates.resolveTemplateNameOrDefault(request.exchange(), "aihyb-portal")
+            .flatMap(template -> ServerResponse.ok().contentType(MediaType.TEXT_HTML)
+                .header("Cache-Control", "no-cache").render(template, model));
     }
 }

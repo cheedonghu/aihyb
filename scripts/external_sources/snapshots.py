@@ -70,13 +70,19 @@ def _utc_now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
-def fetch(adapter, destination, *, with_hardware=False):
+def fetch(adapter, destination, *, with_hardware=False, archive_attempt=False):
     sources = sources_for(adapter, with_hardware)
-    output_paths([s.name for s in sources] + [MANIFEST], destination)
+    paths = output_paths([s.name for s in sources] + [MANIFEST], destination)
+    if archive_attempt:
+        # A sync attempt owns a new directory. Keep even invalid responses for diagnosis.
+        local_path(destination).mkdir(parents=True, exist_ok=False)
     payloads, records = {}, {}
     for source in sources:
         try:
             raw = _download(source)
+            if archive_attempt:
+                with paths[source.name].open("xb") as stream:
+                    stream.write(raw)
             _check_payload(source, raw)
         except (ValueError, OSError, http.client.HTTPException, RecursionError) as error:
             raise ImportProblem(f"Could not collect {source.url}: {error}") from error
@@ -91,10 +97,14 @@ def fetch(adapter, destination, *, with_hardware=False):
     # The manifest is the completion marker. Never create it before the last payload exists.
     payloads[MANIFEST] = encode({"version": 1, "adapter": adapter, "with_hardware": with_hardware,
                                  "retrieved_at": completed_at, "files": records})
+    if archive_attempt:
+        with paths[MANIFEST].open("xb") as stream:
+            stream.write(payloads[MANIFEST])
+        return len(payloads)
     return write_outputs(payloads, destination)
 
 
-def read_snapshot(adapter, directory):
+def read_snapshot(adapter, directory, *, check_payload=False):
     directory = local_path(directory)
     manifest_path = directory / MANIFEST
     require(not manifest_path.is_symlink(), f"Snapshot manifest is a symlink: {manifest_path}")
@@ -117,5 +127,10 @@ def read_snapshot(adapter, directory):
         raw = read_limited(path, source.limit)
         require(type(record.get("bytes")) is int and len(raw) == record["bytes"]
                 and digest(raw) == record.get("sha256"), f"Snapshot size or SHA-256 mismatch: {source.name}")
+        if check_payload:
+            try:
+                _check_payload(source, raw)
+            except (ValueError, OSError, RecursionError) as error:
+                raise ImportProblem(f'Invalid archived source {source.name}: {error}') from error
         payloads[source.name] = raw
     return payloads.pop(sources[0].name), payloads, source_times[sources[0].name], source_times

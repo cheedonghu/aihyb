@@ -10,7 +10,9 @@ services:
       - "127.0.0.1:18090:8090"
     volumes:
       - ./data/halo:/root/.halo2
+      - ./data/module-boards:/var/lib/aihyb/module-boards:ro
     environment:
+      AIHYB_MODULE_DATA_DIR: /var/lib/aihyb/module-boards
       JVM_OPTS: "-Xms128m -Xmx768m -XX:ActiveProcessorCount=1"
       SPRING_R2DBC_URL: r2dbc:pool:postgresql://db/halo
       SPRING_R2DBC_USERNAME: halo

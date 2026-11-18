@@ -26,6 +26,10 @@ def _parser():
     convert.add_argument("--retrieved-at", help="RFC 3339 source retrieval time (required with --input)")
     convert.add_argument("--generated-at", required=True, help="RFC 3339 draft generation time; reuse on replay")
     convert.add_argument("--output-dir", required=True, type=local_path, help="External or Git-ignored draft directory")
+    sync = commands.add_parser("sync", help="Collect and publish one complete version of an adapter's boards")
+    sync.add_argument("adapter", choices=PRIMARY)
+    sync.add_argument("--data-dir", required=True, type=local_path, help="Dedicated external or Git-ignored data directory")
+    sync.add_argument("--snapshot-dir", type=local_path, help="Replay a local verified snapshot instead of fetching")
     return parser
 
 
@@ -63,6 +67,12 @@ def main(argv=None):
         if args.command == "fetch":
             count = fetch(args.adapter, args.snapshot_dir, with_hardware=args.with_hardware)
             print(f"Source snapshot complete: {count} files created in {args.snapshot_dir}.")
+        elif args.command == "sync":
+            from .sync import sync
+            status, path, report = sync(args.adapter, args.data_dir, args.snapshot_dir)
+            print(f"Sync {status}: {path}" + (f" (report: {report})" if report else ""))
+            if status == 'published-durability-unconfirmed':
+                return 3
         else:
             _convert(args)
     except (ImportProblem, OSError, RecursionError) as error:

@@ -1,8 +1,31 @@
 # 外部数据接入与开放权重模型榜
 
-编辑可在工作站用 Python 3.10+ 标准库采集来源，离线重放后将标准稿件送入已有草稿审核流程。插件和站点读取已发布版本。ModelDial 与开放权重模型榜共用来源清单、下载大小限制、快照哈希和输出保护。入口见[命令行工具](../scripts/import_external.py)。
+Python 采集并转换来源，Halo 业务插件从本地目录读取最新有效批次，更新榜单栏目、首页入口和固定详情页。普通投稿继续使用稿件审核流程。ModelDial 与开放权重模型榜共用来源清单、快照和校验规则。[命令行工具](../scripts/import_external.py)
 
-## 取得一份可审核的榜单
+## 自动更新模块数据
+
+从仓库根目录执行下列命令，可以在本机采集并更新两个来源。每个命令完成一次同步，已有的自动化任务可直接调用它们。
+
+```powershell
+python scripts/import_external.py sync open-models --data-dir build/module-boards
+python scripts/import_external.py sync modeldial --data-dir build/module-boards
+```
+
+开放权重模型榜默认采集能力与硬件资料。ModelDial 的五个维度共用一个批次文件，五份全部有效后一次切换。分数或实测记录变化时生成新版本，单纯重复取得同一组数据会跳过。采集或解析失败时，命令报告原因，上一版继续展示。插件逐批核对文件哈希、稿件结构及榜单身份，遇到损坏的新文件时读取最近的有效版本，重启后也能回退。
+
+插件通过 `AIHYB_MODULE_DATA_DIR` 选择数据目录，采集端需要对该目录有写权限。项目 Compose 将宿主机 `./data/module-boards` 只读挂载到 Halo 的 `/var/lib/aihyb/module-boards`。对接某个环境时，将 `--data-dir` 指向该环境的宿主机目录。本地生成的 `build/module-boards` 只用于本地验证。首次启用这份 Compose 配置时需要让目标 Halo 容器加载新挂载与环境变量，之后更新数据只需运行同步命令。[Compose 模板](../deploy/compose.yaml)
+
+联网采集保存在 `_sync/<来源>/snapshots`，每次同步的结果写入 `reports`。`published` 表示新批次已经写入，`unchanged` 表示继续用原批次，`failed` 的报告记录拒绝原因，命令退出码为 2。若文件已可见而系统无法确认写入已持久化，命令返回 `published-durability-unconfirmed` 和退出码 3。此时检查存储和报告中的版本文件。若仅同步报告写入失败，命令会输出警告及已生效的批次路径。对每个参与计算的文件，程序记录实际取得时间与哈希。回放可能覆盖较新的来源数据时会拒绝更新。`observations` 中的记录用于这项检查，应随批次一起备份。记录缺失时从同一备份恢复。若插件日志报告新批次校验失败，按来源和文件名对照同步报告、快照与上一有效批次。[备份和恢复](deployment.md)
+
+已有完整快照可以直接重放，无需重新联网。
+
+```powershell
+python scripts/import_external.py sync modeldial --snapshot-dir build/saved-modeldial --data-dir build/module-boards
+```
+
+开放权重模型榜的固定页面是 `/aihyb/boards/auto-open-models`。ModelDial 的固定页面使用 `/aihyb/boards/auto-modeldial-` 加 `backend`、`frontend`、`knowledge`、`aesthetic` 或 `maintainability`。每个地址展示该榜最新有效批次。该来源首次同步成功后，栏目中同口径的旧版导入快照由当前榜接替。旧稿依然可以通过历史地址访问。公开 JSON 接口使用例如 `/apis/api.aihyb.run/v1alpha1/contents/module:auto-open-models` 的标识，与普通稿件分别寻址。
+
+## 离线生成可审核的独立快照
 
 从仓库根目录运行。目录用本次采集的独立名称，`build/` 已被 Git 忽略。保留首次生成时间以便按相同参数重放。
 
