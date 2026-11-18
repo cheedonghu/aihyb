@@ -8,6 +8,7 @@
 
 ```powershell
 python scripts/check-repository.py
+python -m unittest discover -s scripts -p "test_*.py"
 cd plugin-aihyb
 $env:CI = 'true'
 .\gradlew.bat build --no-daemon --console=plain

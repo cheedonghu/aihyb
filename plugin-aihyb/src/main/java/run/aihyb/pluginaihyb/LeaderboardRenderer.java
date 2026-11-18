@@ -66,13 +66,24 @@ final class LeaderboardRenderer {
         var scores = entries.stream().filter(entry -> !entry.path("score").isNull())
             .map(entry -> decimal(entry.path("score"))).toList();
         var maximum = scores.stream().max(Comparator.naturalOrder()).orElse(BigDecimal.ZERO);
-        var unit = unit(data.path("score_unit").asText());
+        boolean open = OpenModelHardware.TASK.equals(data.path("task").asText());
+        var scoreUnit = data.path("score_unit").asText();
+        boolean eci = open && "index".equals(scoreUnit)
+            && "Epoch Capabilities Index".equalsIgnoreCase(data.path("benchmark").asText().strip());
+        var unit = eci ? "ECI" : unit(scoreUnit);
+        var references = new java.util.LinkedHashMap<String, Integer>();
+        if (open) {
+            for (var source : sources) references.put(source.path("source_id").asText(), references.size() + 1);
+        }
         html.append("<section class='ranking-board' data-ranking-board id='").append(esc(id))
             .append("' aria-labelledby='").append(esc(id)).append("-title'><header class='ranking-board-head'><h2 id='")
-            .append(esc(id)).append("-title'>").append(esc(title)).append("</h2></header>")
-            .append("<div class='ranking-chart-toolbar'><p data-ranking-count>").append(entries.size()).append(" 个模型</p><span>")
+            .append(esc(id)).append("-title'>").append(esc(title)).append("</h2></header>");
+        if (open) OpenModelHardware.controls(html, esc(id));
+        html.append("<div class='ranking-chart-toolbar'><p data-ranking-count")
+            .append(open ? " role='status' aria-atomic='true'" : "").append(">").append(entries.size()).append(" 个模型</p><span>")
             .append(editorial ? "编辑排序 · 参考评分" : data.path("higher_is_better").asBoolean() ? "评分越高越好" : "评分越低越好")
-            .append("</span></div><div class='ranking-chart' data-ranking-chart tabindex='0' role='region' aria-label='")
+            .append("</span></div><div class='ranking-chart' data-ranking-chart id='").append(esc(id))
+            .append("-chart' tabindex='0' role='region' aria-label='")
             .append(esc(title)).append("评分对比图' style='--ranking-zero:0%;'>");
         if (!editorial && !scores.isEmpty()) {
             html.append("<div class='ranking-chart-scale' aria-hidden='true'><div class='ranking-chart-axis'><span>0</span>");
@@ -102,11 +113,18 @@ final class LeaderboardRenderer {
             }
             html.append("<span class='ranking-score-cell'><strong class='report-raw-score'>").append(score.isNull() ? "未提供" : esc(score.asText())).append("</strong>");
             if (!unit.isBlank()) { html.append("<small>").append(esc(unit)).append("</small>"); }
-            html.append("</span></div></li>");
+            html.append("</span></div>");
+            if (open) OpenModelHardware.append(html, entry, references);
+            html.append("</li>");
         }
-        html.append("</ol></div><footer class='ranking-board-foot'><div class='ranking-references'><span>引用与说明</span>");
+        html.append("</ol></div>");
+        if (open) html.append("<p class='ranking-hardware-empty' data-hardware-empty hidden>此预算下尚无符合条件的实测模型。可提高预算或查看全部模型。</p>");
+        html.append("<footer class='ranking-board-foot'><div class='ranking-references'><span>引用与说明</span>");
         for (var source : sources) {
-            html.append("<span>").append(PricingRenderer.source(sources, source.path("source_id").asText())).append("</span>");
+            var key = source.path("source_id").asText();
+            html.append("<span>");
+            if (open) html.append("[").append(references.get(key)).append("] ");
+            html.append(PricingRenderer.source(sources, key)).append("</span>");
         }
         if (notesUrl != null) { html.append("<a href='").append(esc(notesUrl)).append("'>引用说明 ↗</a>"); }
         html.append("</div>");

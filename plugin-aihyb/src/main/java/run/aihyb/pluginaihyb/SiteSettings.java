@@ -115,7 +115,8 @@ public class SiteSettings {
             new Tag("spreadsheet","表格处理",true,List.of("office")),new Tag("writing","写作表达",true,List.of("office")),
             new Tag("programming","编程开发",true,List.of("programming")),new Tag("research","学习研究",true,List.of("research")),
             new Tag("qa","知识问答",true,List.of("qa")),new Tag("image","画图设计",true,List.of("image")),
-            new Tag("video","视频创作",true,List.of("video")),new Tag("audio","语音音频",true,List.of())),
+            new Tag("video","视频创作",true,List.of("video")),new Tag("audio","语音音频",true,List.of()),
+            new Tag("open-models","开放权重模型",true,List.of())),
             List.of(new Qr("group","微信群","","",""),new Qr("account","公众号","","",""),new Qr("support","客服","","","")),List.of());
     }
     public static Set<String> taskIds(PackageViews.PublishedContent item) {

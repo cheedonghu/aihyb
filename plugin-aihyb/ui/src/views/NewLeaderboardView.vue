@@ -3,7 +3,8 @@ import { ref } from 'vue'
 import { VPageHeader, VButton, Toast } from '@halo-dev/components'
 import { packageApi } from '@/api'
 import { siteError } from '@/api/site-settings'
-import LeaderboardFields, {type BoardEntry} from './LeaderboardFields.vue'
+import LeaderboardFields from './LeaderboardFields.vue'
+import { saveBoardEntries, type BoardEntry } from './leaderboard-fields'
 const title=ref('综合')
 const summary=ref('')
 const method=ref('')
@@ -20,7 +21,7 @@ async function create() {
     const payload={schema_version:'1.0',content_id:id,submission_id:'ui-'+crypto.randomUUID(),kind:'leaderboard',
       content:{title:title.value,summary:summary.value,body_markdown:'## 排名方法与适用范围\n\n'+method.value,tags:[],task_tags:[]},
       data:{task:'overall',benchmark:'编辑综合推荐',method_version:'1.0',as_of:date.value+'T00:00:00Z',score_unit:'custom',higher_is_better:true,allow_ties:false,ranking_mode:'editorial_order',
-        entries:entries.value.map(item=>{const copy={...item,score:null};if(!copy.product_url?.trim())delete copy.product_url;return copy}).sort((a,b)=>a.rank-b.rank)},
+        entries:saveBoardEntries(entries.value, true)},
       sources:sources.value.map(source=>({...source,url:source.url||null,author:source.author||null,original_published_at:null,retrieved_at:now,material_type:source.url?'webpage':'self_test'})),assets:[],
       provenance:{skill_name:'admin-editor',skill_version:'1.0',generated_at:now,input_sha256:null}}
     await packageApi.submitPackage({body:JSON.stringify(payload)})

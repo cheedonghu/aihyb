@@ -4,6 +4,8 @@
 
 入口为 [modeldial_import.py](../scripts/modeldial_import.py)，离线虚构测试为 [test_modeldial_import.py](../scripts/test_modeldial_import.py)。稿件结构遵循现有 [统一稿件包协议](../contracts/README.md) 与 [Schema](../contracts/content-package-v1.schema.json)，没有新增协议字段。
 
+也可通过[外部数据接入模块](external-sources.md)的 `fetch modeldial` 取得来源快照，随后通过 `convert modeldial` 离线转换。下列旧入口仍支持直接读取本地 overview。
+
 ## 已核对的来源结构
 
 2026-11-09 实查 [API 说明](https://modeldial.com/agent)、[overview JSON](https://modeldial.com/data/overview.json)、[评测方法](https://modeldial.com/method) 与 [数据许可](https://modeldial.com/data-license)。ModelDial 在本工具中只是外部数据来源，本站展示模板不依赖其页面布局。

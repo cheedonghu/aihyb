@@ -80,8 +80,8 @@
     "theme": "theme-earth",
     "path": "templates/index.html",
     "original_sha256": "f153f46813c89f443cfdd362a76cd77e1fe4d6638594bcad9ff8cf123ce2214e",
-    "previous_adapted_sha256": "803031bdb6073591b9ebf146ef2fb6a437612f5cb8e19ecfe0665292adbe7c73",
-    "adapted_sha256": "8cc18608a25867f37ef6be16938b152e7484468325aa0c26ae2f9991679cd7a8"
+    "previous_adapted_sha256": "8cc18608a25867f37ef6be16938b152e7484468325aa0c26ae2f9991679cd7a8",
+    "adapted_sha256": "7ac912a27ef319f0d3942822f534e523bb0947610533ec5f9a5da88f81b8a051"
   },
   {
     "theme": "theme-earth",

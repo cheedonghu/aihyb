@@ -167,6 +167,65 @@ class LeaderboardRendererTest {
         assertEquals(1, doc.select(".ranking-reading a[href='/archives/native-article']").size());
     }
 
+    @Test void openModelBudgetsUseOriginalScoresAndWorkAcrossAllThreePages() throws Exception {
+        var root = (ObjectNode) codec.validate(Files.readString(Path.of("../contracts/examples/leaderboard-open-models.json")));
+        var item = published(root);
+        assertTrue(SiteSettings.defaults().tags().stream().anyMatch(tag -> tag.enabled() && tag.id().equals("open-models")));
+        assertTrue(SiteSettings.matches(SiteSettings.defaults(), item, "open-models", null));
+        var home = Jsoup.parse(renderer.home(List.of(published(fixture("other", "其他榜", "编辑")), item)));
+        assertEquals(item.url(), home.selectFirst(".home-ranking a:contains(按显存查看开放权重模型)").attr("href"));
+        var packages = new PackageRenderer();
+        var article = packages.article(root, packages.markdown(root.at("/content/body_markdown").asText()), true, "preview");
+        for (var page : List.of(renderer.home(List.of(item)),
+            renderer.listing("leaderboard", new PackageViews.Page<>(List.of(item), 1, 1, 20), null), article)) {
+            var board = Jsoup.parse(page).selectFirst("[data-ranking-board]");
+            assertEquals(List.of("", "8000", "12000", "16000", "24000"), board.select("[data-hardware-budget] option").eachAttr("value"));
+            assertEquals(1, board.select("[data-hardware-control][hidden]").size());
+            assertTrue(board.select("[data-ranking-row][hidden], [data-hardware-record][hidden]").isEmpty());
+            assertEquals(List.of("1", "2", "2"), board.select("[data-ranking-row]").eachAttr("value"));
+            assertEquals(List.of("91", "85.50", "85.50"), board.select(".report-raw-score").eachText());
+            assertEquals(List.of("ECI", "ECI", "ECI"), board.select(".ranking-score-cell small").eachText());
+            assertEquals(List.of("12000", "8000.5"), board.select("[data-measured-mb]").eachAttr("data-measured-mb"));
+            assertTrue(board.selectFirst(".ranking-hardware").text().contains("未收录"));
+            assertTrue(board.select(".ranking-hardware").text().contains("4700000000 字节"));
+            assertTrue(board.select(".ranking-hardware").text().contains("Apache-2.0"));
+            assertTrue(board.select(".ranking-hardware li").text().contains("出处 [2]"));
+            assertTrue(board.select(".ranking-references").text().contains("[2] 演示硬件记录作者"));
+            assertEquals(1, board.select("[role=status][data-ranking-count]").size());
+        }
+        assertEquals(1, Jsoup.parse(article).select(".ranking-board-foot a[href^=https://creativecommons.org/]").size());
+        assertEquals(1, Jsoup.parse(article).select("head script[src^='/aihyb/assets/portal.js']").size());
+        var report = Path.of("build/reports/leaderboard"); Files.createDirectories(report);
+        Files.writeString(report.resolve("open-models-preview.html"), localAssets(article));
+    }
+
+    @Test void otherLoadsEstimatesAndMultiGpuDoNotQualifyOrBreakOldBoards() throws Exception {
+        var root = (ObjectNode) codec.validate(Files.readString(Path.of("../contracts/examples/leaderboard-open-models.json")));
+        var entry = (ObjectNode) root.at("/data/entries/1");
+        var original = (ObjectNode) entry.at("/hardware/0");
+        var records = entry.putArray("hardware");
+        for (var key : List.of("input_tokens", "output_tokens", "gpu_count", "batch_size")) {
+            records.add(original.deepCopy().put(key, 2));
+        }
+        records.add(original.deepCopy().put("evidence", "estimate").put("runtime", "<script>alert(1)</script>"));
+        codec.validate(codec.canonical(root));
+        var doc = Jsoup.parse(LeaderboardRenderer.preview(published(root), codec));
+        var row = doc.select("[data-ranking-row]").get(1);
+        assertTrue(row.select("[data-measured-mb],script").isEmpty());
+        assertEquals(5, row.select("[data-hardware-record]").size());
+        assertTrue(row.text().contains("同口径单卡实测未收录"));
+        assertTrue(row.text().contains("<script>alert(1)</script>"));
+        var data = (ObjectNode) root.get("data");
+        data.put("benchmark", "Other index");
+        var otherIndex = Jsoup.parse(LeaderboardRenderer.preview(published(root), codec));
+        assertEquals("指数", otherIndex.selectFirst(".ranking-score-cell small").text());
+        assertNotNull(otherIndex.selectFirst("[data-hardware-budget]"));
+        data.put("task", "programming").put("benchmark", "Epoch Capabilities Index");
+        var old = Jsoup.parse(LeaderboardRenderer.preview(published(root), codec));
+        assertTrue(old.select("[data-hardware-control],.ranking-hardware").isEmpty());
+        assertEquals("指数", old.selectFirst(".ranking-score-cell small").text());
+    }
+
     static String localAssets(String html) {
         var document = Jsoup.parse(html);
         for (var asset : document.select("link[href^='/aihyb/assets/'],script[src^='/aihyb/assets/']")) {

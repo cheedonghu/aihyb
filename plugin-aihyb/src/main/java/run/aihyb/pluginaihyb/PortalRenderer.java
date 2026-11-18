@@ -62,10 +62,17 @@ public class PortalRenderer {
                 .sorted(java.util.Comparator.comparing(PackageViews.PublishedContent::publicationTime).reversed())
                 .limit(5).toList())).append("</section>");
         html.append(sectionHeading("01", "好不好用，任务里见。", "按任务选择榜单，找到适合你的 AI。", "leaderboard", "看全部榜单"));
-        var boards = section(items, "leaderboard").stream().limit(1).toList();
+        var boards = section(items, "leaderboard");
         html.append("<div class='home-ranking'><div>");
         if (boards.isEmpty()) { html.append(empty("暂无已发布榜单", "核验后的任务榜单会在这里展示。")); }
-        for (var board : boards) { html.append(board(board)); }
+        else {
+            html.append(board(boards.getFirst()));
+            if (!OpenModelHardware.TASK.equals(boards.getFirst().data().get("task"))) {
+                boards.stream().filter(item -> OpenModelHardware.TASK.equals(item.data().get("task"))).findFirst()
+                    .ifPresent(item -> html.append("<a class='text-link' href='").append(url(item))
+                        .append("'>按显存查看开放权重模型 →</a>"));
+            }
+        }
         html.append("</div><aside class='editor-picks'><div class='editor-kicker'>编辑的选择</div><h3>选完工具，<br>继续把事情做好。</h3><div class='editor-list'>");
         for (var item : items.stream().filter(value -> KINDS.contains(value.kind()) && !value.kind().equals("leaderboard")).limit(3).toList()) {
             html.append("<a class='editor-item' href='").append(url(item)).append("'><span>").append(LABELS.get(item.kind())).append("</span><strong>").append(esc(title(item))).append(" ↗</strong></a>");

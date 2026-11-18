@@ -149,6 +149,8 @@ public class PackageCodec {
                 if ("overall".equals(data.path("task").asText()) && !"editorial_order".equals(data.path("ranking_mode").asText())) errors.add("综合榜须使用人工排序");
                 var modelKeys=new HashSet<String>();
                 for(var entry:entries) {
+                    checkSources(entry.path("hardware"), sources,
+                        "data.entries[" + entry.path("entry_id").asText() + "].hardware", errors);
                     if(entry.has("product_url")&&!SiteSettings.safeUrl(entry.path("product_url").asText())) errors.add("产品入口须为有效 HTTP/HTTPS 地址");
                     if("overall".equals(data.path("task").asText())) {
                         if(entry.path("tool_name").asText().isBlank()||entry.path("model_version").asText().isBlank()) errors.add("综合榜须明确模型名称与版本");

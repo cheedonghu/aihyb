@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "content_id": "fictional-open-models",
+  "submission_id": "fictional-open-models-a",
+  "kind": "leaderboard",
+  "content": {
+    "title": "虚构演示 · 开放权重模型榜",
+    "summary": "用于验证榜单与参考配置的虚构数据。",
+    "body_markdown": "## 引用与许可\n\n评分、显存数值和许可均为虚构样例。示例评分材料由演示作者以 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 提供，本站保留原分数和并列名次。硬件配置和模型权重另见对应来源。",
+    "tags": ["虚构数据"]
+  },
+  "data": {
+    "task": "open-models",
+    "benchmark": "Epoch Capabilities Index",
+    "method_version": "fictional-v1",
+    "as_of": "2026-11-01T00:00:00Z",
+    "score_unit": "index",
+    "higher_is_better": true,
+    "allow_ties": true,
+    "ranking_mode": "source_rank",
+    "entries": [
+      {
+        "entry_id": "fictional-a", "tool_id": "fictional-a", "tool_name": "演示模型甲", "model_version": "v1",
+        "rank": 1, "score": "91", "source_id": "scores", "reason": "虚构评分样例。"
+      },
+      {
+        "entry_id": "fictional-b", "tool_id": "fictional-b", "tool_name": "演示模型乙", "model_version": "v1",
+        "rank": 2, "score": "85.50", "source_id": "scores", "reason": "虚构并列样例。",
+        "license": "Apache-2.0（示例）", "weights_bytes": 4700000000,
+        "hardware": [
+          {
+            "device": "H20（虚构记录）", "gpu_count": 1, "quantization": "BF16", "runtime": "Transformers",
+            "input_tokens": 6144, "output_tokens": 2048, "batch_size": 1,
+            "memory_mb": 12000, "evidence": "vendor", "source_id": "measurements"
+          },
+          {
+            "device": "演示 GPU", "gpu_count": 1, "quantization": "Q4_K_M", "runtime": "llama.cpp",
+            "input_tokens": 6144, "output_tokens": 2048, "batch_size": 1,
+            "memory_mb": 7000, "evidence": "estimate", "source_id": "measurements"
+          }
+        ]
+      },
+      {
+        "entry_id": "fictional-c", "tool_id": "fictional-c", "tool_name": "演示模型丙", "model_version": "v1",
+        "rank": 2, "score": "85.50", "source_id": "scores", "reason": "虚构并列样例。",
+        "hardware": [
+          {
+            "device": "演示 GPU", "gpu_count": 1, "quantization": "INT8", "runtime": "虚构运行时",
+            "input_tokens": 6144, "output_tokens": 2048, "batch_size": 1,
+            "memory_mb": 8000.5, "evidence": "community", "source_id": "measurements"
+          }
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "scores", "url": "https://example.com/scores", "author": "演示评分作者",
+      "original_published_at": null, "retrieved_at": "2026-11-01T00:00:00Z", "material_type": "dataset", "usage_note": "虚构评分材料。"
+    },
+    {
+      "source_id": "measurements", "url": "https://example.com/measurements", "author": "演示硬件记录作者",
+      "original_published_at": null, "retrieved_at": "2026-11-01T00:00:00Z", "material_type": "dataset", "usage_note": "虚构配置材料。"
+    }
+  ],
+  "assets": [],
+  "provenance": {"skill_name": "poc-fixture", "skill_version": "1.0", "generated_at": "2026-11-01T00:00:00Z", "input_sha256": null}
+}

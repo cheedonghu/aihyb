@@ -51,6 +51,49 @@ class PackageCodecTest {
         assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(extra)));
     }
 
+    @Test void openModelRecordsRequireTypedFieldsAndExistingSources() throws Exception {
+        var root = codec.validate(fixture("leaderboard-open-models"));
+        var entry = (ObjectNode) root.at("/data/entries/1");
+        var record = (ObjectNode) entry.at("/hardware/0");
+        var keys = new java.util.ArrayList<String>();
+        record.fieldNames().forEachRemaining(keys::add);
+        for (var key : keys) {
+            var original = record.remove(key);
+            assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)), key);
+            record.set(key, original);
+        }
+        for (var key : java.util.List.of("gpu_count", "input_tokens", "output_tokens", "batch_size", "memory_mb")) {
+            var original = record.get(key);
+            record.put(key, 0);
+            assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)), key);
+            record.set(key, original);
+        }
+        record.put("gpu_count", 1.5);
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        record.put("gpu_count", 1).put("memory_mb", "8000");
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        record.put("memory_mb", 8000.1).put("evidence", "verified");
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        record.put("evidence", "vendor").put("source_id", "unknown-hardware-source");
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        record.put("source_id", "measurements").put("extra", true);
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        record.remove("extra");
+        record.put("runtime", " ");
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        record.put("runtime", "example");
+        entry.put("weights_bytes", 0);
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        entry.put("weights_bytes", 9007199254740992L);
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        entry.remove("weights_bytes");
+        entry.put("license", "  ");
+        assertThrows(PackageProblem.class, () -> codec.validate(codec.canonical(root)));
+        entry.remove("license");
+        entry.putArray("hardware");
+        assertDoesNotThrow(() -> codec.validate(codec.canonical(root)));
+    }
+
     @Test void unknownQuotaRemainsUnknownAndMarkdownCannotExecuteHtml() throws Exception {
         var price = codec.validate(fixture("pricing"));
         assertTrue(price.get("data").get("plans").get(1).get("free_quota").get("amount").isNull());

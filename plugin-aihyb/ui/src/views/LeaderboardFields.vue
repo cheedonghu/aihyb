@@ -1,7 +1,7 @@
 <script setup lang="ts">
-export type BoardEntry = {entry_id:string;tool_id:string;tool_name:string;model_version:string;rank:number;score:string|null;reason:string;source_id:string;product_url?:string}
+import type { BoardEntry } from './leaderboard-fields'
 const entries=defineModel<BoardEntry[]>({required:true})
-defineProps<{sources:{source_id:string;author?:string;url?:string|null}[]; overall?:boolean}>()
+defineProps<{sources:{source_id:string;author?:string;url?:string|null}[]; overall?:boolean; lockedModels?:Set<string>}>()
 function add() {const id='model-'+crypto.randomUUID();entries.value.push({entry_id:id,tool_id:id,tool_name:'',model_version:'',rank:entries.value.length+1,score:null,reason:'',source_id:''})}
 </script>
 <template>
@@ -9,7 +9,12 @@ function add() {const id='model-'+crypto.randomUUID();entries.value.push({entry_
     <p v-if="overall">综合榜按具体模型版本人工排序。原始成绩可留空，不计算综合总分。</p>
     <fieldset v-for="(item,index) in entries" :key="item.entry_id">
       <legend>第 {{ index+1 }} 项 · {{ item.tool_name || '新模型' }}</legend>
-      <div class="board-grid"><label>名次<input v-model.number="item.rank" type="number" min="1" required /></label><label>模型名称<input v-model="item.tool_name" maxlength="200" required /></label><label>具体版本<input v-model="item.model_version" maxlength="120" required /></label></div>
+      <div class="board-grid">
+        <label>名次<input v-model.number="item.rank" type="number" min="1" required /></label>
+        <label>模型名称<input v-model="item.tool_name" maxlength="200" :readonly="lockedModels?.has(item.entry_id)" required /></label>
+        <label>具体版本<input v-model="item.model_version" maxlength="200" :readonly="lockedModels?.has(item.entry_id)" required /></label>
+      </div>
+      <p v-if="lockedModels?.has(item.entry_id)">外部评分或硬件记录关联此模型版本。更换型号时请重新导入对应的评分与配置。</p>
       <label v-if="!overall">原始成绩（可留空）<input v-model="item.score" /></label>
       <label>推荐理由<textarea v-model="item.reason" rows="3" required maxlength="1000" /></label>
       <label>来源<select v-model="item.source_id" required><option value="">请选择来源</option><option v-for="source in sources" :value="source.source_id" :key="source.source_id">{{ source.author || source.url || source.source_id }}</option></select></label>

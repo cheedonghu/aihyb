@@ -46,7 +46,17 @@
 :is(#content,main) .aihyb-review-report .ranking-reference-notes .report-facts{margin-bottom:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
 :is(#content,main) .aihyb-review-report .ranking-reference-notes .report-facts dt{color:#596a80;font-size:12px}
 :is(#content,main) .aihyb-review-report .ranking-reference-notes .report-facts dd{color:#415775;font-size:13px}
-.ranking-catalog :is(a,summary,.ranking-chart):focus-visible{outline:3px solid #2855e8;outline-offset:3px}
+.ranking-catalog .ranking-hardware-filter,.ranking-catalog .ranking-hardware-empty{margin:12px 22px;padding:12px 14px;background:#f4f7fc;border-radius:7px;color:#415775;font-size:13px}
+.ranking-catalog .ranking-hardware-filter label{display:flex;align-items:center;flex-wrap:wrap;gap:8px;color:#20344f;font-weight:600}
+.ranking-catalog .ranking-hardware-filter select{max-width:100%;min-height:40px;padding:6px 10px;border:1px solid #adbdcf;border-radius:6px;background:#fff;color:#20344f;font:inherit}
+.ranking-catalog .ranking-hardware-filter p{margin:0;font-size:13px;line-height:1.7}
+.ranking-catalog .ranking-hardware-filter label:not([hidden])+p{margin-top:8px}
+.ranking-catalog .ranking-hardware{grid-column:2/-1;min-width:0;margin-top:7px;color:#52647b;font-size:12px}
+.ranking-catalog .ranking-hardware>span{display:inline-block;margin-right:12px}
+.ranking-catalog .ranking-hardware p,.ranking-catalog .ranking-hardware details,.ranking-catalog .ranking-hardware ul{margin:2px 0 0}
+.ranking-catalog .ranking-hardware summary{width:fit-content;padding:4px 0;cursor:pointer;color:#365d9b}
+.ranking-catalog .ranking-hardware ul{padding-left:1.5em}
+.ranking-catalog :is(a,select,summary,.ranking-chart):focus-visible{outline:3px solid #2855e8;outline-offset:3px}
 .ranking-page .page-head{padding:28px 0 22px}
 .ranking-page .filter-bar{margin:0 0 16px;padding:12px 16px}
 @media(max-width:650px){

@@ -72,6 +72,27 @@ Codex skill 可在本机保留 manifest.json、body.md、data.json 和输入材�
 - 每条内容最多接受1000次交付；达到后返回409，正式运行前需规划归档。失败的并发写可能留下未引用修订，不公开，后续需定期回收策略。
 - PoC 为立即人工发布；已提供撤稿、归档、历史列表与完整历史恢复。取消归档不会自动发布，恢复产生新草稿并清除批准。无定时发布或跨包原子发布；不自动删除历史文件。
 
+## 开放权重模型榜
+
+`kind=leaderboard`、`data.task=open-models` 的稿件在 `benchmark="Epoch Capabilities Index"` 且 `score_unit=index` 时显示 ECI。其他指数沿用通用单位「指数」。名次、并列和原始十进制分数沿用评分来源。全站默认词表包含「开放权重模型」，已有站点配置由管理员维护。省略 `content.task_tags` 时沿用 `data.task` 匹配任务。显式提供标签的稿件需要站点词表已有对应 ID。
+
+条目可以独立提供 `license`（模型权重的许可名称）和 `weights_bytes`（GGUF Q4_K_M 权重文件总字节数，正整数，最多 9007199254740991）。前者按实际许可录入，后者描述磁盘文件大小。缺少资料可省略相应字段。
+
+可选 `hardware` 数组每项代表来源中的一次测量或估算，每个模型最多 64 项。每项完整填写以下字段：
+
+| 字段 | 含义 |
+| --- | --- |
+| `device`、`gpu_count` | 实际 GPU 型号和卡数 |
+| `quantization`、`runtime` | 该次推理的精度或量化格式、运行时 |
+| `input_tokens`、`output_tokens`、`batch_size` | 输入与输出 token 数、批大小 |
+| `memory_mb` | 按来源口径记录的显存占用，单位 MB，可保留小数 |
+| `evidence` | `vendor` 厂商实测、`community` 社区实测、`estimate` 估算 |
+| `source_id` | 引用本包 `sources` 中的硬件资料，可与排名来源不同 |
+
+所有数量均为正值，卡数、token 数和批大小为整数。公开榜单按模型显示参考配置。选择 8、12、16 或 24 GB 预算后，只保留至少有一条 `vendor` 或 `community` 单卡实测、输入 6144、输出 2048、batch 1 且 `memory_mb <= 预算 GB × 1000` 的模型及其符合条件的配置。排名和分数使用全榜原值。型号、驱动和运行时都会影响能否运行，消费显卡需要单独验证。
+
+编辑在 `content.body_markdown` 写明评分与硬件数据的出处、各自的许可和整理方式，公开详情的底部「引用说明」展示此内容。权重的 `license` 与评分数据的授权分别记录。可参阅[虚构的开放权重榜单样例](examples/leaderboard-open-models.json)。
+
 ## 保存与备份
 
 运行数据由 Halo ReactiveExtensionClient 写入现有 PostgreSQL。包与渲染结果存为修订中的文本，筛选常用字段和发布指针单独建索引；没有另建业务数据库，也没有假设它们是 PostgreSQL 原生 jsonb 列。大附件不进入数据库。

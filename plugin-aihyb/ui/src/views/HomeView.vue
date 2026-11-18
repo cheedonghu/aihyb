@@ -5,7 +5,8 @@ import { utils } from '@halo-dev/ui-shared'
 import { packageApi } from '@/api'
 import type { EntryDetail, EntrySummary } from '@/api/generated'
 import OperationsPanel from './OperationsPanel.vue'
-import LeaderboardFields, { type BoardEntry } from './LeaderboardFields.vue'
+import LeaderboardFields from './LeaderboardFields.vue'
+import { saveBoardEntries, sourcedModelIds, type BoardEntry } from './leaderboard-fields'
 import { siteApi, type TaskTag } from '@/api/site-settings'
 const taskTags=ref<TaskTag[]>([])
 const boardEntries=ref<BoardEntry[]>([])
@@ -35,6 +36,8 @@ const labels: Record<string, string> = {
 }
 const current = computed(() => detail.value?.entry)
 const raw = computed(() => detail.value?.draft_json ? JSON.parse(detail.value.draft_json) : undefined)
+const lockedModels = computed(() => raw.value?.kind === 'leaderboard'
+  ? sourcedModelIds(raw.value.data.task, raw.value.data.entries, raw.value.sources) : new Set<string>())
 const visibleItems = computed(() => items.value)
 const dirty = computed(() => JSON.stringify(boardEntries.value)!==originalBoardEntries.value || formTouched.value || Object.keys({ ...defaultForm.value, ...formValues.value })
   .some(key => String(defaultForm.value[key] ?? '') !== String(formValues.value[key] ?? '')))
@@ -149,11 +152,7 @@ async function saveDraft(values: Record<string, unknown>) {
     if (payload.kind === 'leaderboard') {
       payload.data.ranking_mode=payload.data.task==='overall'?'editorial_order':values.ranking_mode
       if(values.as_of!==payload.data.as_of.slice(0,10)) payload.data.as_of=String(values.as_of)+'T00:00:00Z'
-      payload.data.entries=boardEntries.value.map(item=>{
-        const copy={...item,rank:Number(item.rank),score:String(item.score??'').trim()||null}
-        if(!copy.product_url?.trim()) delete copy.product_url
-        return copy
-      }).sort((a,b)=>a.rank-b.rank)
+      payload.data.entries=saveBoardEntries(boardEntries.value)
     }
     await packageApi.submitPackage({ body: JSON.stringify(payload) })
     const latest = await packageApi.getEntry({ id: current.value.content_id })
@@ -271,7 +270,7 @@ onMounted(async () => { try {taskTags.value=(await siteApi.taxonomy()).data.tags
             <template v-if="raw.kind === 'leaderboard'">
               <FormKit v-if="formValues.task!=='overall'" name="ranking_mode" type="select" label="排名方式" :options="[{label:'按原始成绩',value:'score'},{label:'沿用来源排名',value:'source_rank'},{label:'人工排序',value:'editorial_order'}]" />
               <FormKit name="as_of" type="date" label="榜单日期" validation="required" />
-              <LeaderboardFields v-model="boardEntries" :sources="raw.sources" :overall="formValues.task==='overall'" />
+              <LeaderboardFields v-model="boardEntries" :sources="raw.sources" :overall="formValues.task==='overall'" :locked-models="lockedModels" />
             </template>
             <FormKit v-if="canEdit" type="submit" label="保存新草稿" :disabled="busy || mediaPending" />
           </FormKit>

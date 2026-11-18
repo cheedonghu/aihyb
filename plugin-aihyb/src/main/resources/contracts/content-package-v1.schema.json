@@ -4,6 +4,36 @@
   "title": "AIHYB content package 1.0",
   "type": "object",
   "additionalProperties": false,
+  "$defs": {
+    "hardwareCount": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "hardwareLabel": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "\\S"
+    },
+    "hardwareRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "device": { "$ref": "#/$defs/hardwareLabel" },
+        "gpu_count": { "$ref": "#/$defs/hardwareCount" },
+        "quantization": { "$ref": "#/$defs/hardwareLabel" },
+        "runtime": { "$ref": "#/$defs/hardwareLabel" },
+        "input_tokens": { "$ref": "#/$defs/hardwareCount" },
+        "output_tokens": { "$ref": "#/$defs/hardwareCount" },
+        "batch_size": { "$ref": "#/$defs/hardwareCount" },
+        "memory_mb": { "type": "number", "exclusiveMinimum": 0, "maximum": 2147483647 },
+        "evidence": { "enum": ["vendor", "community", "estimate"] },
+        "source_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,79}$" }
+      },
+      "required": ["device", "gpu_count", "quantization", "runtime", "input_tokens", "output_tokens", "batch_size", "memory_mb", "evidence", "source_id"]
+    }
+  },
   "properties": {
     "schema_version": {
       "const": "1.0"
@@ -594,6 +624,13 @@
                       "type": "string",
                       "minLength": 1,
                       "maxLength": 1000
+                    },
+                    "license": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "\\S" },
+                    "weights_bytes": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+                    "hardware": {
+                      "type": "array",
+                      "maxItems": 64,
+                      "items": { "$ref": "#/$defs/hardwareRecord" }
                     },
                     "product_url": {
                       "type": "string",
